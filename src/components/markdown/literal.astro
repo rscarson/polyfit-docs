@@ -1,0 +1,7 @@
+---
+import { MdLiteral } from '../../lib/markdown.js';
+import Markdown from '../markdown.astro';
+
+const { item } = Astro.props as { item: MdLiteral };
+---
+<span set:html={item.plaintext}></span>

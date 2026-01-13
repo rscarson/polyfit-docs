@@ -1,0 +1,9 @@
+---
+import { MdImage } from '../../lib/markdown.js';
+
+const { item } = Astro.props as { item: MdImage };
+---
+<figure class="figure">
+    <img src={item.url} class="figure-img img-fluid rounded" alt={item.alt}/>
+    <figcaption class="figure-caption text-center">{item.alt}</figcaption>
+</figure>

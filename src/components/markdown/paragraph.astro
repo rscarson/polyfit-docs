@@ -1,0 +1,9 @@
+---
+import { MdParagraph } from '../../lib/markdown.js';
+import Markdown from '../markdown.astro';
+
+const { item } = Astro.props as { item: MdParagraph };
+const { p_class } = Astro.props as { p_class?: string };
+---
+
+<p class={p_class || ''}><Markdown items={item.content} /></p>

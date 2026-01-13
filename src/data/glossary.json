@@ -1,0 +1,145 @@
+{
+    "orthogonality": {
+        "name": "Orthogonality",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Orthogonal_basis",
+            "mathworld": "https://mathworld.wolfram.com/OrthogonalBasis.html",
+            "khanacademy": "https://www.khanacademy.org/math/linear-algebra/alternate-bases/orthonormal-basis/v/linear-algebra-introduction-to-orthonormal-bases"
+        },
+        "related": [
+            "Polynomial::project_orthogonal",
+            "Polynomial::coefficient_energies",
+            "Polynomial::smoothness",
+            "Polynomial::spectral_energy_filter"
+        ],
+        "desc": [
+            "A set of basis functions is considered orthogonal if each individual basis function does not correlate with the others (adjusting one has no effect on the others' contribution to the total function).",
+            "Orthogonal bases tend to have better (glossary#numerical-stability)[numerical stability], especially for high-degree polynomial fits.",
+            "For polyfit, this means the basis implements the [[basis::OrthogonalBasis]] trait.",
+            "Curves and functions using orthogonal bases can use several advanced functions, listed below. (Note that [[CurveFit]] has the same set of functions for orthogonal bases.)"
+        ]
+    },
+
+    "domain": {
+        "name": "Domain",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Domain_of_a_function",
+            "mathworld": "https://mathworld.wolfram.com/Domain.html",
+            "khanacademy": "https://www.khanacademy.org/math/algebra-home/alg-functions/alg-domain-and-range/v/domain-of-a-function-intro"
+        },
+        "related": [
+            "statistics::DomainNormalizer",
+            "basis::Basis",
+            "value::SteppedValues"
+        ],
+        "desc": [
+            "The domain of a function is the set of input values (x-values) for which you can expect reasonable outputs (y-values).",
+            "Many basis options have a favourite domain where they perform best. For example, Chebyshev polynomials prefer x-values in the range [-1, 1], so [[basis::ChebyshevBasis]] will automatically scale and shift your input x-values to fit within that range.",
+            "It can help to select a basis that closely matches the domain of your data, for example if your x-values explode to very large numbers, a bounded basis like Chebyshev or Fourier may be outperformed by a basis like Laguerre, Hermite, or Logarithmic that does not have a finite domain."
+        ]
+    },
+
+    "numerical-stability": {
+        "name": "Numerical Stability",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Numerical_stability",
+            "mathworld": "https://mathworld.wolfram.com/NumericalStability.html"
+        },
+        "related": [
+            "basis::OrthogonalBasis",
+            "Polynomial::project_orthogonal"
+        ],
+        "desc": [
+            "How sensitive your polynomial fit is to small changes in your input or intermediate calculations. An unstable fit might blow up or produce wildly wrong coefficients even if your data barely changes.",
+            "If the polynomial degree is high or your basis isn't orthogonal, small rounding errors can produce nonsense results. Stability ensures the fit behaves predictably.",
+            "Stability can be improved by using an [orthogonal basis](glossary#orthogonality) or by [normalizing your data](recipes#scaling_and_normalization)."
+        ]
+    },
+
+    "outliers": {
+        "name": "Outliers",
+        "refs": {
+            "wikipedia": "",
+            "mathworld": "",
+            "khanacademy": ""
+        },
+        "related": [
+            "basis::Basis", 
+            "statistics"
+        ],
+        "desc": [
+            "An outlier is a data point that significantly deviates from the other observations in a dataset. Outliers can arise due to measurement errors, data entry mistakes, or inherent variability in the data.",
+            "They represent values that should not be captured by the underlying trend or pattern in the data.",
+            "Some basis options are better suited to handle outliers than others. For example, Chebyshev polynomials can better reduce errors caused by outliers near the edges compared to Legendre or monomial bases, and Fourier can capture patterns in noisy data that other bases might struggle with."
+        ]
+    },
+
+    "variance": {
+        "name": "Variance",
+        "refs": {
+            "wikipedia": "",
+            "mathworld": "",
+            "khanacademy": ""
+        },
+        "related": [
+            "statistics::residual_variance",
+            "statistics::r_squared"
+        ],
+        "desc": [
+            "Variance is a statistical measure that quantifies the spread of a set of data points around their mean (average) value. It indicates how much the individual data points differ from the mean.",
+            "In polynomial fitting, variance can be used to assess the quality of a fit by measuring how well the fitted polynomial explains the variability in the data."
+        ]
+    },
+
+    "projection": {
+        "name": "Projection",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Projection_(linear_algebra)",
+            "mathworld": "https://mathworld.wolfram.com/Projection.html",
+            "khanacademy": "https://www.khanacademy.org/math/linear-algebra/matrix-transformations/lin-trans-examples/v/introduction-to-projections"
+        },
+        "related": [
+            "Polynomial::project",
+            "Polynomial::project_orthogonal"
+        ],
+        "desc": [
+            "Projection is the process of moving from one basis to another by calculating the coefficients in the new basis that best represent the same function or data."
+        ]
+    },
+
+    "akaike-information-criterion": {
+        "name": "AIC (Akaike Information Criterion)",
+        "refs": {
+            "wikipedia": "",
+            "mathworld": "",
+            "khanacademy": ""
+        },
+        "related": [
+            "score::Aic",
+            "CurveFit::new_auto"
+        ],
+        "desc": [
+            "The Akaike Information Criterion (AIC) is a method for comparing different models and scoring them based on their goodness of fit and complexity. It helps to identify the model that best balances accuracy and simplicity.",
+            "For small data sets, a corrected version called AICc is used to account for sample size.",
+            "Compared to BIC (Bayesian Information Criterion), AIC tends to favor more complex models, while BIC penalizes complexity more heavily, often leading to simpler models being selected."
+        ]
+    },
+
+    "bayesian-information-criterion": {
+        "name": "BIC (Bayesian Information Criterion)",
+        "refs": {
+            "wikipedia": "",
+            "mathworld": "",
+            "khanacademy": ""
+        },
+        "related": [
+            "score::Bic",
+            "CurveFit::new_auto"
+        ],
+        "desc": [
+            "The Bayesian Information Criterion (BIC) is a method for comparing different models and scoring them based on their goodness of fit and complexity. It helps to identify the model that best balances accuracy and simplicity.",
+            "BIC penalizes model complexity more heavily than AIC (Akaike Information Criterion), often leading to simpler models being selected.",
+            "BIC is particularly useful when the goal is to avoid overfitting, especially in cases with large datasets."
+        ]
+    }
+}

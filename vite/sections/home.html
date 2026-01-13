@@ -1,0 +1,213 @@
+<!-- SENTINEL -->
+<section class="jumbotron">
+    <h4 class="fw-bold" style="color: #1e3c72;">
+        Because you don't need to be able to build a powerdrill to use one
+        safely
+    </h4>
+    <p class="lead mt-3 text-secondary">
+        Statistics is hard, and linear regression is made entirely out of footguns.<br />
+    </p>
+
+    <div class="d-flex justify-content-center gap-3 my-4">
+        <a href="https://github.com/your-repo/polyfit" class="btn btn-dark " target="_blank">
+            <i class="bi bi-github me-2"></i> GitHub
+        </a>
+        <a href="https://docs.rs/polyfit" class="btn btn-light " target="_blank">
+            <i class="bi bi-book me-2"></i> Docs.rs
+        </a>
+        <a href="https://crates.io/crates/polyfit" class="btn btn-warning " target="_blank">
+            <i class="bi bi-box-seam me-2"></i> Crates.io
+        </a>
+    </div>
+</section>
+
+
+<section class="mb-5">
+    <h2 class="mb-3">What is Polyfit?</h2>
+    <p class="lead mt-3 col-12 col-md-5 mx-auto">
+        Polyfit is a high-performance, easy-to-use polynomial fitting library for Rust, designed to make curve fitting
+        accessible to software engineers without a background in statistics.
+    </p>
+</section>
+
+<section class="mb-5">
+    <h2 class="mb-3">Why Polyfit?</h2>
+    <p class="lead mt-3 col-12 col-md-5 mx-auto">
+        Polyfit is designed to make curve fitting easy and accessible, without requiring a deep understanding of the
+        underlying mathematics - Built by a software engineer for software engineers.
+    </p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col">
+            <div class="card m-3 p-1 shadow-sm feature-card">
+                <div class="card-body" style="text-align: left !important;">
+                    <div class="text-left">
+                        <h5 class="mb-1">Performance Focused</h5>
+                        <p class="text-muted mb-2">Optimized for speed and memory efficiency</p>
+                    </div>
+                    <small>
+                        <p class="m-2 pb-2">&check; Blazing fast on both large and small datasets.</p>
+                        <p class="m-2">&check; Handles 100 million-row Chebyshev fits in ~1 s (8 cores, 2.2 GHz).</p>
+                        <p class="m-2 pb-2 text-muted">&check; Scales sub-linearly with data size, even on
+                            consumer-grade hardware
+                        </p>
+                        <p class="m-2">&check; 3rd-degree Chebyshev over 1 000 rows takes only ~23 µs.</p>
+                        <p class="m-2 text-muted">&check; Compare to 200 µs for numPy
+                        </p>
+                    </small>
+
+                    <a href="/features#performance" class="btn btn btn-outline-dark mt-3">Learn more</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card m-3 p-1 shadow-sm feature-card">
+                <div class="card-body" style="text-align: left !important;">
+                    <div class="text-left">
+                        <h5 class="mb-1">Opinionated, yet flexible</h5>
+                        <p class="text-muted mb-2">Sane, adaptive defaults allow you to make the right choices for your
+                            data
+                        </p>
+                    </div>
+                    <small>
+                        <p class="m-2">&check; Automatic model selection resistant to outliers, and overfitting</p>
+                        <p class="m-2">&check; Built-in tools to select the right basis for your data</p>
+                        <p class="m-2">&check; Safe API and developer-first documentation give you the full power of
+                            polyfit without needing a PhD in stats</p>
+                        <p class="m-2">&check; Adaptive domain-scaling to make sure your choice of basis works
+                            for your data</p>
+                    </small>
+
+                    <a href="/features#simplicity" class="btn btn btn-outline-dark mt-3">Learn more</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card m-3 p-1 shadow-sm feature-card">
+                <div class="card-body" style="text-align: left !important;">
+                    <div class="text-left">
+                        <h5 class="mb-1">Testing made simple</h5>
+                        <p class="text-muted mb-2">Bridging the gap between statistical rigor and engineering pragmatism
+                        </p>
+                    </div>
+                    <small>
+                        <p class="m-2">&check; Included test-suite brings statistical model validation into your
+                            workflow
+                        </p>
+                        <p class="m-2">&check; Comprehensive documentation, examples, and sane defaults take the
+                            guesswork
+                            out of testing</p>
+                        <p class="m-2">&check; Data-generation, transforming, and function mock-ups included
+                        </p>
+                        <p class="m-2">&check; Failed tests generate a detailed plot for easy, visual debugging
+                        </p>
+                    </small>
+
+                    <a href="/testing" class="btn btn btn-outline-dark mt-3">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-5">
+  <h2 class="mb-3">Basis Agnostic</h2>
+    <p class="lead mt-3 col-12 col-md-5 mx-auto">
+        Polyfit is generic over the choice of basis, and handles the domains and details, giving you the flexibility to
+        choose the best fit for your data, and to seamlessly switch basis as needed.
+    </p>
+
+    <ul id="home-basis" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 list-unstyled">
+        <li></li>
+        <li>
+            <a class="card h-100 p-3 text-decoration-none d-block">
+                <h3 class="h5 mb-2 placeholder-glow">
+                    <span class="placeholder col-3"></span>
+                </h3>
+                <p class="text-muted small mb-0 placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                </p>
+                <p class="text-muted small mb-0 placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                </p>
+            </a>
+        </li>
+        <!-- repeat as needed -->
+    </ul>
+</section>
+
+<section class="mb-5">
+    <h2 class="mb-3">Basis Agnostic</h2>
+    <p class="lead mt-3">
+        Polyfit is generic over the choice of basis, and handles the domains and details, giving you the flexibility to
+        choose the best fit for your data,
+        and to seamlessly switch basis as needed.
+    </p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col">
+            <a class="card h-100 p-3" href="/glossary#basis-monomial">
+                Monomial
+                <p class="text-muted small mb-0">
+                    The classic "x^n" basis.</br>Flexible, universal, and easy to read.
+                </p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="card h-100 p-3" href="/glossary#basis-chebyshev">
+                Chebyshev
+                <p class="text-muted small mb-0">
+                    Stable, fast and, efficient.</br>Orthogonal and resistant to overfitting.
+                </p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="card h-100 p-3" href="/glossary#basis-legendre">
+                Legendre
+                <p class="text-muted small mb-0">
+                    Orthogonal and numerically stable.</br>Good for approximating functions over finite intervals.
+                </p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="card h-100 p-3" href="/glossary#basis-laguerre">
+                Laguerre
+                <p class="text-muted small mb-0">
+                    Orthogonal over [0, ∞).</br>Useful for modeling decay processes.
+                </p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="card h-100 p-3" href="/glossary#basis-hermite">
+                Physicist's Hermite
+                <p class="text-muted small mb-0">
+                    Orthogonal, used in physics and probability theory.<br />
+                    Tuned for use in quantum mechanics.
+                </p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="card h-100 p-3" href="/glossary#basis-hermite">
+                Probabilist's Hermite
+                <p class="text-muted small mb-0">
+                    Orthogonal, used in probability theory.<br />
+                    Tuned for use in statistics.
+                </p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="card h-100 p-3" href="/glossary#basis-fourier">
+                Fourier
+                <p class="text-muted small mb-0">
+                    Stable, orthogonal, and periodic.</br>Ideal for modeling cyclical data or signals.
+                </p>
+            </a>
+        </div>
+        <div class="col">
+            <a class="card h-100 p-3" href="/glossary#basis-logarithmic">
+                Logarithmic
+                <p class="text-muted small mb-0">
+                    Useful for modeling data with exponential growth or decay.
+                </p>
+            </a>
+        </div>
+    </div>
+</section>

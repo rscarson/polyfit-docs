@@ -1,0 +1,28 @@
+---
+import { MdTable } from '../../lib/markdown.js';
+import Markdown from '../markdown.astro';
+
+const { item } = Astro.props as { item: MdTable };
+---
+<div class="table-responsive">
+    <table class="table table-striped table-hover col-md-9">
+        <thead>
+            <tr>
+                {item.headers.map((header: string) => (
+                    <th>{header}</th>
+                ))}
+            </tr>
+        </thead>
+        <tbody>
+            {item.rows.map((row: any[]) => (
+                <tr>
+                    {row.map((cell: any) => (
+                        <td>
+                            <Markdown item={cell} />
+                        </td>
+                    ))}
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>

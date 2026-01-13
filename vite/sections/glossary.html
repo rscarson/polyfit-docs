@@ -1,0 +1,677 @@
+<!-- SENTINEL -->
+<header id="top" class="page-header">
+    <h1>Glossary</h1>
+    <p class="lead" style="text-align: left;">
+        A glossary of mathematical concepts behind polynomial fitting, with visual illustrations and links to further
+        reading.
+    </p>
+</header>
+
+<!-- Search box -->
+<div class="mb-4">
+    <input type="text" id="glossary-search" class="form-control" placeholder="Search glossary..." onkeyup="
+        const filter = this.value.toLowerCase();
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(filter) ? '' : 'none';
+
+            // Expand matching items
+            const accordionBody = item.querySelector('.accordion-collapse');
+            if (accordionBody) {
+                accordionBody.classList.add('show');
+            }
+
+            // Find the actual card and add a yellow border
+            const cards = item.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (card.textContent.toLowerCase().includes(filter) && filter.length > 0) {
+                    card.style.border = '2px solid orange';
+                } else {
+                    card.style.border = '';
+                }
+            });
+        });
+    ">
+</div>
+
+<div class="accordion accordion-flush" style="text-align: left">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-basis" aria-expanded="false" aria-controls="collapse-basis">
+                Polynomial Basis
+            </button>
+        </h2>
+        <div id="collapse-basis" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                <p>
+                    A basis is the set of functions used to construct the polynomial model.<br />
+                    Each has their own strengths and
+                    weaknesses, and the choice of basis can significantly impact the performance and accuracy of the
+                    fit.<br />
+                    Examples of properties include <a href="#orthogonality">orthogonality</a>, <a
+                        href="#stability">numerical
+                        stability</a>, and resistance to <a href="#outliers">outliers</a>.
+                </p>
+
+                <div class="row row-cols-1 row-cols-lg-2">
+                    <!-- Monomial -->
+                    <div class="col">
+                        <div class="card m-3">
+                            <a href="#basis-monomial">
+                                <div class="card-header">
+
+                                    <h5 id="basis-monomial">Monomial Basis</h5>
+
+                                    <small class="text-muted">y(x) = 1.82x³ + 286.38x² - 1.15e5x + 1.47e6</small>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>When you say polynomial, most people think of the monomial basis. It's
+                                    recognizable, universal, and great for displaying or communicating a fit to people.
+                                </p>
+                                <p>However, it can be numerically unstable for high-degree polynomials or large
+                                    input ranges,
+                                    leading to
+                                    poor
+                                    results.</p>
+                                <p>Prefer <a href="#basis-chebyshev">Chebyshev</a>, which can be converted to
+                                    monomial form for
+                                    display.
+                                </p>
+                                <ul class="list-group list-group-flush small mt-2"
+                                    style="--bs-list-group-item-padding-y: .25rem;">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Input Domain</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            None — the function will use the given x-values without modification.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Resistance to Outliers</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Poor. Extreme values or spikes in the data set can significantly affect the
+                                            fit.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Numerical Stability</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Low. Susceptible to numerical instability, especially for high-degree
+                                            polynomials or large input ranges.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Calculus Support</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Full support for symbolic differentiation, integration, and exact root
+                                            finding.
+                                            See <a href="/features#calculus">[features#calculus]</a>.
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                                        <strong class="me-3" style="min-width: 180px;">Orthogonal</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            No — functions like <a
+                                                href="https://crates.io/crates/polyfit/struct.CurveFit.html#method.spectral_energy_filter">
+                                                [CurveFit::spectral_energy_filter]
+                                            </a> are unavailable.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Monomial -->
+
+                    <!-- Chebyshev -->
+                    <div class="col">
+                        <div class="card m-3">
+                            <a href="#basis-chebyshev">
+                                <div class="card-header">
+                                    <h5 id="basis-chebyshev">Chebyshev Basis</h5>
+                                    <small class="text-muted">T[ 0..1000 -> -1..1 ], y(x) = 5.69e7·T₃(xₛ) +
+                                        3.77e8·T₂(xₛ) +
+                                        9.39e8·T₁(xₛ) + 6.20e8</small>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>
+                                    Chebyshev polynomials are a set of orthogonal polynomials that provide excellent
+                                    numerical stability and resistance to outliers. Their properties make them very
+                                    resistant to
+                                    outliers at the edges of the input range.
+                                </p>
+                                <p>
+                                    They are particularly well-suited for high-degree polynomial fits and large input
+                                    ranges, and can be converted to monomial form for display or communication
+                                    purposes, making them very versatile.
+                                </p>
+                                <ul class="list-group list-group-flush small mt-2"
+                                    style="--bs-list-group-item-padding-y: .25rem;">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Input Domain</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            [-1, 1] — input x-values are scaled and shifted to fit within this range.
+                                            That transformation will be reflected in the equation.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Resistance to Outliers</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Good. Chebyshev polynomials do something called <a
+                                                href="https://en.wikipedia.org/wiki/Minimax_approximation_algorithm">minimax
+                                                approximation</a> to minimize the maximum error, which helps reduce the
+                                            impact of outliers.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Numerical Stability</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            High. Chebyshev polynomials are <a href="#orthogonality">orthogonal</a> and
+                                            well-conditioned, making
+                                            them more
+                                            stable for high-degree fits and large input ranges.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Calculus Support</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Supports derivative into the 2nd form, and again into the 3rd form. Both can
+                                            be integrated back up to the original. Can be converted to monomial form.
+                                            Exact root finding supported.
+                                            See <a href="/features#calculus">[features#calculus]</a>.
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                                        <strong class="me-3" style="min-width: 180px;">Orthogonal</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Yes. See <a href="#orthogonality">[orthogonality]</a>.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chebyshev -->
+
+                    <!-- Legendre -->
+                    <div class="col">
+                        <div class="card m-3">
+                            <a href="#basis-legendre">
+                                <div class="card-header">
+                                    <h5 id="basis-legendre">Legendre Basis</h5>
+                                    <small class="text-muted">T[ 0..1000 -> -1..1 ], y(x) = 9.11e7·P₃(xₛ) +
+                                        5.03e8·P₂(xₛ) +
+                                        9.05e8·P₁(xₛ) + 4.95e8</small>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>
+                                    Legendre polynomials are a set of orthogonal polynomials that provide excellent
+                                    numerical stability and resistance to outliers, similar to Chebyshev polynomials.
+                                </p>
+                                <p>
+                                    Compared to chebyshev polynomials, Legendre spreads the approximation error more
+                                    evenly across the input range, rather than the edges.
+                                </p>
+                                <p>
+                                    They are particularly well-suited for high-degree polynomial fits, and can be
+                                    converted to monomial form for display or communication
+                                    purposes, making them very versatile.
+                                </p>
+                                <ul class="list-group list-group-flush small mt-2"
+                                    style="--bs-list-group-item-padding-y: .25rem;">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Input Domain</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            [-1, 1] — input x-values are scaled and shifted to fit within this range.
+                                            That transformation will be reflected in the equation.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Resistance to Outliers</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Fair. Legendre polynomials aim to minimize the overall error across the
+                                            input range, but may be less effective at handling outliers compared to
+                                            Chebyshev
+                                            polynomials.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Numerical Stability</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            High. Legendre polynomials are <a href="#orthogonality">orthogonal</a> and
+                                            well-conditioned, making
+                                            them more
+                                            stable for high-degree fits.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Calculus Support</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Supports derivativation, but not integration. Can be converted to monomial
+                                            form.
+                                            Root finding uses numerical approximation.
+                                            See <a href="/features#calculus">[features#calculus]</a>.
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                                        <strong class="me-3" style="min-width: 180px;">Orthogonal</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Yes. See <a href="#orthogonality">[orthogonality]</a>.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Legendre -->
+
+                    <!-- Laguerre -->
+                    <div class="col">
+                        <div class="card m-3">
+                            <a href="#basis-laguerre">
+                                <div class="card-header">
+                                    <h5 id="basis-laguerre">Laguerre Basis</h5>
+                                    <small class="text-muted">y(x) = -10.93·L₃(x) + 605.54·L₂(x) + 1.14e5·L₁(x) +
+                                        1.36e6</small>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>
+                                    Laguerre polynomials are a set of orthogonal polynomials that are particularly
+                                    well-suited for modeling data that decays exponentially, such as radioactive decay
+                                    or certain
+                                    financial models.
+                                </p>
+                                <p>
+                                    They have an infinite, but positive input domain [0, ∞), so the source range does
+                                    not need to be compressed. They have good numerical stability and resistance to
+                                    outliers, and can be converted to monomial form for display or communication
+                                    purposes, making them versatile.
+                                </p>
+                                <ul class="list-group list-group-flush small mt-2"
+                                    style="--bs-list-group-item-padding-y: .25rem;">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Input Domain</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            [0, ∞) — input x-values shifted to fit within this range.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Resistance to Outliers</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Good. Laguerre polynomials are less sensitive to outliers due to their
+                                            orthogonal nature.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Numerical Stability</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            High. Legendre polynomials are <a href="#orthogonality">orthogonal</a> and
+                                            well-conditioned, making
+                                            them more
+                                            stable for high-degree fits, and their 0 to ∞ <a href="#domain">domain</a>
+                                            makes them suited for
+                                            large
+                                            input ranges.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Calculus Support</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Supports derivativation, but not integration. Can be converted to monomial
+                                            form.
+                                            Root finding uses numerical approximation.
+                                            See <a href="/features#calculus">[features#calculus]</a>.
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                                        <strong class="me-3" style="min-width: 180px;">Orthogonal</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Yes. See <a href="#orthogonality">[orthogonality]</a>.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Legendre -->
+
+                    <!-- Hermite -->
+                    <div class="col">
+                        <div class="card m-3">
+                            <a href="#basis-hermite">
+                                <div class="card-header">
+                                    <h5 id="basis-hermite">Hermite Basis</h5>
+                                    <small class="text-muted">y(x) = 0.23·He₃(x) + 71.59·He₂(x) - 5.76e4·He₁(x) +
+                                        1.47e6</small>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>
+                                    Hermite polynomials are a set of orthogonal polynomials that come in two flavors:
+                                <ul>
+                                    <li>
+                                        Physicist's Hermite polynomials (Heₙ), used in quantum mechanics and
+                                        physics.
+                                    </li>
+                                    <li>
+                                        Probabilist's Hermite polynomials (Hₙ), used in probability theory and
+                                        statistics.
+                                    </li>
+                                </ul>
+                                The choice between the two depends on the specific application, but both share similar
+                                properties. The primary difference is a scaling factor, allowing each variant to fit
+                                important equations in their respective fields.
+                                </p>
+                                <p>
+                                    They have no specific input domain restrictions, and have good numerical stability
+                                    and resistance to outliers. They can be converted to monomial form for display or
+                                    communication.
+                                </p>
+                                <ul class="list-group list-group-flush small mt-2"
+                                    style="--bs-list-group-item-padding-y: .25rem;">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Input Domain</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            None. The function will use the given x-values without modification.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Resistance to Outliers</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Good. Hermite polynomials are less sensitive to outliers due to their
+                                            orthogonal nature.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Numerical Stability</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            High. Hermite polynomials are <a href="#orthogonality">orthogonal</a> and
+                                            well-conditioned, making
+                                            them more
+                                            stable for high-degree fits, and their lack of a finite <a
+                                                href="#domain">domain</a>
+                                            makes them suited for
+                                            large
+                                            input ranges.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Calculus Support</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Supports derivativation, but not integration. Can be converted to monomial
+                                            form.
+                                            Root finding uses numerical approximation.
+                                            See <a href="/features#calculus">[features#calculus]</a>.
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                                        <strong class="me-3" style="min-width: 180px;">Orthogonal</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Yes. See <a href="#orthogonality">[orthogonality]</a>.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hermite -->
+
+                    <!-- Fourier -->
+                    <div class="col">
+                        <div class="card m-3">
+                            <a href="#basis-fourier">
+                                <div class="card-header">
+                                    <h5 id="basis-fourier">Fourier Basis</h5>
+                                    <small class="text-muted">T[ 0..1000 -> 0..2π ], y(x) = 8.16e7·cos(2xₛ) -
+                                        3.05e8·sin(2xₛ) + 3.05e8·cos(xₛ) -
+                                        5.46e8·sin(xₛ) + 4.95e8</small>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>
+                                    Fourier polynomials are trigonometric polynomials composed of sine and cosine
+                                    functions. They have a repeating, curvy appearance and are very well suited to data
+                                    that tends to be periodic, like signals data or seasonal trends.
+                                </p>
+                                <p>
+                                    They are <a href="#orthogonality">orthogonal</a>, providing good numerical stability
+                                    and
+                                    resistance to outliers. Their periodic nature means they can model cyclical patterns
+                                    that would require a far higher degree polynomial with other bases.
+                                </p>
+                                <p>
+                                    They have a specific input domain of [0, 2π], so input data must be scaled and
+                                    shifted
+                                    accordingly. However, they cannot be converted to monomial form.
+                                <ul class="list-group list-group-flush small mt-2"
+                                    style="--bs-list-group-item-padding-y: .25rem;">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Input Domain</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            [0, 2π] — input x-values are scaled and shifted to fit within this
+                                            range.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Resistance to Outliers</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Fair. They can get a decent fit in very noisy data that other bases would
+                                            struggle with, but may overreact to extreme outliers, and can have artifacts
+                                            called "ringing" at the edges if used on the wrong types of data.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Numerical Stability</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            High. Fourier polynomials are <a href="#orthogonality">orthogonal</a> and
+                                            well-conditioned, making them more stable for high-degree fits.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Calculus Support</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Supports full derivativation and integration. Cannot be converted to
+                                            monomial
+                                            form.
+                                            Root finding uses numerical approximation.
+                                            See <a href="/features#calculus">[features#calculus]</a>.
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                                        <strong class="me-3" style="min-width: 180px;">Orthogonal</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Yes. See <a href="#orthogonality">[orthogonality]</a>.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fourier -->
+
+                    <!-- Logarithmic -->
+                    <div class="col">
+                        <div class="card m-3">
+                            <a href="#basis-logarithmic">
+                                <div class="card-header">
+                                    <h5 id="basis-logarithmic">Logarithmic Basis</h5>
+                                    <small class="text-muted">y(x) = 1.79e9·ln(x)⁴ + 1.99e9·ln(x)³ - 6.05e8·ln(x)² -
+                                        4.70e8·ln(x) + 1.20e8</small>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>
+                                    Logarithmic polynomials are polynomials where the variable is transformed using the
+                                    natural logarithm function (ln). They are useful for modeling data that exhibits
+                                    exponential growth or decay, as well as data that spans several orders of magnitude.
+                                </p>
+                                <p>
+                                    They are useful for modelling data with exponential growth or decay, such as
+                                    population growth, timing data, or financial data. They can capture rapid changes in
+                                    the data more effectively than standard polynomials.
+                                </p>
+                                <ul class="list-group list-group-flush small mt-2"
+                                    style="--bs-list-group-item-padding-y: .25rem;">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Input Domain</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            (0, ∞) — input x-values must be positive, so the <a
+                                                href="#domain">domain</a> does not need to be scaled.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Resistance to Outliers</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Fair. Logarithmic polynomials can be sensitive to outliers, especially if
+                                            the outliers are extreme or located at the edges of the input range.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Numerical Stability</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Fair. Logarithmic polynomials can be less stable than other bases,
+                                            especially for high-degree fits or when the input data spans several orders
+                                            of magnitude.
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Calculus Support</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            Calculus and Monomial conversion not supported.
+                                            Root finding uses numerical approximation.
+                                            See <a href="/features#calculus">[features#calculus]</a>.
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                                        <strong class="me-3" style="min-width: 180px;">Orthogonal</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            No. Logarithmic polynomials are not orthogonal.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Logarithmic -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-terms" aria-expanded="false" aria-controls="collapse-terms">
+                Terms and Definitions
+            </button>
+        </h2>
+        <div id="collapse-terms" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                <p>
+                    A set of definitions for terms used in the descriptions above.
+                </p>
+
+                <div class="row row-cols-1 row-cols-md-3">
+                    <div class="col">
+                        <div class="card m-3">
+                            <a href="#define-orthogonal">
+                                <div class="card-header">
+                                    <h5 id="define-orthogonal">Orthogonality</h5>
+                                    <small>
+                                        <a href="https://en.wikipedia.org/wiki/Orthogonal_basis">Wikipedia</a> |
+                                        <a href="https://mathworld.wolfram.com/OrthogonalBasis.html">Mathworld</a> |
+                                        <a
+                                            href="https://www.khanacademy.org/math/linear-algebra/alternate-bases/orthonormal-basis/v/linear-algebra-introduction-to-orthonormal-bases">Khan
+                                            Academy</a>
+                                    </small>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>
+                                    A set of basis functions is considered orthogonal if each individual basis
+                                    function does not correlate with the others (adjusting one has no effect on the
+                                    others' contribution to the total function).
+                                </p>
+                                <p>
+                                    Orthogonal bases tend to have better <a href="#stability">numerical stability</a>,
+                                    especially for high-degree
+                                    polynomial fits.
+                                </p>
+                                <p>
+                                    For polyfit, this means the basis implements the <a
+                                        href="https://crates.io/crates/polyfit/basis/trait.OrthogonalBasis.html">[basis::OrthogonalBasis]</a>
+                                    trait.
+                                </p>
+                                <p>
+                                    Curves and functions using orthogonal bases can use several advanced functions (same
+                                    set available on <a
+                                        href="https://docs.rs/polyfit/latest/polyfit/struct.CurveFit.html">[CurveFit]</a>):
+                                </p>
+                                <ul>
+                                    <li><a
+                                            href="https://docs.rs/polyfit/latest/polyfit/struct.Polynomial.html#method.project_orthogonal">[Polynomial::project_orthogonal]</a>
+                                    </li>
+                                    <li><a
+                                            href="https://docs.rs/polyfit/latest/polyfit/struct.Polynomial.html#method.coefficient_energies">[Polynomial::coefficient_energies]</a>
+                                    </li>
+                                    <li><a
+                                            href="https://docs.rs/polyfit/latest/polyfit/struct.Polynomial.html#method.smoothness">[Polynomial::smoothness]</a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://docs.rs/polyfit/latest/polyfit/struct.Polynomial.html#method.spectral_energy_filter">[Polynomial::spectral_energy_filter]</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.slice(1);
+            if (!hash) return;
+
+            const target = document.getElementById(hash);
+            if (!target) return;
+
+            const accordion = target.closest('.accordion-collapse');
+            if (accordion) accordion.classList.add('show');
+        });
+    </script>

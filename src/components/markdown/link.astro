@@ -1,0 +1,11 @@
+---
+import { MdLink } from '../../lib/markdown.js';
+
+const { item } = Astro.props as { item: MdLink };
+---
+
+{item.url.startsWith('http') ? (
+    <a href={item.url} target="_blank" rel="noopener noreferrer">{item.text}</a>
+) : (
+    <a class="pagelink" href={item.url}>{item.text}</a>
+)}

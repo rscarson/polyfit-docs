@@ -1,0 +1,6 @@
+---
+import { MdEm } from '../../lib/markdown.js';
+
+const { item } = Astro.props as { item: MdEm };
+---
+<em set:html={item.content}></em>

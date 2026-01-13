@@ -1,0 +1,94 @@
+{
+    "general": [
+        {
+            "title": "Getting Started",
+            "mdfile": "getting_started_with_polyfit.md",
+            "links": {
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/simple_fit.rs"
+            }
+        },
+
+        {
+            "title": "Basis Selection",
+            "mdfile": "basis_selection.md",
+            "links": {
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/basis_selection.rs"
+            }
+        },
+
+        {
+            "title": "Using Calculus",
+            "mdfile": "using_calculus.md",
+            "links": {
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/calculus.rs"
+            }
+        },
+
+        {
+            "title": "Detecting Outliers",
+            "mdfile": "detecting_outliers.md",
+            "links": {
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/outlier_detection.rs"
+
+            }
+        },
+
+        {
+            "title": "Scaling and Normalization Transforms",
+            "mdfile": "scaling_and_normalization.md",
+            "links": {
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/scaling_transforms.rs"
+            }
+        },
+
+        {
+            "title": "Fits for Generating Graphs",
+            "mdfile": "fits_for_generating_graphs.md",
+            "links": {
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/fits_for_generating_graphs.rs"
+            }
+        },
+
+        {
+            "title": "Selecting a Degree for Your Fit",
+            "mdfile": "selecting_degree.md",
+            "links": {
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/selecting_degree.rs"
+            }
+        }
+    ],
+
+    "testing": [
+        {
+            "title": "Using Assertions to Test Fit Quality",
+            "mdfile": "using_assertions_to_test_fit_quality.md",
+            "links": {
+                "github": ""
+            }
+        },
+
+        {
+            "title": "Validating Your Choice of Basis",
+            "mdfile": "validating_your_choice_of_basis.md",
+            "links": {
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/validating_your_choice_of_basis.rs"
+            }
+        },
+        
+        {
+            "title": "Finding and Using Canonical Functions",
+            "mdfile": "finding_and_using_canonical_functions.md",
+            "links": {
+                "github": ""
+            }
+        }, 
+
+        {
+            "title": "Simulating Noisy Data for Testing",
+            "mdfile": "simulating_noisy_data_for_testing.md",
+            "links": {
+                "github": ""
+            }
+        }
+    ]
+}

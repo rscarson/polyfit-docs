@@ -1,0 +1,54 @@
+---
+import { 
+    MdItem, ItemKind ,
+    MdBlockQuote,
+    MdTable,
+    MdHorizontalRule,
+    MdList,
+    MdLiteral,
+    MdCodeBlock,
+    MdCodeSpan,
+    MdParagraph,
+    MdHeading,
+    MdLink,
+    MdDocsLink,
+    MdStrong,
+    MdEm
+} from '../lib/markdown';
+
+import BlockQuote from './markdown/blockquote.astro';
+import Table from './markdown/table.astro'
+import Hr from './markdown/hr.astro'
+import List from './markdown/list.astro'
+import CodeBlock from './markdown/codeblock.astro'
+import CodeSpan from './markdown/codespan.astro'
+import Paragraph from './markdown/paragraph.astro'
+import Heading from './markdown/heading.astro';
+import Link from './markdown/link.astro'
+import DocsLink from './markdown/docslink.astro'
+import Strong from './markdown/strong.astro'
+import Em from './markdown/em.astro'
+import Literal from './markdown/literal.astro';
+
+const { items } = Astro.props as { items: MdItem[] };
+const { p_class } = Astro.props as { p_class?: string };
+
+---
+{items && items.map(item => {
+    switch (item.kind) {
+        case ItemKind.BlockQuote: return <BlockQuote item={item as MdBlockQuote} />;
+        case ItemKind.Table: return <Table item={item as MdTable} />;
+        case ItemKind.Hr: return <Hr item={item as MdHorizontalRule} />;
+        case ItemKind.List: return <List item={item as MdList} />;
+        case ItemKind.CodeBlock: return <CodeBlock item={item as MdCodeBlock} />;
+        case ItemKind.CodeSpan: return <CodeSpan item={item as MdCodeSpan} />;
+        case ItemKind.Paragraph: return <Paragraph p_class={p_class} item={item as MdParagraph} />;
+        case ItemKind.Heading: return <Heading item={item as MdHeading} />;
+        case ItemKind.Link: return <Link item={item as MdLink} />;
+        case ItemKind.DocsLink: return <DocsLink item={item as MdDocsLink} />;
+        case ItemKind.Strong: return <Strong item={item as MdStrong} />;
+        case ItemKind.Em: return <Em item={item as MdEm} />;
+        case ItemKind.Html: return <Literal item={item as MdLiteral} />;
+        case ItemKind.Text: return item.plaintext;
+    }
+})}

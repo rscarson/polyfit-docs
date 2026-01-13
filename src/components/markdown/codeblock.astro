@@ -1,0 +1,8 @@
+---
+import { MdCodeBlock } from '../../lib/markdown.js';
+
+const { item } = Astro.props as { item: MdCodeBlock };
+---
+<pre class="col-md-9">
+<code class={`language-rust`} set:html={item.content}></code>
+</pre>

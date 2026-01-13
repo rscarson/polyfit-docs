@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/base.astro';
+import { includeTestingRecipes, includeTestingUtils } from '../lib/recipes';
+import Markdown from '../components/markdown.astro';
+
+const testingUtils = includeTestingUtils('testing');
+const testingRecipes = includeTestingRecipes('testing');
+---
+
+<BaseLayout title="Testing" path="/testing">
+    <header id="top" class="page-header">
+        <h1>Testing</h1>
+        <p class="lead" style="text-align: left;">
+            A library of test concepts and recipes to help you validate and verify your polynomial fits.
+        </p>
+    </header>
+
+    <!-- Search box -->
+    <div class="mb-4">
+        <input type="text" id="glossary-search" class="form-control" placeholder="Search..." />
+    </div>
+        
+    <div class="accordion accordion-flush" style="text-align: left">
+        {testingRecipes.map((recipe: any) => (
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed recipe-card" type="button" data-bs-toggle="collapse"
+                        data-bs-target={`#${recipe.id}`} aria-expanded="false" aria-controls={`${recipe.id}`}>
+                        {recipe.title}
+                    </button>
+                </h2>
+                <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight">
+                    <div class="accordion-body">
+                        <a href={recipe.links.github} class="btn btn-outline-secondary btn-sm float-end" target="_blank"><i
+                            class="bi bi-github me-2"></i> GitHub
+                        </a>
+
+                    <div class="recipe-content">
+                        <Markdown items={recipe.content} p_class="col-md-9" />
+                    </div>
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+
+    <hr />
+
+    <div class="row row-cols-1 row-cols-lg-1 accordion accordion-flush">
+        {testingUtils.map((recipe: any) => (
+        <div class="col accordion-item" style="text-align: left">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed recipe-card" type="button" data-bs-toggle="collapse"
+                    data-bs-target={`#${recipe.id}`} aria-expanded="false" aria-controls={`${recipe.id}`}>
+                    <span class="badge text-bg-danger me-2">Macro</span>
+                    {recipe.prototype}
+                </button>
+            </h2>
+            <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight">
+                <div class="accordion-body">
+                    <a href={recipe.links.docsrs} target="_blank" class="float-end badge text-bg-warning">
+                        <i class="bi bi-box-seam me-2"></i> Docs
+                    </a>
+
+                    {recipe.will_plot && (
+                        <div class="alert alert-info" role="alert">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            Generates a plot on failure.
+                            <strong>[Requires 'plotting' feature]</strong>
+                        </div>
+                    )}
+
+                    {Object.keys(recipe.args).map((arg: string) => (
+                        <p class="m-2"><strong>[{arg}]</strong> {recipe.args[arg]}</p>
+                    ))}
+
+                    <Markdown items={recipe.desc} p_class="col-md-9" />
+                    <pre><code class="language-rust" set:html={recipe.example}></code></pre>
+                </div>
+            </div>
+        </div>
+        ))}
+</BaseLayout>

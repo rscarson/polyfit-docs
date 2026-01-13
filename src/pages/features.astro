@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/base.astro';
+import features from '../data/features.json';
+---
+
+<BaseLayout title="Features" path="/features">
+    <header class="page-header">
+        <h1>Features</h1>
+        <p class="lead" style="text-align: left;">
+            An overview of Polyfit's features and capabilities
+        </p>
+    </header>
+
+    {Object.keys(features).map((id: any) => (
+    <div class="feature-hero p-5 rounded-3 row row-cols-1 row-cols-lg-2 mb-5 align-items-center">
+        <div class="col col-lg-3 feature-image mb-4 mb-lg-0 align-items-center">
+           <img src={features[id].img} alt={features[id].title} />
+        </div>
+
+        <div class="feature-text col col-lg-9">
+            <h2 id={id} class="no-highlight">{features[id].title}</h2>
+            {features[id].sections.map((section: any) => (
+            <>
+                {section.heading && (<h5>{section.heading}</h5>)}
+                {section.desc.map((para: any) => (
+                    <p class="lead mt-3">{para}</p>
+                ))}
+            </>
+            ))}
+
+            <div class="lead mt-3">
+                <h5>Further Reading</h5>
+                <ul class="mt-3">
+                    {features[id].refs.map((ref: any) => (
+                        <li class="mt-1">
+                            <a href={ref.url} target="_blank" rel="noopener noreferrer">{ref.text}</a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    </div>
+    ))}
+
+</BaseLayout>

@@ -1,0 +1,6 @@
+---
+import { MdDocsLink } from '../../lib/markdown.js';
+
+const { item } = Astro.props as { item: MdDocsLink };
+---
+<a href={item.url} target="_blank" rel="noopener noreferrer">[{item.path}]</a>

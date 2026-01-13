@@ -1,0 +1,6 @@
+---
+import { MdStrong } from '../../lib/markdown.js';
+
+const { item } = Astro.props as { item: MdStrong };
+---
+<strong set:html={item.content}></strong>

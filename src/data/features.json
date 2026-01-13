@@ -1,0 +1,135 @@
+{
+    "simplicity": {
+        "title": "Built for Developers, Not Just Mathematicians",
+        "img": "/features/developer_focused.png",
+        "sections": [
+            {
+                "desc": [
+                    "Just like you don't need to be able to build your own powerdrill to hang a picture, you shouldn't need to be a mathematician to fit curves to your data.",
+                    "Sane defaults and an API designed to be usable without deep mathematical knowledge are designed to bring the power of statistical analysis to delevelopers of all backgrounds."
+                ]
+            },
+            {
+                "heading": "Sane Defaults",
+                "desc": [
+                    "The API is designed to avoid ever asking for arbitrary numerical parameters when a reasonable possible. For example, when fitting a polynomial, I don't ask you how many candidate degrees to try; I give you the options 'Conservative', 'Relaxed', or 'Custom' to choose from, with each having detailed explanations of what they mean."
+                ]
+            },
+            {
+                "heading": "Developer Friendly",
+                "desc": [
+                    "The structure and naming conventions of the API are designed to be familiar to developers, while respecting mathematical concepts.",
+                    "Attention was also paid to give quality of life features for developers, such as detailed error messages, or the 'Noise Tolerance' feature on error bars to let you encode domain knowledge like sensor precision directly into the fit without needing to factor it into chosen error metrics."
+                ]
+            }
+        ],
+        "refs": [
+            {
+                "text": "DegreeBound Documentation",
+                "url": "https://docs.rs/polyfit/latest/polyfit/scoring/enum.DegreeBound.html"
+            },
+            {
+                "text": "Confidence Bands and Noise Tolerance",
+                "url": "https://docs.rs/polyfit/latest/polyfit/struct.CurveFitCovariance.html#method.confidence_band"
+            }
+        ]
+    },
+
+    "performance": {
+        "title": "Performance Focused",
+        "img": "/features/performance.png",
+        "sections": [
+            {
+                "desc": [
+                    "Performance was a core concern when building Polyfit, so our CI tests are used to assert certain metrics, including using our own library to verify that performance for curve fits degrades no faster than linearly as degree or dataset size increases"
+                ]
+            },
+            {
+                "heading": "Accuracy First",
+                "desc": [
+                    "Care has been taken to balance performance with accuracy, ensuring that Polyfit can handle large datasets and high-degree polynomial fits on consumer-grade hardware.",
+                    "Accuracy tradeoffs for performance are off by default, but can be enabled by crate features if desired.",
+                    "For specifics on the optimizations used, see the links below"
+                ]
+            }
+        ],
+        "refs": [
+            {
+                "text": "Curve fitting optimizations for massive datasets",
+                "url": "https://docs.rs/polyfit/latest/polyfit/struct.CurveFit.html#method.new"
+            },
+            {
+                "text": "Benchmarks and performance tests",
+                "url": "https://docs.rs/polyfit/latest/polyfit/index.html#features"
+            }
+        ]
+    },
+
+    "documentation": {
+        "title": "Extensive Documentation",
+        "img": "/features/documentation.png",
+        "sections": [
+            {
+                "desc": [
+                    "Polyfit's documentation was designed to be as complete as possible and consumable at-a-glance to developers without deep mathematical backgrounds. All functions, structs, and traits are documented with examples, and all concepts are explained, in use-case and limitations, in the docblocks.",
+                    "Details about implementation, such as theory references and formulas are contained in a 'Technical Details' section at the bottom of each docblock, so they are available for those who want to dive deeper without cluttering the main documentation."
+                ]
+            },
+            {
+                "heading": "Basis Agnostic",
+                "desc": [
+                    "The library included a wide set of basis functions, and the ability to easily add new basis functions via traits. To combat the added complexity, we include detailed documentation on the properties, strengths, and weaknesses of each basis function, as well as the `basis_select!` macro to help you pick the best basis for your data."
+                ]
+            }
+        ],
+        "refs": [
+            {
+                "text": "Polyfit Documentation",
+                "url": "https://docs.rs/polyfit"
+            },
+            {
+                "text": "Polyfit Glossary",
+                "url": "/glossary"
+            },
+            {
+                "text": "Basis Selection Macro",
+                "url": "https://docs.rs/polyfit/latest/polyfit/macro.basis_select.html"
+            }
+        ]
+    },
+
+    "testing": {
+        "title": "Built-in Test Suite",
+        "img": "/features/testing.png",
+        "sections": [
+            {
+                "desc": [
+                    "It is very difficult to test something like a curve fit due to possible variations in data, outliers, and the complexity of verifying the correctness of a fit.",
+                    "To that end a comprehensive test suite was built into Polyfit to allow users to write unit tests for their code, including utilities for generating and transforming test data, creating sample functions, and verifying a wide variety of fit properties.",
+                    "A plotting subsystem is included that (if the feature is enabled) will generate plots on test failure to visually demonstrate what went wrong."
+                ]
+            },
+            {
+                "heading": "Testing as a first-class citizen",
+                "desc": [
+                    "The testing utilities are designed to be easy to use and integrate into existing test suites, with sensible defaults and clear documentation.",
+                    "A glossary of test concepts and recipes is also provided on this site to help users get started with testing their curve fits.",
+                    "Additionally, the `basis_select!` macro is included to test your data against all support basis choices and give you graphs and an easy to understand report on the performance of each basis on your data." 
+                ]
+            },
+            {
+                "heading": "Visual Debugging",
+                "desc": [
+                    "When the `plotting` feature is enabled, Polyfit can generate plots of your data and fits automatically when tests fail, allowing you to visually inspect what went wrong.",
+                    "This can be invaluable for diagnosing issues with fits, especially in complex datasets where numerical metrics alone may not tell the whole story."
+                ]
+            }
+        ],
+        "refs": [
+            {
+                "text": "Polyfit GitHub Repository",
+                "url": "https://github.com/your-repo/polyfit"
+            }
+        ]
+    }
+}

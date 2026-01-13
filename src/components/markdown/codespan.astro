@@ -1,0 +1,7 @@
+---
+import { MdCodeSpan } from '../../lib/markdown.js';
+
+const { item } = Astro.props as { item: MdCodeSpan };
+---
+<span class="code-inline" set:html={item.content}>
+</span>

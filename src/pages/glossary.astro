@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/base.astro';
+import { includeBasis } from '../lib/basis';
+import { includeGlossary } from '../lib/glossary';
+import Markdown from '../components/markdown.astro';
+
+const basis = includeBasis('glossary');
+const glossary = includeGlossary('glossary');
+---
+
+<BaseLayout title="Glossary" path="/glossary">
+    <header id="top" class="page-header">
+        <h1>Glossary</h1>
+        <p class="lead" style="text-align: left;">
+            A glossary of mathematical concepts behind polynomial fitting, with visual illustrations and links to further
+            reading.
+        </p>
+    </header>
+
+    <!-- Search box -->
+    <div class="mb-4">
+        <input type="text" id="glossary-search" class="form-control" placeholder="Search glossary..." />
+    </div>
+
+<div class="accordion accordion-flush" style="text-align: left">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-basis" aria-expanded="false" aria-controls="collapse-basis">
+                Polynomial Basis
+            </button>
+        </h2>
+        <div id="collapse-basis" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                <p>
+                    A basis is the set of functions used to construct the polynomial model.<br />
+                    Each has their own strengths and
+                    weaknesses, and the choice of basis can significantly impact the performance and accuracy of the
+                    fit.
+                </p>
+                <p>
+                    Examples of properties include 
+                    <a href="#orthogonality">orthogonality</a>, 
+                    <a href="#stability">numerical stability</a>,
+                    and resistance to <a href="#outliers">outliers</a>.
+                </p>
+
+                <div class="row row-cols-1 row-cols-lg-2">
+                {basis.map((b) => (
+                    <div class="col">
+                        <div class="card m-3">
+                            <div class="card-header">
+                                <a class="can-highlight" href={`#${b.id}`}>
+                                    <h5 id={`${b.id}`} class="mb-0">{b.name} Basis</h5>
+                                </a>
+                                <small>
+                                    <a href={b.refs.wikipedia}>Wikipedia</a> |
+                                    <a href={b.refs.mathworld}>Mathworld</a> |
+                                    <a href={b.refs.khanacademy}>Khan Academy</a>
+                                </small><br/>
+                                <small class="text-muted">{b.sample}</small>
+                            </div>
+                            <div class="card-body">
+                                <Markdown items={b.desc_full} />
+                                
+                                <ul class="list-group list-group-flush small mt-2"
+                                    style="--bs-list-group-item-padding-y: .25rem;">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Input Domain</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            <Markdown items={b.features.domain} />
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Resistance to Outliers</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            <Markdown items={b.features.outliers} />
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Numerical Stability</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            <Markdown items={b.features.stability} />
+                                        </span>
+                                    </li>
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-start px-0 border-0 border-bottom">
+                                        <strong class="me-3" style="min-width: 180px;">Calculus Support</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            <Markdown items={b.features.calculus} />
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-start px-0">
+                                        <strong class="me-3" style="min-width: 180px;">Orthogonal</strong>
+                                        <span class="text-muted flex-grow-1">
+                                            <Markdown items={b.features.orthogonal} />
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse-terms" aria-expanded="false" aria-controls="collapse-terms">
+                Terms and Definitions
+            </button>
+        </h2>
+        <div id="collapse-terms" class="accordion-collapse collapse">
+            <div class="accordion-body">
+                <p>
+                    A set of definitions for common mathematical concepts used in polynomial fitting.
+                </p>
+
+                <div class="row row-cols-1 row-cols-md-3">
+                {glossary.map((item: any) => (
+                    <div class="col">
+                        <div class="card m-3">
+                            <div class="card-header">
+                                <a href={`#${item.id}`} class="can-highlight">
+                                    <h5 id={`${item.id}`}>{item.name}</h5>
+                                </a>
+                                <small>
+                                    <a href={item.refs.wikipedia}>Wikipedia</a> |
+                                    <a href={item.refs.mathworld}>Mathworld</a> |
+                                    <a href={item.refs.khanacademy}>Khan Academy</a>
+                                </small>
+                            </div>
+
+                            <div class="card-body">
+                                <Markdown items={item.desc} />
+                            </div>
+
+                            <hr />
+                            
+                            <div class="card-body">
+                                <h6>Related Documentation</h6>
+                                <ul class="list-unstyled small">
+                                {item.related.map((rel: { url: string, text: string }) => (
+                                    <a href={rel.url} class="btn btn-sm btn-primary m-1" target="_blank" rel="noopener noreferrer">{rel.text}</a>
+                                ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+                </div>
+            </div>
+        </div>
+    </div>
+</BaseLayout>

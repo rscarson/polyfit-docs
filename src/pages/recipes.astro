@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/base.astro';
+import { includeRecipes } from '../lib/recipes';
+import Markdown from '../components/markdown.astro';
+
+const recipes = includeRecipes('recipes');
+---
+
+<BaseLayout title="Recipes" path="/recipes">
+    <header id="top" class="page-header">
+        <h1>Recipes</h1>
+        <p class="lead" style="text-align: left;">
+            A collection of practical guides and examples to help you implement various polynomial fitting techniques
+            using our library.
+        </p>
+    </header>
+
+    <!-- Search box -->
+    <div class="mb-4">
+        <input type="text" id="glossary-search" class="form-control" placeholder="Search..." />
+    </div>
+
+    <div class="accordion accordion-flush" style="text-align: left">
+    {recipes.map((recipe: any) => (
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed recipe-card" type="button" data-bs-toggle="collapse"
+                data-bs-target={`#${recipe.id}`} aria-expanded="false" aria-controls={`${recipe.id}`}>
+                {recipe.title}
+            </button>
+        </h2>
+        <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight" style="text-align: left">
+            <div class="accordion-body">
+                <a href={recipe.links.github} class="btn btn-outline-secondary btn-sm float-end" target="_blank"><i
+                    class="bi bi-github me-2"></i> GitHub</a>
+
+                <div class="recipe-content">
+                    <Markdown items={recipe.content} p_class="col-md-9" />
+                </div>
+            </div>
+        </div>
+    </div>
+    ))}
+</BaseLayout>
