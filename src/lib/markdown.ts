@@ -397,7 +397,12 @@ export class MdLink extends MdItem {
     }
 
     static parse(token: any): MdLink {
-        return new MdLink(token.href, token.text);
+        let url = token.href;
+        if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('/') && !url.startsWith('#')) {
+            url = `/${url}`;
+        }
+
+        return new MdLink(url, token.text);
     }
 }
 
