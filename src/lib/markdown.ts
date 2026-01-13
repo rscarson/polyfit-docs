@@ -53,9 +53,13 @@ const DocLinkExtension = {
         let raw = match[0];
         let path = match[1];
 
-        let item = crate.tryGet(path);
-        if (!item) console.warn(`Warning: could not find docs item for path: ${path}`);
-        let url = item ? item.url : '#';
+        let url = '#';
+        try {
+            let item = crate.get(path);
+            url = item.url;
+        } catch (e) {
+            console.warn(`Warning: could not find docs item for path: ${e}`);
+        }
 
         return {
             type: 'docslink',
@@ -66,7 +70,7 @@ const DocLinkExtension = {
     },
 
     renderer(token: any) {
-        return `<a href="/docs/${token.path}">${token.path}</a>`;
+        return `<a href="${token.url}">[${token.path}]</a>`;
     }
 }
 

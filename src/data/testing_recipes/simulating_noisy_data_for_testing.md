@@ -57,7 +57,7 @@ let data = function.solve_range(0.0..=100.0, 1.0);
 ```
 
 This will give us a clean pseudo-RF signal that looks like this:
-![Raw background signal](recipes/adding_noise/1_data.png)
+![Raw background signal](/images/recipes/adding_noise/1_data.png)
 
 # Adding noise
 
@@ -111,7 +111,7 @@ For more information on the parameters used here, see [[transforms::Strength]] a
 
 Now we should have a signal with a new high-frequency noise component, as well as a small corruption of the actual low-frequency parts of the original function:
 
-![Background noise added](recipes/adding_noise/2_background_noise.png)
+![Background noise added](/images/recipes/adding_noise/2_background_noise.png)
 
 # Random Events
 
@@ -128,7 +128,7 @@ let with_events = with_bg_noise.apply_poisson_noise(0.3, None);
 
 Now we have a signal with random spikes added to it, simulating interference or data bursts:
 
-![Random events added](recipes/adding_noise/3_random_events.png)
+![Random events added](/images/recipes/adding_noise/3_random_events.png)
 
 # Sensor Glitches
 
@@ -143,7 +143,7 @@ let with_glitches = with_events.apply_salt_pepper_noise(0.01, -50.0, 50.0, None)
 
 A small number of large positive and negative spikes have now been added to the data, simulating sensor glitches:
 
-![Sensor glitches added](recipes/adding_noise/4_glitches.png)
+![Sensor glitches added](/images/recipes/adding_noise/4_glitches.png)
 
 # Final Result
 

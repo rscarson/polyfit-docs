@@ -1,7 +1,7 @@
 {
     "simplicity": {
         "title": "Built for Developers, Not Just Mathematicians",
-        "img": "/features/developer_focused.png",
+        "img": "/images/features/developer_focused.png",
         "sections": [
             {
                 "desc": [
@@ -37,7 +37,7 @@
 
     "performance": {
         "title": "Performance Focused",
-        "img": "/features/performance.png",
+        "img": "/images/features/performance.png",
         "sections": [
             {
                 "desc": [
@@ -67,7 +67,7 @@
 
     "documentation": {
         "title": "Extensive Documentation",
-        "img": "/features/documentation.png",
+        "img": "/images/features/documentation.png",
         "sections": [
             {
                 "desc": [
@@ -100,7 +100,7 @@
 
     "testing": {
         "title": "Built-in Test Suite",
-        "img": "/features/testing.png",
+        "img": "/images/features/testing.png",
         "sections": [
             {
                 "desc": [
