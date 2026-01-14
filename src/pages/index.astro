@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../layouts/base.astro';
 import Markdown from '../components/markdown.astro';
+
 import { includeBasis } from '../lib/basis';
+import { MdParser } from '../lib/markdown.js';
 
 const basis = includeBasis('index');
 
@@ -41,6 +43,9 @@ const featureCards = [
 		link: '/testing',
 	}
 ];
+
+const parser = new MdParser('/');
+const gettingStarted = parser.parseFile('src/data/getting_started.md');
 
 ---
 
@@ -109,6 +114,13 @@ const featureCards = [
 					</div>
 				</div>
 			))}
+		</div>
+	</section>
+
+	<section class="mb-5">
+		<h2 class="mb-3">Getting Started</h2>
+		<div class="mt-3 col-12 col-md-5 mx-auto">
+			<Markdown items={gettingStarted} />
 		</div>
 	</section>
 
