@@ -11,8 +11,6 @@ const { item } = Astro.props as { item: MdBlockQuote };
         </div>
     )}
     <div class="card-body">
-        {item.content.map((block: any) => (
-            <Markdown item={block} />
-        ))}
+        <Markdown items={item.content} />
     </div>
 </div>

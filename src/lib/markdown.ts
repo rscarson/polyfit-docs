@@ -239,6 +239,7 @@ export class MdBlockQuote extends MdItem {
             return MdItem.parse(t);
         });
 
+        console.log('Parsed blockquote:', quote.heading);
         return new MdBlockQuote(quote.heading, quote.content);
     }
 }

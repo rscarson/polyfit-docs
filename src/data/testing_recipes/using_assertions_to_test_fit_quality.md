@@ -26,7 +26,7 @@ There are currently three variants of R² implemented in Polyfit.
 
 > ## Standard R² 
 > This is what is usually meant by r squared, and its the metric you should provide if someone asks for "R²".
-> 
+>
 > ### When to use it
 > - When you have a clean dataset with minimal noise or outliers
 > - When you want a simple and widely understood metric for fit quality

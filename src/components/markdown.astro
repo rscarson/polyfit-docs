@@ -13,7 +13,8 @@ import {
     MdLink,
     MdDocsLink,
     MdStrong,
-    MdEm
+    MdEm,
+    MdImage
 } from '../lib/markdown';
 
 import BlockQuote from './markdown/blockquote.astro';
@@ -29,6 +30,7 @@ import DocsLink from './markdown/docslink.astro'
 import Strong from './markdown/strong.astro'
 import Em from './markdown/em.astro'
 import Literal from './markdown/literal.astro';
+import Image from './markdown/image.astro';
 
 const { items } = Astro.props as { items: MdItem[] };
 const { p_class } = Astro.props as { p_class?: string };
@@ -44,6 +46,7 @@ const { p_class } = Astro.props as { p_class?: string };
         case ItemKind.CodeSpan: return <CodeSpan item={item as MdCodeSpan} />;
         case ItemKind.Paragraph: return <Paragraph p_class={p_class} item={item as MdParagraph} />;
         case ItemKind.Heading: return <Heading item={item as MdHeading} />;
+        case ItemKind.Image: return <Image item={item as MdImage} />;
         case ItemKind.Link: return <Link item={item as MdLink} />;
         case ItemKind.DocsLink: return <DocsLink item={item as MdDocsLink} />;
         case ItemKind.Strong: return <Strong item={item as MdStrong} />;
