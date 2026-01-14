@@ -58,7 +58,6 @@ nav {
 	height: 100vh;
 	padding: 16px;
 	background: var(--pf-sidebar-color);
-	border-right: 1px solid var(--pf-header-border);
 	overflow-y: auto;
 	transition: transform 0.3s ease;
 	z-index: 1040; /* ensures it overlays content */

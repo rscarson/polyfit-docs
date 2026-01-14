@@ -1,5 +1,5 @@
 [data-bs-theme="light"] {
-    --pf-sidebar-color: #fff;
+    --pf-sidebar-color: #f1f1f1;
     --pf-sidebar-link-color: #333;
 
     --pf-text-color: rgba(255, 255, 255, 0.87);
@@ -15,7 +15,7 @@
 }
 
 [data-bs-theme="dark"] {
-    --pf-sidebar-color: #000;
+    --pf-sidebar-color: #000000;
     --pf-sidebar-link-color: #d4d4d4;
 
     --pf-text-color: rgba(255, 255, 255, 0.87);
