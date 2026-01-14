@@ -58,6 +58,7 @@ nav {
 	height: 100vh;
 	padding: 16px;
 	background: var(--pf-sidebar-color);
+	border-right: 1px solid var(--pf-header-border);
 	overflow-y: auto;
 	transition: transform 0.3s ease;
 	z-index: 1040; /* ensures it overlays content */
@@ -147,6 +148,9 @@ nav {
 	linear-gradient(to right, rgba(206, 206, 206, 0.99) 60%, rgba(255,255,255,0) 99%),
 	url('/images/header.png') no-repeat bottom right;
 
+	/* stretch vertically but not horizontally */
+	background-size: auto 100%;
+
 	margin-bottom: 3rem;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
@@ -161,6 +165,9 @@ nav {
 	background: 
 		linear-gradient(to right, rgba(206, 206, 206, 0.99) 1%, rgba(255,255,255,0) 99%),
 		url('/images/header.png') no-repeat bottom right;
+
+	/* stretch vertically but not horizontally */
+	background-size: auto 100%;
 
 	margin-top: -1.5rem;
 	margin-left: -1.5rem;
