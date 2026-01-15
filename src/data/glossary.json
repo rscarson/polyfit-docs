@@ -20,6 +20,30 @@
         ]
     },
 
+    "basis": {
+        "name": "Basis",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Basis_function"
+        },
+        "related": [
+            "basis::ChebyshevBasis",
+            "basis::LegendreBasis",
+            "basis::FourierBasis",
+            "basis::LaguerreBasis",
+            "basis::PhysicistsHermiteBasis",
+            "basis::ProbabilistsHermiteBasis",
+            "basis::LogarithmicBasis",
+            "basis::OrthogonalBasis",
+            "Polynomial::project",
+            "Polynomial::project_orthogonal"
+        ],
+        "desc": [
+            "A basis is a set of functions that can be combined to represent more complex functions. In polynomial fitting, different bases can be used to express the polynomial in various forms.",
+            "Common bases include monomials (standard polynomials), Chebyshev polynomials, Legendre polynomials, Fourier series, and others.",
+            "Choosing the right basis for your data can significantly impact the quality and stability of the fit."
+        ]
+    },
+
     "domain": {
         "name": "Domain",
         "refs": {

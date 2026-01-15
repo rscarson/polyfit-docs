@@ -85,10 +85,11 @@ const gettingStarted = parser.parseFile('src/data/getting_started.md');
 		</div>
 		
 		<div class="col p-5 pt-0">
-			<h2 class="mb-3">Why Polyfit?</h2>
+			<h2 class="mb-3">Why Do I Need Polyfit?</h2>
 			<p class="lead mt-3">
-				Polyfit is designed to make curve fitting easy and accessible, without requiring a deep understanding of the
-				underlying mathematics - By a developer, for developers.
+				<a href="/recipes#detecting-outliers">Detecting Outliers</a> | <a href="/recipes#using-calculus">Analyzing Trends</a> <br/>
+				<a href="/recipes#scaling-and-normalization-transforms">Transforming Data</a> | <a href="/recipes#fits-for-generating-graphs">Plotting & Graphing</a> <br/>
+				<a href="/recipes#getting-started">Predicting Values</a> | <a href="/testing">Debugging Data</a>
 			</p>
 		</div>
 	</section>
@@ -126,6 +127,11 @@ const gettingStarted = parser.parseFile('src/data/getting_started.md');
 
 	<section class="mb-5">
 	<h2 class="mb-3">Basis Agnostic</h2>
+		<p class="lead mt-3 col-12 col-md-7 mx-auto">
+			A polynomial can have have a lot of different mathematical representations, called a <a href="/glossary#basis">basis</a>.<br/>
+			<a href="/recipes#basis-selection">Choosing the right basis</a> for your data is critical to getting good results, and polyfit makes it easy.
+		</p>
+
 		<p class="lead mt-3 col-12 col-md-7 mx-auto">
 			Polyfit is generic over the choice of basis, and handles the domains and details, giving you the flexibility to
 			choose the best fit for your data, and to seamlessly switch basis as needed.

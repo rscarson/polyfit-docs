@@ -136,7 +136,6 @@ export class MdItem {
             case 'table': return MdTable.parse(token);
             case 'hr': return MdHorizontalRule.parse(token);
             case 'list': return MdList.parse(token);
-            case 'list_item': return MdListItem.parse(token);
             case 'image': return MdImage.parse(token);
             case 'code': return MdCodeBlock.parse(token);
             case 'codespan': return MdCodeSpan.parse(token);
@@ -176,14 +175,20 @@ export class MdSpace extends MdItem {
 }
 
 export class MdText extends MdItem {
-    content: string;
+    content: MdItem[] | string;
 
-    constructor(content: string) {
-        super(content, ItemKind.Text);
+    constructor(content: MdItem[]|string) {
+        const plaintext = (typeof content === 'string') ? content : content.map(c => c.plaintext).join('');
+        super(plaintext, ItemKind.Text);
         this.content = content;
     }
 
     static parse(token: any): MdText {
+        if (token.tokens && token.tokens.length > 0) {
+            let items: MdItem[] = token.tokens.map((t: any) => MdItem.parse(t));
+            return new MdText(items);
+        }
+
         return new MdText(token.text);
     }
 }
@@ -239,7 +244,6 @@ export class MdBlockQuote extends MdItem {
             return MdItem.parse(t);
         });
 
-        console.log('Parsed blockquote:', quote.heading);
         return new MdBlockQuote(quote.heading, quote.content);
     }
 }
@@ -276,9 +280,9 @@ export class MdHorizontalRule extends MdItem {
 
 export class MdList extends MdItem {
     ordered: boolean
-    items: MdItem[];
+    items: MdListItem[];
 
-    constructor(ordered: boolean, items: MdItem[]) {
+    constructor(ordered: boolean, items: MdListItem[]) {
         let plaintext = items.map(itemList => itemList.plaintext).join('\n');
         super(plaintext, ItemKind.List);
         this.ordered = ordered;
@@ -286,8 +290,8 @@ export class MdList extends MdItem {
     }
 
     static parse(token: any): MdList {
-        let items: MdItem[] = token.items.map((itemToken: any) => {
-            let item = MdItem.parse(itemToken);
+        let items: MdListItem[] = token.items.map((itemToken: any) => {
+            let item = MdListItem.parse(itemToken);
             return item;
         });
         return new MdList(token.ordered, items);
@@ -303,8 +307,12 @@ export class MdListItem extends MdItem {
     }
 
     static parse(token: any): MdListItem {
-        let innerTokens = token.tokens[0].tokens;
-        return new MdListItem(innerTokens.map((t: any) => MdItem.parse(t))); 
+        let innerTokens: any[] = [];
+        for (let t of token.tokens) {
+            innerTokens.push(MdItem.parse(t));
+        }
+
+        return new MdListItem(innerTokens); 
     }
 }
 

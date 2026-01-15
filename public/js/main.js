@@ -138,13 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!sectionEl) return;
 
         sectionEl.addEventListener('shown.bs.collapse', () => {
+            if (location.hash.startsWith('#' + targetId)) return;
             history.replaceState(null, '', '#' + targetId);
         });
 
         sectionEl.addEventListener('hidden.bs.collapse', () => {
-        if (location.hash === '#' + targetId) {
             history.replaceState(null, '', ' ');
-        }
         });
     });
 

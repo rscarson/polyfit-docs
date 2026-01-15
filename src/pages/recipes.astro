@@ -35,7 +35,7 @@ const recipes = includeRecipes('recipes');
                     class="bi bi-github me-2"></i> GitHub</a>
 
                 <div class="recipe-content">
-                    <Markdown items={recipe.content} p_class="col-md-9" />
+                    <Markdown items={recipe.content} p_class="col-md-9" parent_id={recipe.id} />
                 </div>
             </div>
         </div>

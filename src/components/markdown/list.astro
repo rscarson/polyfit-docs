@@ -3,6 +3,7 @@ import { MdList } from '../../lib/markdown.js';
 import Markdown from '../markdown.astro';
 
 const { item } = Astro.props as { item: MdList };
+
 ---
 {item.ordered && (<ol class="col-md-9">
     {item.items.map((item: any) => (

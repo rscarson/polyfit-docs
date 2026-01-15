@@ -1,0 +1,8 @@
+---
+import { MdText } from '../../lib/markdown.js';
+import Markdown from '../markdown.astro';
+
+const { item } = Astro.props as { item: MdText };
+
+---
+{Array.isArray(item.content) ? <Markdown items={item.content} /> : item.content}

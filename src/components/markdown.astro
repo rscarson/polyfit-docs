@@ -14,7 +14,8 @@ import {
     MdDocsLink,
     MdStrong,
     MdEm,
-    MdImage
+    MdImage,
+    MdText
 } from '../lib/markdown';
 
 import BlockQuote from './markdown/blockquote.astro';
@@ -31,9 +32,11 @@ import Strong from './markdown/strong.astro'
 import Em from './markdown/em.astro'
 import Literal from './markdown/literal.astro';
 import Image from './markdown/image.astro';
+import Text from './markdown/text.astro';
 
 const { items } = Astro.props as { items: MdItem[] };
 const { p_class } = Astro.props as { p_class?: string };
+const { parent_id } = Astro.props as { parent_id?: string };
 
 ---
 {items && items.map(item => {
@@ -45,13 +48,13 @@ const { p_class } = Astro.props as { p_class?: string };
         case ItemKind.CodeBlock: return <CodeBlock item={item as MdCodeBlock} />;
         case ItemKind.CodeSpan: return <CodeSpan item={item as MdCodeSpan} />;
         case ItemKind.Paragraph: return <Paragraph p_class={p_class} item={item as MdParagraph} />;
-        case ItemKind.Heading: return <Heading item={item as MdHeading} />;
+        case ItemKind.Heading: return <Heading item={item as MdHeading} parent_id={parent_id} />;
         case ItemKind.Image: return <Image item={item as MdImage} />;
         case ItemKind.Link: return <Link item={item as MdLink} />;
         case ItemKind.DocsLink: return <DocsLink item={item as MdDocsLink} />;
         case ItemKind.Strong: return <Strong item={item as MdStrong} />;
         case ItemKind.Em: return <Em item={item as MdEm} />;
         case ItemKind.Html: return <Literal item={item as MdLiteral} />;
-        case ItemKind.Text: return item.plaintext;
+        case ItemKind.Text: return <Text item={item as MdText} />;
     }
 })}

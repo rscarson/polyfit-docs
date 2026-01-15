@@ -3,22 +3,29 @@ import { MdHeading } from '../../lib/markdown.js';
 import Markdown from '../markdown.astro';
 
 const { item } = Astro.props as { item: MdHeading };
+const { parent_id } = Astro.props as { parent_id?: string };
+
+let id = item.id;
+if (parent_id) {
+    id = `${parent_id}-${item.id}`;
+}
+
 ---
 {item.level === 1 && (
-    <h5 id={item.id}>
+    <h5 id={id}>
         <Markdown items={item.content} />
-        <sup style="font-size: 0.5em !important;" class="text-muted"><a href={`#${item.id}`}>&#x1F517;</a></sup>
+        <sup style="font-size: 0.5em !important;" class="text-muted"><a href={`#${id}`}>&#x1F517;</a></sup>
     </h5>
 )}
 
 {item.level === 2 && (
-    <h6 class="can-highlight" id={item.id}>
+    <h6 class="can-highlight" id={id}>
         <Markdown items={item.content} />
     </h6>
 )}
 
 {item.level === 3 && (
-    <strong class="can-highlight" id={item.id}>
+    <strong class="can-highlight" id={id}>
         <Markdown items={item.content} />
     </strong>
 )}
