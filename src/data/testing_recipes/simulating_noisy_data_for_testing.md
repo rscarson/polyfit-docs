@@ -122,8 +122,8 @@ Poisson is perfect for this. It has a single parameter lambda which controls the
 0.3 is a good starting point for lambda, which will add a few events to the data, without overwhelming the original signal:
 
 ```rust
-use polyfit::transforms::ApplyNoise;
-let with_events = with_bg_noise.apply_poisson_noise(0.3, None);
+use polyfit::transforms::{ApplyNoise, Strength};
+let with_events = with_bg_noise.apply_poisson_noise(Strength::Absolute(0.3), None);
 ```
 
 Now we have a signal with random spikes added to it, simulating interference or data bursts:
@@ -137,8 +137,8 @@ Finally, we can simulate sensor glitches - sudden drops or spikes in the signal 
 Salt and pepper noise is a good way to simulate this effect - it randomly selects points in the data and replaces them with either a high or low value. For our purposes, we will replace around 1 out of every 100 points with -50 or +50:
 
 ```rust
-use polyfit::transforms::ApplyNoise;
-let with_glitches = with_events.apply_salt_pepper_noise(0.01, -50.0, 50.0, None);
+use polyfit::transforms::{ApplyNoise, Strength};
+let with_glitches = with_events.apply_salt_pepper_noise(0.01, Strength::Absolute(-50.0), Strength::Absolute(50.0), None);
 ```
 
 A small number of large positive and negative spikes have now been added to the data, simulating sensor glitches:
