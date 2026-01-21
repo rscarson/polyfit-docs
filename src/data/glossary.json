@@ -12,9 +12,10 @@
             "Polynomial::smoothness",
             "Polynomial::spectral_energy_filter"
         ],
+        "short_desc": "A choice of basis with better numerical stability and support for advanced features.",
         "desc": [
             "A set of basis functions is considered orthogonal if each individual basis function does not correlate with the others (adjusting one has no effect on the others' contribution to the total function).",
-            "Orthogonal bases tend to have better [numerical stability](/glossary#numerical-stability), especially for high-degree polynomial fits.",
+            "Orthogonal bases tend to have better @[numerical-stability], especially for high-degree polynomial fits.",
             "For polyfit, this means the basis implements the [[basis::OrthogonalBasis]] trait.",
             "Curves and functions using orthogonal bases can use several advanced functions, listed below. (Note that [[CurveFit]] has the same set of functions for orthogonal bases.)"
         ]
@@ -37,6 +38,7 @@
             "Polynomial::project",
             "Polynomial::project_orthogonal"
         ],
+        "short_desc": "A set of mathematical functions used to build polynomials. Different bases have different properties.",
         "desc": [
             "A basis is a set of functions that can be combined to represent more complex functions. In polynomial fitting, different bases can be used to express the polynomial in various forms.",
             "Common bases include monomials (standard polynomials), Chebyshev polynomials, Legendre polynomials, Fourier series, and others.",
@@ -56,6 +58,7 @@
             "basis::Basis",
             "value::SteppedValues"
         ],
+        "short_desc": "The range of input values (x-values) for which a function is defined or performs best.",
         "desc": [
             "The domain of a function is the set of input values (x-values) for which you can expect reasonable outputs (y-values).",
             "Many basis options have a favourite domain where they perform best. For example, Chebyshev polynomials prefer x-values in the range [-1, 1], so [[basis::ChebyshevBasis]] will automatically scale and shift your input x-values to fit within that range.",
@@ -73,10 +76,11 @@
             "basis::OrthogonalBasis",
             "Polynomial::project_orthogonal"
         ],
+        "short_desc": "How well a polynomial fit handles small changes in input or calculations without producing wildly incorrect results.",
         "desc": [
             "How sensitive your polynomial fit is to small changes in your input or intermediate calculations. An unstable fit might blow up or produce wildly wrong coefficients even if your data barely changes.",
             "If the polynomial degree is high or your basis isn't orthogonal, small rounding errors can produce nonsense results. Stability ensures the fit behaves predictably.",
-            "Stability can be improved by using an [orthogonal basis](/glossary#orthogonality) or by [normalizing your data](/recipes#scaling_and_normalization)."
+            "Stability can be improved by using an @[orthogonality]{orthogonal basis} or by [normalizing your data](/recipes#scaling_and_normalization)."
         ]
     },
 
@@ -91,6 +95,7 @@
             "basis::Basis", 
             "statistics"
         ],
+        "short_desc": "Data points that significantly deviate from the overall pattern of the data.",
         "desc": [
             "An outlier is a data point that significantly deviates from the other observations in a dataset. Outliers can arise due to measurement errors, data entry mistakes, or inherent variability in the data.",
             "They represent values that should not be captured by the underlying trend or pattern in the data.",
@@ -109,6 +114,7 @@
             "statistics::residual_variance",
             "statistics::r_squared"
         ],
+        "short_desc": "A measure of how spread out data points are around the mean value.",
         "desc": [
             "Variance is a statistical measure that quantifies the spread of a set of data points around their mean (average) value. It indicates how much the individual data points differ from the mean.",
             "In polynomial fitting, variance can be used to assess the quality of a fit by measuring how well the fitted polynomial explains the variability in the data."
@@ -126,6 +132,7 @@
             "Polynomial::project",
             "Polynomial::project_orthogonal"
         ],
+        "short_desc": "The process of converting data or functions from one basis to another.",
         "desc": [
             "Projection is the process of moving from one basis to another by calculating the coefficients in the new basis that best represent the same function or data."
         ]
@@ -142,6 +149,7 @@
             "score::Aic",
             "CurveFit::new_auto"
         ],
+        "short_desc": "A method for comparing different models based on their goodness of fit and complexity. Use for smaller data sets.",
         "desc": [
             "The Akaike Information Criterion (AIC) is a method for comparing different models and scoring them based on their goodness of fit and complexity. It helps to identify the model that best balances accuracy and simplicity.",
             "For small data sets, a corrected version called AICc is used to account for sample size.",
@@ -160,10 +168,30 @@
             "score::Bic",
             "CurveFit::new_auto"
         ],
+        "short_desc": "A method for comparing different models based on their goodness of fit and complexity. Use for larger data sets.",
         "desc": [
             "The Bayesian Information Criterion (BIC) is a method for comparing different models and scoring them based on their goodness of fit and complexity. It helps to identify the model that best balances accuracy and simplicity.",
             "BIC penalizes model complexity more heavily than AIC (Akaike Information Criterion), often leading to simpler models being selected.",
             "BIC is particularly useful when the goal is to avoid overfitting, especially in cases with large datasets."
+        ]
+    },
+
+    "critical-point": {
+        "name": "Critical Points",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Critical_point_(mathematics)",
+            "mathworld": "https://mathworld.wolfram.com/CriticalPoint.html",
+            "khanacademy": "https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/optimizing-multivariable-functions-videos/e/classifying-critical-points"
+        },
+        "related": [
+            "Polynomial::derivative",
+            "Polynomial::critical_points"
+        ],
+        "short_desc": "Points where a function reaches a local maximum, local minimum, or changes direction.",
+        "desc": [
+            "A critical point of a function represents a local maximum, local minimum, or a point where the function changes direction.",
+            "They are found by taking the derivative of the function and setting it to zero, then solving for the input values (x-values).",
+            "Identifying critical points is essential for understanding the behavior of functions, especially in optimization problems where you want to find the highest or lowest values of a function."
         ]
     }
 }

@@ -12,6 +12,7 @@ import {
     MdHeading,
     MdLink,
     MdDocsLink,
+    MdGlossaryLink,
     MdStrong,
     MdEm,
     MdImage,
@@ -28,6 +29,7 @@ import Paragraph from './markdown/paragraph.astro'
 import Heading from './markdown/heading.astro';
 import Link from './markdown/link.astro'
 import DocsLink from './markdown/docslink.astro'
+import GlossaryLink from './markdown/glossarylink.astro'
 import Strong from './markdown/strong.astro'
 import Em from './markdown/em.astro'
 import Literal from './markdown/literal.astro';
@@ -52,9 +54,11 @@ const { parent_id } = Astro.props as { parent_id?: string };
         case ItemKind.Image: return <Image item={item as MdImage} />;
         case ItemKind.Link: return <Link item={item as MdLink} />;
         case ItemKind.DocsLink: return <DocsLink item={item as MdDocsLink} />;
+        case ItemKind.GlossaryLink: return <GlossaryLink item={item as MdGlossaryLink} />;
         case ItemKind.Strong: return <Strong item={item as MdStrong} />;
         case ItemKind.Em: return <Em item={item as MdEm} />;
         case ItemKind.Html: return <Literal item={item as MdLiteral} />;
         case ItemKind.Text: return <Text item={item as MdText} />;
+        case ItemKind.Br: return <br />;
     }
 })}

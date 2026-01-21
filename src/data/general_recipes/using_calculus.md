@@ -1,9 +1,9 @@
 This recipe shows ways to leverage calculus concepts when using polyfit. It will introduce calculus concepts in terms of practical applications they provide
 
 ## What this will do
-- Use [critical points](/glossary#critical-point) to find where a function changes direction
-- Use [derivatives](/glossary#derivative) to find rates of change at specific points
-- Use [integrals](/glossary#integral) to find total value over an interval
+- Use @[critical-point] to find where a function changes direction
+- Use @[derivative] to find rates of change at specific points
+- Use @[integral] to find total value over an interval
 
 ## Why would I want to do this?
 - To find parts of a dataset where the trend changes direction (maxima/minima)

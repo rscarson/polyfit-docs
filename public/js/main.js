@@ -151,3 +151,28 @@ document.addEventListener('DOMContentLoaded', () => {
     let no_scroll = y > 0;
     scrollToHash(no_scroll);
 });
+
+// Initialize Bootstrap tooltips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+// Initialize Bootstrap popovers
+document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+    let title = el.title;
+    new bootstrap.Popover(el, {
+        trigger: 'click',
+        html: true,
+        placement: 'auto',
+    });
+
+    // Add a hover tooltip to indicate clickability
+    el.title = title ?? 'Click for more info';
+});
+document.addEventListener('click', (e) => {
+document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+    const pop = bootstrap.Popover.getInstance(el);
+    if (pop && !el.contains(e.target) && !document.querySelector('.popover')?.contains(e.target)) {
+    pop.hide();
+    }
+});
+});

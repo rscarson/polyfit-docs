@@ -13,6 +13,11 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.popover {
+    max-width: 450px;
+    width: 450px; 
+}
+
 a {
 	font-weight: 500;
 	color: var(--pf-link-color);
@@ -60,18 +65,21 @@ nav {
 	background: var(--pf-sidebar-color);
 	overflow-y: auto;
 	transition: transform 0.3s ease;
-	z-index: 1040; /* ensures it overlays content */
+	z-index: 1040;
+	/* ensures it overlays content */
 }
 
 /* Mobile off-canvas */
 @media (max-width: 991px) {
 	nav {
-	transform: translateX(-100%); /* hide offscreen */
-	margin-right: -250px;
+		transform: translateX(-100%);
+		/* hide offscreen */
+		margin-right: -250px;
 	}
 
 	nav.show {
-	transform: translateX(0); /* slide in */
+		transform: translateX(0);
+		/* slide in */
 	}
 }
 
@@ -143,9 +151,9 @@ nav {
  */
 
 .jumbotron {
-	background: 
-	linear-gradient(to right, rgba(206, 206, 206, 0.99) 60%, rgba(255,255,255,0) 99%),
-	url('/images/header.png') no-repeat bottom right;
+	background:
+		linear-gradient(to right, rgba(206, 206, 206, 0.99) 60%, rgba(255, 255, 255, 0) 99%),
+		url('/images/header.png') no-repeat bottom right;
 
 	/* stretch vertically but not horizontally */
 	background-size: auto 100%;
@@ -161,26 +169,26 @@ nav {
 /* Mobile collapsed */
 @media (max-width: 991px) {
 	.jumbotron {
-	background: 
-		linear-gradient(to right, rgba(206, 206, 206, 0.99) 1%, rgba(255,255,255,0) 99%),
-		url('/images/header.png') no-repeat bottom right;
+		background:
+			linear-gradient(to right, rgba(206, 206, 206, 0.99) 1%, rgba(255, 255, 255, 0) 99%),
+			url('/images/header.png') no-repeat bottom right;
 
-	/* stretch vertically but not horizontally */
-	background-size: auto 100%;
+		/* stretch vertically but not horizontally */
+		background-size: auto 100%;
 
-	margin-top: -1.5rem;
-	margin-left: -1.5rem;
-	margin-right: -1.5rem;
+		margin-top: -1.5rem;
+		margin-left: -1.5rem;
+		margin-right: -1.5rem;
 
-	padding-left: 1em;
-	padding-right: 1em;
-	
-	border-radius: 0;
+		padding-left: 1em;
+		padding-right: 1em;
+
+		border-radius: 0;
 	}
-	
+
 	.jumbotron .buttons {
-	margin-left: 1.5rem;
-	margin-right: 1.5rem;
+		margin-left: 1.5rem;
+		margin-right: 1.5rem;
 	}
 }
 
@@ -191,6 +199,21 @@ nav {
 /**
  * Feature Styles
  */
+
+.why-text ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.why-text .left {
+	text-align: right;
+	border-right: 1px solid var(--pf-header-border);
+}
+
+.why-text .right {
+	text-align: left;
+	border-left: 1px solid var(--pf-header-border);
+}
 
 .feature-image {
 	overflow: hidden;
@@ -223,15 +246,61 @@ nav {
 
 @media (max-width: 991px) {
 	.feature-image {
-	padding: 0;
+		padding: 0;
 	}
 
 	.feature-text {
-	border-left: none;
-	padding-left: 0;
-	
-	text-align: center;
+		border-left: none;
+		padding-left: 0;
+
+		text-align: center;
 	}
+}
+
+/**
+ * API Styles
+ */
+
+.api-item {
+	text-align: left;
+	padding: 2rem 20px;
+	border-bottom: 1px solid var(--bs-gray-200);
+
+	font-size: 1.0em;
+}
+
+.api-item ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.api-item:last-child {
+	border-bottom: none;
+}
+
+.apiitem-text {
+	text-align: left;
+	max-width: 70ch;
+}
+
+.apiitem-text h2 {
+	margin-bottom: 0.5rem;
+}
+
+.apiitem-text .lead {
+	font-size: 1rem;
+	color: var(--bs-gray-700);
+}
+
+.api-related {
+	margin-top: 1.5rem;
+	padding-left: 1rem;
+	border-left: 3px solid var(--bs-primary);
+	font-size: 0.9rem;
+}
+
+.api-related hr {
+	max-width: 150px;
 }
 
 /**
@@ -264,14 +333,14 @@ code {
 }
 
 .code-inline {
-  display: inline-block;
-  padding: 0.15rem 0.35rem;
-  background-color: var(--bs-secondary-bg);
-  border-radius: var(--bs-border-radius);
+	display: inline-block;
+	padding: 0.15rem 0.35rem;
+	background-color: var(--bs-secondary-bg);
+	border-radius: var(--bs-border-radius);
 
-  font-family: 'Fira Code', monospace;
-  font-size: 0.8rem;
-  line-height: 1.2;
+	font-family: 'Fira Code', monospace;
+	font-size: 0.8rem;
+	line-height: 1.2;
 }
 
 .recipe-content {
@@ -282,7 +351,8 @@ code {
 	margin-bottom: 0.5rem;
 }
 
-.recipe-content h5, .recipe-content hr {
+.recipe-content h5,
+.recipe-content hr {
 	border-bottom: 1px solid var(--bs-secondary-bg);
 	padding-bottom: 0.25rem;
 	margin-top: 3rem;
@@ -302,6 +372,7 @@ code {
 	table-layout: auto;
 	width: auto;
 }
+
 .recipe-content table {
 	table-layout: auto;
 	width: auto;

@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/base.astro';
+import { includeAPI } from '../lib/api';
+
+import Markdown from '../components/markdown.astro';
+const apiData = includeAPI('api');
+---
+
+<BaseLayout title="API" path="/api">
+    <header class="page-header">
+        <h1>API</h1>
+        <p class="lead" style="text-align: left;">
+            What does what and where they are. It's like the features page but useful
+        </p>
+    </header>
+
+    <div class="api-list">
+        <div class="accordion accordion-flush" style="text-align: left">
+        {apiData.map((section:any) => (
+            <div class="accordion-item">
+                <p class="accordion-header">
+                    <button class="accordion-button collapsed recipe-card" type="button" data-bs-toggle="collapse"
+                        data-bs-target={`#${section.id}`} aria-expanded="false" aria-controls={`${section.id}`}>
+                            <div style="display: block">
+                                <h2>{section.title}</h2>
+                                <p class="lead mt-3">{section.description}</p>
+                                <p class="small text-muted mb-0">[ Click to expand ]</p>
+                            </div>
+                    </button>
+                </p>
+                <div id={`${section.id}`} class="accordion-collapse collapse no-highlight" style="text-align: left">
+                    <div class="accordion-body api-item">
+                        <Markdown items={section.content} p_class="col-md-9" parent_id={section.id} />
+
+                        <aside class="api-related">
+                            <h6>Related Reading</h6>
+                            <ul>
+                            {section.related_recipes.map((ref: any) => (
+                                <li>
+                                    <a href={ref.url}>Recipe: {ref.title}</a>
+                                </li>
+                            ))}
+                            <hr/>
+                            {section.related_glossary.map((ref: any) => (
+                                <li>
+                                    <a href={ref.url}>Definition: {ref.term}</a>
+                                </li>
+                            ))}
+                            <hr/>
+                            {section.refs.map((ref: any) => (
+                                <li>
+                                    <Markdown items={[ref]} />
+                                </li>
+                            ))}
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        ))}
+        </div>
+        
+    </div>
+</BaseLayout>

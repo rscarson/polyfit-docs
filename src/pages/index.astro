@@ -1,75 +1,85 @@
 ---
-import BaseLayout from '../layouts/base.astro';
-import Markdown from '../components/markdown.astro';
+import BaseLayout from "../layouts/base.astro";
+import Markdown from "../components/markdown.astro";
 
-import { includeBasis } from '../lib/basis';
-import { MdParser } from '../lib/markdown.js';
+import { includeBasis } from "../lib/basis";
+import { MdParser } from "../lib/markdown.js";
 
-const basis = includeBasis('index');
+const basis = includeBasis("index");
 
 const featureCards = [
 	{
-		title: 'Performance Focused',
-		desc: 'Optimized for speed and memory efficiency',
+		title: "Opinionated, yet flexible",
+		desc: "Sane, adaptive defaults allow you to make the right choices for your data",
 		features: [
-			'Blazing fast on both large and small datasets.',
-			'Handles 100 million-row Chebyshev fits in ~1 s (8 cores, 2.2 GHz).',
-			'Scales sub-linearly with data size, even on consumer-grade hardware',
-			'3rd-degree Chebyshev over 1 000 rows takes only ~23 µs.',
-			'Compare to 200 µs for numPy',
+			"Automatic model selection resistant to outliers, and overfitting",
+			"Built-in tools to select the right basis for your data",
+			"Safe API and developer-first documentation give you the full power of polyfit without needing a PhD in stats",
+			"Adaptive domain-scaling to make sure your choice of basis works for your data",
 		],
-		link: '/features#performance',
+		link: "/features#simplicity",
 	},
 	{
-		title: 'Opinionated, yet flexible',
-		desc: 'Sane, adaptive defaults allow you to make the right choices for your data',
+		title: "Testing made simple",
+		desc: "Bridging the gap between statistical rigor and engineering pragmatism",
 		features: [
-			'Automatic model selection resistant to outliers, and overfitting',
-			'Built-in tools to select the right basis for your data',
-			'Safe API and developer-first documentation give you the full power of polyfit without needing a PhD in stats',
-			'Adaptive domain-scaling to make sure your choice of basis works for your data',
+			"Included test-suite brings statistical model validation into your workflow",
+			"Comprehensive documentation, examples, and sane defaults take the guesswork out of testing",
+			"Data-generation, transforming, and function mock-ups included",
+			"Failed tests generate a detailed plot for easy, visual debugging",
 		],
-		link: '/features#simplicity',
+		link: "/testing",
 	},
 	{
-		title: 'Testing made simple',
-		desc: 'Bridging the gap between statistical rigor and engineering pragmatism',
+		title: "Performance Focused",
+		desc: "Optimized for speed and memory efficiency",
 		features: [
-			'Included test-suite brings statistical model validation into your workflow',
-			'Comprehensive documentation, examples, and sane defaults take the guesswork out of testing',
-			'Data-generation, transforming, and function mock-ups included',
-			'Failed tests generate a detailed plot for easy, visual debugging',
+			"Blazing fast on both large and small datasets.",
+			"Handles 100 million-row Chebyshev fits in ~1 s (8 cores, 2.2 GHz).",
+			"Scales sub-linearly with data size, even on consumer-grade hardware",
+			"3rd-degree Chebyshev over 1 000 rows takes only ~23 µs.",
+			"Compare to 200 µs for numPy",
 		],
-		link: '/testing',
-	}
+		link: "/features#performance",
+	},
 ];
 
-const parser = new MdParser('/');
-const gettingStarted = parser.parseFile('src/data/getting_started.md');
-
+const parser = new MdParser("/");
+const gettingStarted = parser.parseFile("src/data/getting_started.md");
 ---
 
 <BaseLayout title="Home" path="/">
 	<section class="jumbotron">
-		<h1 class="fw-bold" style="color: #1e3c72;">
-			Polyfit
-		</h4>
+		<h1 class="fw-bold" style="color: #1e3c72;">Polyfit</h1>
 		<h4 class="fw-bold" style="color: #1e3c72;">
 			Because you don't need to be able to build a powerdrill to use one
 			safely
 		</h4>
 		<p class="lead mt-3 text-secondary">
-			Statistics is hard, and linear regression is made entirely out of footguns.<br />
+			Statistics is hard, and linear regression is made entirely out of
+			footguns.<br />
 		</p>
 
 		<div class="buttons d-flex justify-content-center gap-3 my-4">
-			<a href="https://github.com/rscarson/polyfit" class="btn btn-dark " target="_blank">
+			<a
+				href="https://github.com/rscarson/polyfit"
+				class="btn btn-dark"
+				target="_blank"
+			>
 				<i class="bi bi-github me-2"></i> GitHub
 			</a>
-			<a href="https://docs.rs/polyfit" class="btn btn-light " target="_blank">
+			<a
+				href="https://docs.rs/polyfit"
+				class="btn btn-light"
+				target="_blank"
+			>
 				<i class="bi bi-book me-2"></i> Docs.rs
 			</a>
-			<a href="https://crates.io/crates/polyfit" class="btn btn-warning " target="_blank">
+			<a
+				href="https://crates.io/crates/polyfit"
+				class="btn btn-warning"
+				target="_blank"
+			>
 				<i class="bi bi-box-seam me-2"></i> Crates.io
 			</a>
 		</div>
@@ -79,75 +89,130 @@ const gettingStarted = parser.parseFile('src/data/getting_started.md');
 		<div class="col p-5 pt-0">
 			<h2 class="mb-3">What is Polyfit?</h2>
 			<p class="lead mt-3">
-				Polyfit is a high-performance, easy-to-use polynomial fitting library for Rust, designed to make curve fitting
-				accessible to software engineers without a background in statistics.
+				Polyfit is a high-performance, easy-to-use polynomial fitting
+				library for Rust, designed to make curve fitting accessible to
+				software engineers without a background in statistics.
 			</p>
 		</div>
-		
+
 		<div class="col p-5 pt-0">
 			<h2 class="mb-3">Why Do I Need Polyfit?</h2>
-			<p class="lead mt-3">
-				<a href="/recipes#detecting-outliers">Detecting Outliers</a> | <a href="/recipes#using-calculus">Analyzing Trends</a> <br/>
-				<a href="/recipes#scaling-and-normalization-transforms">Transforming Data</a> | <a href="/recipes#fits-for-generating-graphs">Plotting & Graphing</a> <br/>
-				<a href="/recipes#getting-started">Predicting Values</a> | <a href="/testing">Debugging Data</a>
-			</p>
+			<div class="row row-cols-2 why-text">
+				<div class="col left">
+					<ul>
+						<li>
+							<a href="/recipes#detecting-outliers"
+								>Detecting Outliers</a
+							>
+						</li>
+						<li>
+							<a href="/recipes#using-calculus"
+								>Analyzing Trends</a
+							>
+						</li>
+						<li>
+							<a
+								href="/recipes#scaling-and-normalization-transforms"
+								>Transforming Data</a
+							>
+						</li>
+					</ul>
+				</div>
+				<div class="col right">
+					<ul>
+						<li>
+							<a href="/recipes#fits-for-generating-graphs"
+								>Plotting & Graphing</a
+							>
+						</li>
+						<li>
+							<a href="/recipes#getting-started"
+								>Predicting Values</a
+							>
+						</li>
+						<li>
+							<a href="/testing">Debugging Data</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</section>
 
 	<section class="mb-5">
 		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-			{featureCards.map(card => (
-				<div class="col">
-					<div class="card m-3 p-1 shadow-sm feature-card">
-						<div class="card-body" style="text-align: left !important;">
-							<div class="text-left">
-								<h5 class="mb-1">{card.title}</h5>
-								<p class="text-muted mb-2">{card.desc}</p>
-							</div>
-							<small>
-								{card.features.map(feature => (
-									<p class="m-2 pb-2">&check; {feature}</p>
-								))}
-							</small>
+			{
+				featureCards.map((card) => (
+					<div class="col">
+						<div class="card m-3 p-1 shadow-sm feature-card">
+							<div
+								class="card-body"
+								style="text-align: left !important;"
+							>
+								<div class="text-left">
+									<h5 class="mb-1">{card.title}</h5>
+									<p class="text-muted mb-2">{card.desc}</p>
+								</div>
+								<small>
+									{card.features.map((feature) => (
+										<p class="m-2 pb-2">
+											&check; {feature}
+										</p>
+									))}
+								</small>
 
-							<a href={card.link} class="btn btn btn-outline-secondary mt-3">Learn more</a>
+								<a href={card.link} class="btn btn btn-outline-secondary mt-3" >
+									Learn more
+								</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			))}
+				))
+			}
 		</div>
 	</section>
 
 	<section class="mb-5">
 		<h2 class="mb-3">Getting Started</h2>
 		<div class="mt-3 col-12 col-md-5 mx-auto">
+			<p class="lead">
+				<pre class="lead"><code>cargo add polyfit</code></pre>
+			</p>
 			<Markdown items={gettingStarted} />
 		</div>
 	</section>
 
 	<section class="mb-5">
-	<h2 class="mb-3">Basis Agnostic</h2>
+		<h2 class="mb-3">Basis Agnostic</h2>
 		<p class="lead mt-3 col-12 col-md-7 mx-auto">
-			A polynomial can have have a lot of different mathematical representations, called a <a href="/glossary#basis">basis</a>.<br/>
-			<a href="/recipes#basis-selection">Choosing the right basis</a> for your data is critical to getting good results, and polyfit makes it easy.
+			A polynomial can have have a lot of different mathematical
+			representations, called a <a href="/glossary#basis">basis</a>.<br />
+			<a href="/recipes#basis-selection">Choosing the right basis</a> for your
+			data is critical to getting good results, and polyfit makes it easy.
 		</p>
 
 		<p class="lead mt-3 col-12 col-md-7 mx-auto">
-			Polyfit is generic over the choice of basis, and handles the domains and details, giving you the flexibility to
-			choose the best fit for your data, and to seamlessly switch basis as needed.
+			Polyfit is generic over the choice of basis, and handles the domains
+			and details, giving you the flexibility to choose the best fit for
+			your data, and to seamlessly switch basis as needed.
 		</p>
 
-		<ul id="home-basis" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 list-unstyled">
-		{basis.map((b) => (
-			<li class="col">
-				<a class="card h-100 p-3 text-decoration-none d-block" href={`/glossary#${b.id}`}>
-					<h3 class="h6 mb-1">{b.name}</h3>
-					<div class="text-muted small mb-0">
-						<Markdown items={b.desc} />
-					</div>
-				</a>
-			</li>
-		))}
+		<ul
+			id="home-basis"
+			class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 list-unstyled"
+		>
+			{
+				basis.map((b) => (
+					<li class="col">
+						<a class="card h-100 p-3 text-decoration-none d-block" href={`/glossary#${b.id}`}>
+							<h3 class="h6 mb-1">{b.name}</h3>
+							<div class="text-muted small mb-0">
+								<Markdown items={b.desc} />
+							</div>
+						</a>
+					</li>
+				))
+			}
 		</ul>
 	</section>
 </BaseLayout>

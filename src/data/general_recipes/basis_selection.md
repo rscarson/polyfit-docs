@@ -12,6 +12,9 @@ The limitations and properties of each basis also determine which bases are suit
 
 -----
 
+# Once I do this how do I know I picked the right one?
+That's why I wrote [Validating your choice of basis](/testing#validating-your-choice-of-basis) - it walks you through how to check that your choice of basis is appropriate for your data and use case.
+
 # What are my options?
 
 Custom bases can be created by implementing the [[basis::Basis]] trait, but Polyfit comes with several built-in bases that cover most use cases:
@@ -32,152 +35,53 @@ If you simply want a good general-purpose basis and don't have specific requirem
 See [`basis_select!()`](recipes#using-basisselect) for a function that can help automate the process of selecting a basis.
 
 ## What am I trying to do with the polynomial?
+First, consider what you need the polynomial to do, to eliminate bases that don't support those features.
 
-<div class="row row-cols-1 row-cols-lg-2">
-	<div class="col">
-		<div class="card m-3">
-			<div class="card-header">
-				**Do I need to communicate the formula to people?**
-			</div>
-			<div class="card-body">
-				<p class="card-text">
-					For communication, prefer the standard monomial form `y(x) = 1x³ + 2x² - 3x + 4` form.
-				</p>
-				<p class="card-text">
-					That narrows your options to the **Monomial** basis, and those that implement [[`basis::IntoMonomialBasis`]].
-				</p>
-				<p class="card-text">
-					<span class="badge text-bg-secondary">Monomial</span>
-					<span class="badge text-bg-secondary">Chebyshev</span>
-					<span class="badge text-bg-secondary">Legendre</span>
-					<span class="badge text-bg-secondary">Laguerre</span>
-					<span class="badge text-bg-secondary">Hermite</span>
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col">
-		<div class="card m-3">
-			<div class="card-header">
-				**Do I need to get the integral of the polynomial?**
-			</div>
-			<div class="card-body">
-				<p class="card-text">
-					Calculations like the area under the curve (total value over a range of X), or the average value of the polynomial over an interval, you need a basis that supports indefinite integration.
-				</p>
-				<p class="card-text">
-					That narrows your options to those that implement [[`basis::IntegralBasis`]] or can be converted to one that does.
-				</p>
-				<p class="card-text">
-					<span class="badge text-bg-secondary">Monomial</span>
-					<span class="badge text-bg-secondary">Chebyshev</span>
-					<span class="badge text-bg-secondary">Legendre</span>
-					<span class="badge text-bg-secondary">Laguerre</span>
-					<span class="badge text-bg-secondary">Hermite</span>
-					<span class="badge text-bg-secondary">Fourier</span>
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col">
-		<div class="card m-3">
-			<div class="card-header">
-				**Do I need the the derivative of the polynomial?**
-			</div>
-			<div class="card-body">
-				<p class="card-text">
-					To find slopes, rates of change, inflection points, or local extrema, you need a basis that supports differentiation.
-				</p>
-				<p class="card-text">
-					That narrows your options to those that implement [[`basis::DifferentialBasis`]] or can be converted to one that does.
-				</p>
-				<p class="card-text">
-					<span class="badge text-bg-secondary">Monomial</span>
-					<span class="badge text-bg-secondary">Chebyshev</span>
-					<span class="badge text-bg-secondary">Legendre</span>
-					<span class="badge text-bg-secondary">Laguerre</span>
-					<span class="badge text-bg-secondary">Hermite</span>
-					<span class="badge text-bg-secondary">Fourier</span>
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col">
-		<div class="card m-3">
-			<div class="card-header">
-				**Do I need advanced noise filtering?**
-			</div>
-			<div class="card-body">
-				<p class="card-text">
-                    For very noisy data, or data with a wide [domain](glossary#domain), or large outliers, using an Orthogonal basis can improve [numerical stability](glossary#numerical-stability) and allow for advanced [filtering techniques](recipes#filtering_out_noise), and super-stable [projection](glossary#projection).
-				</p>
-                <p class="card-text">
-                    That narrows your options to the Orthogonal bases (those that implement [[`basis::OrthogonalBasis`]]).
-                </p>
-				</p>
-				<p class="card-text">
-                    <span class="badge text-bg-secondary">Chebyshev</span>
-                    <span class="badge text-bg-secondary">Legendre</span>
-                    <span class="badge text-bg-secondary">Laguerre</span>
-                    <span class="badge text-bg-secondary">Hermite</span>
-                    <span class="badge text-bg-secondary">Fourier</span>
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
+> ### Do I need to communicate the formula to people?
+> For communication, prefer the standard monomial form `y(x) = 1x³ + 2x² - 3x + 4` form.
+>
+> That narrows your options to the **Monomial** basis, and those that implement [[basis::IntoMonomialBasis]]:
+>
+> **Monomial | Chebyshev | Legendre | Laguerre | Hermite**
+
+> ### Do I need to get the integral of the polynomial?
+> For calculations like the area under the curve (total value over a range of X), or the average value of the polynomial over an interval, you need a basis that supports indefinite integration.
+>
+> That narrows your options to those that implement [[`basis::IntegralBasis`]] or can be converted to one that does.
+>
+> **Monomial | Chebyshev | Legendre | Laguerre | Hermite | Fourier**
+
+> ### Do I need the the derivative of the polynomial?
+> To find slopes, rates of change, inflection points, or local extrema, you need a basis that supports differentiation.
+>
+> That narrows your options to those that implement [[`basis::DifferentialBasis`]] or can be converted to one that does.
+>
+> **Monomial | Chebyshev | Legendre | Laguerre | Hermite | Fourier**
+
+> ### Do I need advanced noise filtering?
+> For very noisy data, or data with a wide [domain](glossary#domain), or large outliers, using an Orthogonal basis can improve @[numerical-stability] and allow for advanced [filtering techniques](recipes#filtering_out_noise), and super-stable @[projection].
+>
+> That narrows your options to the Orthogonal bases (those that implement [[`basis::OrthogonalBasis`]]).
+>
+> **Chebyshev | Legendre | Laguerre | Hermite | Fourier**
 
 ## What kind of data do I have?
+Next, consider the characteristics of your data to further narrow down your options.
 
-<div class="row row-cols-1 row-cols-lg-2">
-	<div class="col">
-		<div class="card m-3">
-			<div class="card-header">
-				**Does my data cycle, repeat, or go up and down a lot?**
-			</div>
-			<div class="card-body">
-				<p class="card-text">
-					This covers things like RF data, audio signals, seasonal trends, or any data that has a periodic nature. **Fourier** basis is designed for this kind of data, but since **Chebyshev** uses cosines too, it's also a reasonable choice.
-				</p>
-				<p class="card-text">
-                    <span class="badge text-bg-secondary">Fourier</span>
-					<span class="badge text-bg-secondary">Chebyshev</span>
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col">
-		<div class="card m-3">
-			<div class="card-header">
-				**Does my data cluster around a mean value, with outliers following a normal/Gaussian distribution?**
-			</div>
-			<div class="card-body">
-				<p class="card-text">
-					For bell-curved data, or data that follows a normal distribution, the **Hermite** basis is a good choice. This covers things like measurement errors, test scores, and natural phenomena.
-				</p>
-				<p class="card-text">
-                    <span class="badge text-bg-secondary">Fourier</span>
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="col">
-		<div class="card m-3">
-			<div class="card-header">
-				**Does my data grow or shrink very quickly?**
-			</div>
-			<div class="card-body">
-				<p class="card-text">
-					Depending on the nature of the growth or decay, you might consider **Laguerre** (for exponential decay) or **Logarithmic** (for logarithmic growth/decay) bases. This is common in fields like biology, economics, and physics.
-				</p>
-				<p class="card-text">
-                    <span class="badge text-bg-secondary">Laguerre</span>
-                    <span class="badge text-bg-secondary">Logarithmic</span>
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
+> ### Does my data cycle, repeat, or go up and down a lot?
+> This covers things like RF data, audio signals, seasonal trends, or any data that has a periodic nature. **Fourier** basis is designed for this kind of data, but since **Chebyshev** uses cosines too, it's also a reasonable choice.
+>
+> **Fourier | Chebyshev**
+
+> ### Does my data cluster around a mean value, with outliers following a normal/Gaussian distribution?
+> For bell-curved data, or data that follows a normal distribution, the **Hermite** basis is a good choice. This covers things like measurement errors, test scores, and natural phenomena.
+>
+> **Hermite | Fourier**
+
+> ### Does my data grow or shrink very quickly?
+> For data that grows or decays exponentially, such as radioactive decay, population growth, or certain financial models, the **Laguerre** basis is well-suited.
+>
+> **Laguerre | Chebyshev**
 
 # Using `basis_select!()`
 

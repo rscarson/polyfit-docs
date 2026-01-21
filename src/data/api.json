@@ -1,0 +1,26 @@
+{
+    "fitting": {
+        "title": "Curve Fitting",
+        "description": "Core functionality to get a function that approximates your data using various basis functions",
+        "mdfile": "fitting.md",
+        "recipes": [ "getting-started", "basis-selection", "detecting-outliers", "selecting-a-degree-for-your-fit" ],
+        "glossary_terms": [ "basis", "domain", "orthogonality", "outliers" ],
+        "refs": [
+            "CurveFit", "Polynomial", "basis::Basis", "statistics"
+        ]
+    },
+
+    "calculus": {
+        "title": "Calculus",
+        "description": "Integral and differential operations, used to extract trends and properties from data and fitted polynomials.",
+        "mdfile": "calculus.md",
+
+        "recipes": [ "using-calculus" ],
+        "glossary_terms": [ "derivative", "integral", "critical-point" ],
+        "refs": [
+            "Polynomial::derivative", "Polynomial::integral", "Polynomial::critical_points",
+            "Polynomial::roots", "Polynomial::real_roots", "Polynomial::area_under_curve",
+            "Polynomial::monotonicity_violations"
+        ]
+    }
+}

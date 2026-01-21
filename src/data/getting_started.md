@@ -1,5 +1,3 @@
-To install Polyfit, run `cargo add polyfit`
-
 Polyfit lets you make predictions about your data, transform it, plot it, detect outliers and trends, and much more. It does not require an in-depth knowledge of mathematics.
 
 See the [recipes](/recipes) for practical examples of how to use Polyfit for common tasks.

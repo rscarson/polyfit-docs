@@ -3,6 +3,7 @@ const { title, path } = Astro.props;
 export const sidebarLinks = [
     { label: 'Home', path: '/', icon: 'house-door' },
     { label: 'Features', path: '/features', icon: 'stars' },
+  //  { label: 'API', path: '/api', icon: 'code-square' },
     { label: 'Glossary', path: '/glossary', icon: 'lightbulb' },
     { label: 'Recipes', path: '/recipes', icon: 'journal-bookmark' },
     { label: 'Testing', path: '/testing', icon: 'check-circle' },
@@ -42,6 +43,9 @@ export const sidebarLinks = [
 
     <script type="module" src="/js/main.js"></script>
     <script type="module" src="/js/theme.js"></script>
+
+    <script type="module" src="shawarma/shawarma.js"></script>
+    <link rel="stylesheet" href="shawarma/shawarma.css" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
@@ -90,7 +94,8 @@ export const sidebarLinks = [
             </div>
 
             <div class="mt-auto text-center small text-muted">
-                &copy; 2025 Richard Carson. All rights reserved.
+                
+                <span class="crown">&copy;</span> 2025 Richard Carson. All rights reserved.
             </div>
         </nav>
 

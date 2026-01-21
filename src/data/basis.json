@@ -7,13 +7,13 @@
         "desc_full": [
             "When you say polynomial, most people think of the monomial basis. It's recognizable, universal, and great for displaying or communicating a fit to people.",
             "However, it can be numerically unstable for high-degree polynomials or large input ranges, leading to poor results.",
-            "Prefer [chebyshev](/glossary#basis-chebyshev), which can be converted to monomial form for display."
+            "Prefer @[basis-chebyshev], which can be converted to monomial form for display."
         ],
         "features": {
             "domain": "None — the function will use the given x-values without modification.",
             "outliers": "Poor. Extreme values or spikes in the data set can significantly affect the fit.",
             "stability": "Low. Susceptible to numerical instability, especially for high-degree polynomials or large input ranges.",
-            "calculus": "Full support for symbolic differentiation, integration, and exact root finding. See (features#calculus).",
+            "calculus": "Full support for symbolic differentiation, integration, and exact root finding. See [/api#calculus](/api#calculus).",
             "orthogonal": "No — functions like [[CurveFit::spectral_energy_filter]] are unavailable."
         },
         "refs": {
@@ -28,15 +28,15 @@
         "sample": "T[ 0..1000 -> -1..1 ], y(x) = 5.69e7·T₃(xₛ) + 3.77e8·T₂(xₛ) + 9.39e8·T₁(xₛ) + 6.20e8",
         "desc": ["Stable, fast and efficient.", "Orthogonal and resistant to overfitting."],
         "desc_full": [
-            "Chebyshev polynomials are a set of orthogonal polynomials that provide excellent numerical stability and resistance to outliers. Their properties make them very resistant to outliers at the edges of the input range.",
+            "Chebyshev polynomials are a set of orthogonal polynomials that provide excellent @[numerical-stability] and resistance to outliers. Their properties make them very resistant to outliers at the edges of the input range.",
             "They are particularly well-suited for high-degree polynomial fits and large input ranges, and can be converted to monomial form for display or communication purposes, making them very versatile."
         ],
         "features": {
             "domain": "[-1, 1] — input x-values are scaled and shifted to fit within this range. That transformation will be reflected in the equation.",
             "outliers": "Good. Chebyshev polynomials do something called minimax approximation to minimize the maximum error (See [[statistics#mean_absolute_error]]), which helps reduce the impact of outliers.",
-            "stability": "High. Chebyshev polynomials are [orthogonal](/glossary#orthogonality) and well-conditioned, making them more stable for high-degree fits and large input ranges.",
-            "calculus": "Supports derivative into the 2nd form, and again into the 3rd form. Both can be integrated back up to the original. Can be converted to monomial form. Exact root finding supported. See (features#calculus).",
-            "orthogonal": "Yes. See (/glossary#orthogonality)."
+            "stability": "High. Chebyshev polynomials are @[orthogonality]{orthogonal} and well-conditioned, making them more stable for high-degree fits and large input ranges.",
+            "calculus": "Supports derivative into the 2nd form, and again into the 3rd form. Both can be integrated back up to the original. Can be converted to monomial form. Exact root finding supported. See [/api#calculus](/api#calculus).",
+            "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
             "wikipedia": "",
@@ -50,16 +50,16 @@
         "sample": "T[0..1000 -> -1..1], y(x) = 9.11e7·P₃(xₛ) + 5.03e8·P₂(xₛ) + 9.05e8·P₁(xₛ) + 4.95e8",
         "desc": ["Orthogonal and numerically stable.", "Good for approximating functions over finite intervals."],
         "desc_full": [
-            "Legendre polynomials are a set of orthogonal polynomials that provide excellent numerical stability and resistance to outliers, similar to Chebyshev polynomials.",
+            "Legendre polynomials are a set of orthogonal polynomials that provide excellent @[numerical-stability] and resistance to outliers, similar to Chebyshev polynomials.",
             "Compared to Chebyshev polynomials, Legendre spreads the approximation error more evenly across the input range, rather than the edges.",
             "They are particularly well-suited for high-degree polynomial fits, and can be converted to monomial form for display or communication purposes, making them very versatile."
         ],
         "features": {
             "domain": "[-1, 1] — input x-values are scaled and shifted to fit within this range. That transformation will be reflected in the equation.",
             "outliers": "Fair. Minimizes overall error across the input range; may be less effective than Chebyshev at handling outliers.",
-            "stability": "High. Legendre polynomials are [orthogonal](glossary#orthogonality) and well-conditioned, making them more stable for high-degree fits.",
-            "calculus": "Supports differentiation, but not integration. Root finding uses numerical approximation. See (features#calculus).",
-            "orthogonal": "Yes. See (glossary#orthogonality)."
+            "stability": "High. Legendre polynomials are @[orthogonality]{orthogonal} and well-conditioned, making them more stable for high-degree fits.",
+            "calculus": "Supports differentiation, but not integration. Root finding uses numerical approximation. See [/api#calculus](/api#calculus).",
+            "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
             "wikipedia": "",
@@ -74,14 +74,14 @@
         "desc": ["Orthogonal over [0, ∞).", "Useful for modeling decay processes."],
         "desc_full": [
             "Laguerre polynomials are a set of orthogonal polynomials that are particularly well-suited for modeling data that decays exponentially, such as radioactive decay or certain financial models.",
-            "They operate on an input domain of [0, ∞), so the source range does not need to be compressed. They provide good numerical stability and resistance to outliers, and can be converted to monomial form for display or communication purposes, making them versatile."
+            "They operate on an input domain of [0, ∞), so the source range does not need to be compressed. They provide good @[numerical-stability] and resistance to outliers, and can be converted to monomial form for display or communication purposes, making them versatile."
         ],
         "features": {
             "domain": "[0, ∞) — input x-values are shifted to fit this range.",
             "outliers": "Good. Orthogonality reduces sensitivity to extreme values.",
             "stability": "High. Well-conditioned even for large input ranges; suited to exponential decay problems.",
-            "calculus": "Differentiable; integration and exact roots require conversion to monomial form. Roots typically found via numerical approximation. See (features#calculus).",
-            "orthogonal": "Yes. See (glossary#orthogonality)."
+            "calculus": "Differentiable; integration and exact roots require conversion to monomial form. Roots typically found via numerical approximation. See [/api#calculus](/api#calculus).",
+            "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
             "wikipedia": "",
@@ -99,14 +99,14 @@
         ],
         "desc_full": [
             "Physicist's Hermite polynomials (Heₙ) are defined so that repeated differentiation used in quantum mechanics does not introduce additional scaling factors. This makes them the standard form in the harmonic oscillator, wavefunctions, and ladder operator algebra.",
-            "They are orthogonal over the real line with a Gaussian weight, providing numerical stability and reducing correlation in polynomial fitting."
+            "They are orthogonal over the real line with a Gaussian weight, providing @[numerical-stability] and reducing correlation in polynomial fitting."
         ],
         "features": {
             "domain": "None. The function will use the given x-values without modification.",
             "outliers": "Good. Hermite polynomials are less sensitive to outliers due to their orthogonal nature.",
-            "stability": "High. Hermite polynomials are [orthogonal](/glossary#orthogonality) and well-conditioned, making them more stable for high-degree fits, and their lack of a finite [domain](/glossary#domain) makes them suited for large input ranges.",
-            "calculus": "Supports derivativation, but not integration. Can be converted to monomial form. Root finding uses numerical approximation. See (features#calculus).",
-            "orthogonal": "Yes. See (glossary#orthogonality)."
+            "stability": "High. Hermite polynomials are @[orthogonality]{orthogonal} and well-conditioned, making them more stable for high-degree fits, and their lack of a finite @[domain]{domain} makes them suited for large input ranges.",
+            "calculus": "Supports derivativation, but not integration. Can be converted to monomial form. Root finding uses numerical approximation. See [/api#calculus](/api#calculus).",
+            "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
             "wikipedia": "",
@@ -129,9 +129,9 @@
         "features": {
             "domain": "None. The function will use the given x-values without modification.",
             "outliers": "Good. Hermite polynomials are less sensitive to outliers due to their orthogonal nature.",
-            "stability": "High. Hermite polynomials are [orthogonal](/glossary#orthogonality) and well-conditioned, making them more stable for high-degree fits, and their lack of a finite [domain](/glossary#domain) makes them suited for large input ranges.",
-            "calculus": "Supports derivativation, but not integration. Can be converted to monomial form. Root finding uses numerical approximation. See (features#calculus).",
-            "orthogonal": "Yes. See (glossary#orthogonality)."
+            "stability": "High. Hermite polynomials are @[orthogonality]{orthogonal} and well-conditioned, making them more stable for high-degree fits, and their lack of a finite @[domain]{domain} makes them suited for large input ranges.",
+            "calculus": "Supports derivativation, but not integration. Can be converted to monomial form. Root finding uses numerical approximation. See [/api#calculus](/api#calculus).",
+            "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
             "wikipedia": "",
@@ -147,14 +147,14 @@
         "desc": ["Stable, orthogonal, and periodic.", "Ideal for modeling cyclical data or signals."],
         "desc_full": [
             "Fourier polynomials are trigonometric polynomials composed of sine and cosine functions. They have a repeating, curvy appearance and are very well suited to data that tends to be periodic, like signals data or seasonal trends.",
-            "They are [orthogonal](/glossary#orthogonality), providing good numerical stability and resistance to outliers. Their periodic nature means they can model cyclical patterns that would require a far higher degree polynomial with other bases."
+            "They are @[orthogonality]{orthogonal}, providing good @[numerical-stability] and resistance to outliers. Their periodic nature means they can model cyclical patterns that would require a far higher degree polynomial with other bases."
         ],
         "features": {
             "domain": "[0, 2π] — input x-values are scaled and shifted to fit within this range.",
             "outliers": "Fair. They can get a decent fit in very noisy data that other bases would struggle with, but may overreact to extreme outliers, and can have artifacts called \"ringing\" at the edges if used on the wrong types of data.",
-            "stability": "High. Fourier polynomials are [orthogonal](/glossary#orthogonality) and well-conditioned, making them more stable for high-degree fits and large input ranges.",
-            "calculus": "Supports differentiation and integration. Cannot be converted to monomial form. Root finding uses numerical approximation. See (features#calculus).",
-            "orthogonal": "Yes. See (/glossary#orthogonality)."
+            "stability": "High. Fourier polynomials are @[orthogonality]{orthogonal} and well-conditioned, making them more stable for high-degree fits and large input ranges.",
+            "calculus": "Supports differentiation and integration. Cannot be converted to monomial form. Root finding uses numerical approximation. See [/api#calculus](/api#calculus).",
+            "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
             "wikipedia": "",
@@ -172,7 +172,7 @@
             "They are useful for modelling data with exponential growth or decay, such as population growth, timing data, or financial data. They can capture rapid changes in the data more effectively than standard polynomials."
         ],
         "features": {
-            "domain": "(0, ∞) — input x-values must be positive, but the [domain](/glossary#domain) does not need to be scaled.",
+            "domain": "(0, ∞) — input x-values must be positive, but the @[domain]{domain} does not need to be scaled.",
             "outliers": "Fair. Logarithmic polynomials can be sensitive to outliers, especially if the outliers are extreme or located at the edges of the input range.",
             "stability": "Moderate. Logarithmic polynomials can be less stable than other bases, especially for high-degree fits or when the input data spans several orders of magnitude.",
             "calculus": "Calculus and Monomial conversion not supported. Root finding uses numerical approximation.",

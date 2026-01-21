@@ -1,0 +1,21 @@
+---
+import { MdGlossaryLink } from '../../lib/markdown.js';
+
+const { item } = Astro.props as { item: MdGlossaryLink };
+
+let popoverHtml = `
+  <div>
+    <p>${item.desc}</p>
+    <a href="${item.url}" class="btn btn-sm btn-primary mt-2" target="_blank">More Information</a>
+  </div>
+`;
+---
+
+<a
+  style="cursor: pointer"
+  title={item.name}
+  class="glossary-link"
+  data-bs-toggle="popover"
+  data-bs-html="true"
+  data-bs-content={popoverHtml}
+>{item.linkText}</a>

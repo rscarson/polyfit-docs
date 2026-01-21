@@ -1,9 +1,12 @@
 import { highlightRust } from "./highlight.ts";
 
+import rawGlossary from '../data/glossary.json';
+import rawBasis from '../data/basis.json';
+
 import fs from 'fs';
 
 import { loadCrate } from "cargo-json-docs";
-import { Marked, marked } from 'marked';
+import { Marked } from 'marked';
 
 export const crate = loadCrate('../Repositories/crates_workspace/polyfit');
 
@@ -28,13 +31,84 @@ export enum ItemKind {
     Paragraph,
     Heading,
     DocsLink,
+    GlossaryLink,
     Link,
     Strong,
     Em,
     Text,
     Html,
+    Br,
 }
 
+/**
+ * Custom Marked extension to handle @[glossary-term]{optional text} links.
+ * 
+ * These are converted to links to the appropriate glossary page along with a tooltip.
+ */
+const GlossaryLinkExtension = {
+    name: 'glossarylink',
+    level: 'inline' as const,
+
+    start(src: string) {
+        const i = src.indexOf('@[');
+        return i === -1 ? undefined : i;
+    },
+
+    tokenizer(src: string) {
+        const rule = /^@\[([^\]]*?)\](\{(.+)\})?/;
+        const match = rule.exec(src);
+        if (!match) return;
+
+        const raw = match[0];
+        const term = match[1];
+        const text = match[3] || null;
+
+        let glossary: any = rawGlossary;
+        let entry = glossary[term];
+        let desc = entry ? entry.short_desc : null;
+
+        if (!entry) {
+            let basis: any = rawBasis;
+            entry = basis[term];
+            desc = entry ? entry.desc.join('\n\n') : null;
+        }
+
+        const name = entry?.name ?? term;
+        const linkText = text ?? name;
+
+        if (!entry) {
+            console.warn(`Warning: could not find glossary entry for term: ${term}`);
+            return {
+                type: 'glossarylink',
+                raw: raw,
+                term: term,
+                linkText: linkText,
+                name: name,
+                url: '#',
+                desc: 'Missing Glossary Term - Please report this issue.',
+            };
+        }
+        
+        return {
+            type: 'glossarylink',
+            raw: raw,
+            term: term,
+            linkText: linkText,
+            name: name,
+            url: `/glossary#${term}`,
+            desc: desc,
+        };
+    },
+
+    renderer(token: any) {
+        return `<a href="${token.url}" class="glossary-link" data-term="${token.term}" data-desc="${encodeURIComponent(token.desc)}">${token.name}</a>`;
+    }
+}
+
+/**
+ * Custom Marked extension to handle [[path::to::item]] links to Rust documentation.
+ * These are converted to links to the appropriate documentation page if found in the crate data.
+ */
 const DocLinkExtension = {
     name: 'docslink',
     level: 'inline' as const,
@@ -79,6 +153,8 @@ export class MdParser {
     blocks: MdItem[] = [];
     sourceURL: string;
 
+    public shouldExpandGlossaryLinks: boolean = true;
+
     constructor(sourceURL: string) {
         this.sourceURL = sourceURL;
         this.parser = new Marked({
@@ -86,7 +162,7 @@ export class MdParser {
             pedantic: false,
             breaks: false,
             
-            extensions: [DocLinkExtension],
+            extensions: [DocLinkExtension, GlossaryLinkExtension],
             hooks: {
                 processAllTokens: (tokens: any) => {
                     for (let token of tokens) {
@@ -147,7 +223,9 @@ export class MdItem {
             case 'text': return MdText.parse(token);
             case 'space': return MdSpace.parse(token);
             case 'html': return MdLiteral.parse(token);
+            case 'br': return MdBr.parse(token);
             case 'docslink': return MdDocsLink.parse(token);
+            case 'glossarylink': return MdGlossaryLink.parse(token);
 
             default: throw new Error(`Unsupported token type: ${token.type}: ${JSON.stringify(token)}`);
         }
@@ -427,5 +505,36 @@ export class MdDocsLink extends MdItem {
 
     static parse(token: any): MdDocsLink {
         return new MdDocsLink(token.path, token.url);
+    }
+}
+
+export class MdGlossaryLink extends MdItem {
+    term: string;
+    linkText: string;
+    name: string;
+    url: string;
+    desc: string;
+    
+    constructor(term: string, linkText: string, name: string, url: string, desc: string) {
+        super(desc, ItemKind.GlossaryLink);
+        this.term = term;
+        this.linkText = linkText;
+        this.name = name;
+        this.url = url;
+        this.desc = desc;
+    }
+
+    static parse(token: any): MdGlossaryLink {
+        return new MdGlossaryLink(token.term, token.linkText, token.name, token.url, token.desc);
+    }
+}
+
+export class MdBr extends MdItem {
+    constructor() {
+        super('\n', ItemKind.Br);
+    }
+
+    static parse(_: any): MdBr {
+        return new MdBr();
     }
 }
