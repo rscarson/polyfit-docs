@@ -198,13 +198,22 @@ const dvdLogo = {
             logo.y += logo.vy;
 
             // Collision with viewport edges
-            if (logo.x < 0 || logo.x > vw) {
+            // But if partly offscreen, reverse direction
+            if (logo.x < 0) {
+                logo.x = 0;
                 logo.vx = -logo.vx;
-                logo.x += logo.vx;
             }
-            if (logo.y < 0 || logo.y > vh) {
+            if (logo.x > vw) {
+                logo.x = vw;
+                logo.vx = -logo.vx;
+            }
+            if (logo.y < 0) {
+                logo.y = 0;
                 logo.vy = -logo.vy;
-                logo.y += logo.vy;
+            }
+            if (logo.y > vh) {
+                logo.y = vh;
+                logo.vy = -logo.vy;
             }
 
             logo.element.style.left = `${logo.x}px`;
