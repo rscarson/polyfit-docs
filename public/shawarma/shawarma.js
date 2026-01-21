@@ -1,3 +1,19 @@
+//
+// Shawarma.js
+//
+// The shawarma king follows your cursor around the screen, while blaring his theme music.
+// Also includes bouncing DVD logos for extra flair.
+//
+// To use:
+//     <script type="module" src="/shawarma/shawarma.js"></script>
+//     <link rel="stylesheet" href="/shawarma/shawarma.css" />
+//
+// I hid the trigger in the copyright icon:
+//     <span class="crown">&copy;</span>
+//
+// Once the crown is clicked enough times, the shawarma king spawns.
+// Clicking the crown again despawns the king.
+
 // Options
 const MAX_VELOCITY = 10;
 const MAX_ACCELERATION = 0.1;
@@ -11,6 +27,7 @@ const BOUNCE_AMPLITUDE = 1; // pixels
 const BOUNCE_FREQUENCY = 0.01; // radians per tick
 
 const DVDLOGO_SPEED = 2; // pixels per tick
+const SHAWARMA_SPLAT_RESPAWN_DELAY = 1000; // ms
 
 const TICK_INTERVAL = 20; // ms
 
@@ -49,9 +66,54 @@ const cursor = {
     unload() { window.removeEventListener('mousemove', this.handler); }
 }
 
+const splatEffect = {
+    audio: new Audio('/shawarma/splat.mp3'),
+
+    play() {
+        this.audio.volume = 1.0;
+        this.audio.loop = false;
+        this.audio.play();
+    }
+}
+
+const themeMusic = {
+    audio: new Audio('/shawarma/theme.mp3'),
+
+    update(distance) {
+        // We update volume quadratically based on distance
+        // And apply a low-pass filter to simulate muffling
+
+        let newVolume = Math.max(0, 1 - (distance / 800));
+        newVolume = newVolume * newVolume; // quadratic
+        if (newVolume > 1) newVolume = 1;
+        if (newVolume < 0) newVolume = 0;
+        this.audio.volume = newVolume;
+
+        // Low-pass filter frequency from 500Hz (far) to 22050Hz (close)
+        let frequency = 500 + (1 - newVolume) * (22050 - 500);
+        if (this.audio.context && this.audio.filter) {
+            this.audio.filter.frequency.setValueAtTime(frequency, this.audio.context.currentTime);
+        }
+    },
+
+    play() {
+        this.audio.loop = true;
+        this.audio.volume = 0;
+        this.audio.play();
+    },
+
+    stop() {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+    }
+}
+
 const dvdLogo = {
     handler: null,
     elements: [],
+
+    splatCounter: null,
+    splats: 0,
 
     spawn() {
         // Logo count is by bootstrap rules
@@ -92,6 +154,40 @@ const dvdLogo = {
         }
         this.elements = [];
     },
+    
+    checkCollision(boundingBox) {
+        // If any logo collides with the bounding box, update the splatometer and respawn the logo
+        for (let logo of this.elements) {
+            const logoRect = logo.element.getBoundingClientRect();
+            if (
+                logo.element.style.display !== 'none' &&
+                logoRect.left < boundingBox.right &&
+                logoRect.right > boundingBox.left &&
+                logoRect.top < boundingBox.bottom &&
+                logoRect.bottom > boundingBox.top
+            ) {
+                this.splats += 1;
+                splatEffect.play();
+
+                // Create a splat counter element and set the inner text to the current splat count
+                if (this.splatCounter === null) {
+                    this.splatCounter = document.createElement('div');
+                    this.splatCounter.classList.add('splatometer');
+                    document.body.appendChild(this.splatCounter);
+                }
+                this.splatCounter.innerText = this.splats.toString();
+
+                // Respawn logo at random position
+                logo.element.style.display = 'none';
+                setTimeout(() => {
+                    logo.x = Math.random() * (window.innerWidth - logo.element.offsetWidth);
+                    logo.y = Math.random() * (window.innerHeight - logo.element.offsetHeight);
+                    logo.element.style.display = 'block';
+                    this.update();
+                }, SHAWARMA_SPLAT_RESPAWN_DELAY);
+            }
+        }
+    },
 
     update() {
         for (let logo of this.elements) {
@@ -114,38 +210,6 @@ const dvdLogo = {
             logo.element.style.left = `${logo.x}px`;
             logo.element.style.top = `${logo.y}px`;
         }
-    }
-}
-
-const themeMusic = {
-    audio: new Audio('/shawarma/theme.mp3'),
-
-    update(distance) {
-        // We update volume quadratically based on distance
-        // And apply a low-pass filter to simulate muffling
-
-        let newVolume = Math.max(0, 1 - (distance / 800));
-        newVolume = newVolume * newVolume; // quadratic
-        if (newVolume > 1) newVolume = 1;
-        if (newVolume < 0) newVolume = 0;
-        this.audio.volume = newVolume;
-
-        // Low-pass filter frequency from 500Hz (far) to 22050Hz (close)
-        let frequency = 500 + (1 - newVolume) * (22050 - 500);
-        if (this.audio.context && this.audio.filter) {
-            this.audio.filter.frequency.setValueAtTime(frequency, this.audio.context.currentTime);
-        }
-    },
-
-    play() {
-        this.audio.loop = true;
-        this.audio.volume = 0;
-        this.audio.play();
-    },
-
-    stop() {
-        this.audio.pause();
-        this.audio.currentTime = 0;
     }
 }
 
@@ -326,6 +390,7 @@ const theKing = {
 
         this.teleport(this.x.v, this.y.v);
         themeMusic.update(dist);
+        dvdLogo.checkCollision(this.element.getBoundingClientRect());
     },
 
     teleport(x, y) {

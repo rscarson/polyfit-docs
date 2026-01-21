@@ -193,5 +193,116 @@
             "They are found by taking the derivative of the function and setting it to zero, then solving for the input values (x-values).",
             "Identifying critical points is essential for understanding the behavior of functions, especially in optimization problems where you want to find the highest or lowest values of a function."
         ]
+    },
+
+    "derivative": {
+        "name": "Derivative",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Derivative",
+            "mathworld": "https://mathworld.wolfram.com/Derivative.html",
+            "khanacademy": "https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-1-new/ab-2-1/v/derivative-as-a-concept"
+        },
+        "related": [
+            "Polynomial::derivative",
+            "Polynomial::critical_points",
+            "Polynomial::roots", "Polynomial::real_roots",
+            "Polynomial::area_under_curve", "Polynomial::monotonicity_violations"
+        ],
+        "short_desc": "A measure of how a function changes as its input changes; the slope of the function at a given point.",
+        "desc": [
+            "The derivative of a function quantifies how the function's output (y-value) changes in response to small changes in its input (x-value).",
+            "It represents the slope of the function at a specific point, indicating whether the function is increasing or decreasing at that point.",
+            "Derivatives are fundamental in calculus and are used in various applications, including optimization, physics, and engineering."
+        ]
+    },
+
+    "integral": {
+        "name": "Integral",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Integral",
+            "mathworld": "https://mathworld.wolfram.com/Integral.html",
+            "khanacademy": "https://www.khanacademy.org/math/ap-calculus-bc/bc-applications-of-integration-new"
+        },
+        "related": [
+            "Polynomial::integral",
+            "Polynomial::area_under_curve"
+        ],
+        "short_desc": "A measure of the total accumulation of a quantity, often represented as the area under a curve.",
+        "desc": [
+            "The integral of a function represents the total accumulation of a quantity over a specified interval. It is often visualized as the area under the curve of the function between two points on the x-axis.",
+            "Integrals are fundamental in calculus and have applications in various fields, including physics, engineering, and economics."
+        ]
+    },
+
+    "plot": {
+        "name": "Plot",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Plot_(graphics)",
+            "mathworld": "https://mathworld.wolfram.com/FunctionGraph.html",
+            "khanacademy": "https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:functions"
+        },
+        "related": [
+            "plotting",
+            "plot",
+            "plot_residuals"
+        ],
+        "short_desc": "A graphical representation of data points or functions to visualize relationships and trends.",
+        "desc": [
+            "A plot is a graphical representation of data points or mathematical functions, used to visualize relationships, trends, and patterns within the data.",
+            "Plots can take various forms, including line graphs, scatter plots, bar charts, and histograms, each serving different purposes in data analysis and presentation."
+        ]
+    },
+
+    "normalization": {
+        "name": "Normalization",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Normalization_(statistics)",
+            "mathworld": "https://mathworld.wolfram.com/Normalization.html",
+            "khanacademy": "https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data"
+        },
+        "related": [
+            "transforms::ApplyNormalization",
+            "statistics::DomainNormalizer"
+        ],
+        "short_desc": "The process of adjusting data to a common scale without distorting differences in the ranges of values.",
+        "desc": [
+            "Normalization is the process of adjusting data to a common scale, typically to ensure that different features or variables contribute equally to the analysis.",
+            "This is often done by scaling the data to a specific range (e.g., 0 to 1) or by transforming it to have a mean of zero and a standard deviation of one.",
+            "Normalization helps improve the performance and stability of polynomial fitting algorithms by reducing the effects of varying scales in the input data."
+        ]
+    },
+
+    "scaling": {
+        "name": "Scaling",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Scaling_(geometry)",
+            "mathworld": "https://mathworld.wolfram.com/Scaling.html"
+        },
+        "related": [
+            "transforms::ApplyScale",
+            "statistics::DomainNormalizer"
+        ],
+        "short_desc": "The process of changing the range of data values to fit within a specific scale.",
+        "desc": [
+            "Scaling is the process of changing the range of data values to fit within a specific scale, often to improve the performance of algorithms that are sensitive to the magnitude of the input data.",
+            "Scaling helps ensure that all features contribute equally to the analysis and can enhance the numerical stability of polynomial fitting."
+        ]
+    },
+
+    "synthetic-data": {
+        "name": "Synthetic Data",
+        "refs": {
+            "wikipedia": "https://en.wikipedia.org/wiki/Synthetic_data"
+        },
+        "related": [
+            "transforms::ApplyNoise",
+            "test"
+        ],
+        "short_desc": "Artificially generated data that mimics the properties of real-world data for testing and validation purposes.",
+        "desc": [
+            "Synthetic data is artificially generated data that mimics the statistical properties and patterns of real-world data.",
+            "It is often used for testing and validating algorithms, models, and systems when real data is unavailable, sensitive, or insufficient.",
+            "Synthetic data can be created by adding noise to existing data, simulating data based on known distributions, or using generative models."
+        ]
     }
 }

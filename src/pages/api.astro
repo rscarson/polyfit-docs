@@ -14,6 +14,11 @@ const apiData = includeAPI('api');
         </p>
     </header>
 
+    <!-- Search box -->
+    <div class="mb-4">
+        <input type="text" id="glossary-search" class="form-control" placeholder="Search..." />
+    </div>
+
     <div class="api-list">
         <div class="accordion accordion-flush" style="text-align: left">
         {apiData.map((section:any) => (
@@ -24,7 +29,6 @@ const apiData = includeAPI('api');
                             <div style="display: block">
                                 <h2>{section.title}</h2>
                                 <p class="lead mt-3">{section.description}</p>
-                                <p class="small text-muted mb-0">[ Click to expand ]</p>
                             </div>
                     </button>
                 </p>

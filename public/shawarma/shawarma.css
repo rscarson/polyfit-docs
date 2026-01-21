@@ -30,6 +30,7 @@
             transform: rotate(360deg);
         }
     }
+
 .crown {
     position: relative;
 }
@@ -45,4 +46,20 @@
     position: absolute;
     top: -4px;
     left: -2px;
+}
+
+.splatometer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: 150px;
+    background: url(/shawarma/splat.png) no-repeat center/contain;
+    z-index: 9999;
+
+    font: bold 21px 'Arial', sans-serif;
+    color: red;
+
+    text-align: center;
+    padding: 55px 0 0 0;
 }

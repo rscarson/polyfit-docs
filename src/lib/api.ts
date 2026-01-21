@@ -26,12 +26,22 @@ export function includeAPI(sourceURL: string) {
 
         let relatedRecipes: any[] = [];
         for (let recipeKey of apiClone[key].recipes) {
-            let recipe_src = Recipes['general'].find((r: any) => titleToId(r.title) === recipeKey);
+            let category = 'general';
+            if (recipeKey.startsWith('testing/')) {
+                category = 'testing';
+                recipeKey = recipeKey.replace('testing/', '');
+            }
+
+            let recipe_src = Recipes[category].find((r: any) => titleToId(r.title) === recipeKey);
             let recipe = {
-                url: `/recipes#${recipeKey}`,
+                url: `/${category}#${recipeKey}`,
                 title: recipe_src?.title || recipeKey
             }
             relatedRecipes.push(recipe);
+
+            if (!recipe_src) {
+                console.warn(`Warning: Recipe "${recipeKey}" not found for API "${key}"`);
+            }
         }
         apiClone[key].related_recipes = relatedRecipes;
 
@@ -43,6 +53,10 @@ export function includeAPI(sourceURL: string) {
                 term: term_src?.name || termKey
             }
             relatedGlossary.push(term);
+
+            if (!term_src) {
+                console.warn(`Warning: Glossary term "${termKey}" not found for API "${key}"`);
+            }
         }
         apiClone[key].related_glossary = relatedGlossary;
     }

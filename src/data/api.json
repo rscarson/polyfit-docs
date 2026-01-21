@@ -10,6 +10,18 @@
         ]
     },
 
+    "plotting": {
+        "title": "Plotting",
+        "description": "Functions to visualize your data and fitted curves.",
+        "mdfile": "plotting.md",
+
+        "recipes": [ "fits-for-generating-graphs" ],
+        "glossary_terms": [ "plot" ],
+        "refs": [
+            "plotting", "plot", "plot_residuals"
+        ]
+    },
+
     "calculus": {
         "title": "Calculus",
         "description": "Integral and differential operations, used to extract trends and properties from data and fitted polynomials.",
@@ -21,6 +33,31 @@
             "Polynomial::derivative", "Polynomial::integral", "Polynomial::critical_points",
             "Polynomial::roots", "Polynomial::real_roots", "Polynomial::area_under_curve",
             "Polynomial::monotonicity_violations"
+        ]
+    },
+
+    "transforms": {
+        "title": "Transforms",
+        "description": "Scaling, Normalization, and Random Noise to preprocess your data or create synthetic datasets for testing and validation.",
+        "mdfile": "transforms.md",
+        "recipes": [ "scaling-and-normalization-transforms", "testing/simulating-noisy-data-for-testing" ],
+        "glossary_terms": [ "normalization", "scaling", "synthetic-data" ],
+        "refs": [
+            "transforms", "transforms::ApplyNoise", "transforms::ApplyScale", "transforms::ApplyNormalization" 
+        ]
+    },
+
+    "testing": {
+        "title": "Testing Utilities",
+        "description": "Utilities to let you test your fits and functions without needing to understand the underlying math.",
+        "mdfile": "testing.md",
+        "recipes": [ "testing/using-assertions-to-test-fit-quality", "testing/validating-your-choice-of-basis", "testing/finding-and-using-canonical-functions" ],
+        "glossary_terms": [ "synthetic-data" ],
+        "refs": [
+            "test", "plot", "plot_residuals", 
+            "assert_close", "assert_all_close", "assert_y", "assert_fits",
+            "assert_r_squared", "assert_monotone", "assert_residuals_normal",
+            "assert_max_residual"
         ]
     }
 }
