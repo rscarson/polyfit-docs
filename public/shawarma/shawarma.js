@@ -1,6 +1,9 @@
 //
 // Shawarma.js
 //
+// The shawarma king himself, the Garlic King restaurant and related IP are not mine and I claim no ownership over them.
+// This is a fan-made homage and parody and is not affiliated with Garlic King in any way, nor does it imply endorsement.
+//
 // The shawarma king follows your cursor around the screen, while blaring his theme music.
 // Also includes bouncing DVD logos for extra flair.
 //
@@ -447,6 +450,13 @@ document.querySelectorAll('.crown').forEach((elem) => {
                 dvdLogo.spawn();
                 theKing.spawn();
                 themeMusic.play();
+
+                // add copyright notice about Garlic King to the crown title attribute
+                crown.setAttribute('title', 
+                    'Garlic King name, logos, and music are trademarks of their respective owners. ' +
+                    'This shawarma king homage is a fan-made parody and is not affiliated with Garlic King in any way. ' +
+                    'No endorsement is implied. Click to toggle shawarma king.'
+                );
             }
         }
     });
