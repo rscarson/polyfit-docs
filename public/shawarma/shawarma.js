@@ -356,7 +356,7 @@ document.querySelectorAll('.crown').forEach((elem) => {
             let opacity = parseFloat(beforeStyles.opacity);
             opacity = isNaN(opacity) ? 0.09 : opacity;
 
-            opacity += 0.1;
+            opacity += 0.25;
             
             // write the new opacity to the crown before pseudo-element
             crown.style.setProperty('--before-opacity', opacity.toString());
