@@ -163,18 +163,6 @@ const theKing = {
         let vh = window.innerHeight - this.element?.offsetHeight || 0;
         let vw = window.innerWidth - this.element?.offsetWidth || 0;
 
-        // Actual parking distance is based on size - bootstrap laws apply
-        // xl will be PARKING_DISTANCE, lg is /2, md is /3, sm is /4,
-        let parkingDivisor = 1;
-        if (window.innerWidth < 576) {
-            parkingDivisor = 4;
-        } else if (window.innerWidth < 768) {
-            parkingDivisor = 3;
-        } else if (window.innerWidth < 992) {
-            parkingDivisor = 2;
-        }
-        const parkingDistance = PARKING_DISTANCE / parkingDivisor;
-
         // First position the king in the furthest corner of the viewport from the cursor
         let quadrant = cursor.quadrant();
         switch (quadrant) {
@@ -210,6 +198,14 @@ const theKing = {
     update() {
         let vh = window.innerHeight - this.element?.offsetHeight || 0;
         let vw = window.innerWidth - this.element?.offsetWidth || 0;
+
+        // Actual parking distance is based on size
+        let parkingDivisor = 1;
+        if (window.innerWidth < 768) {
+            parkingDivisor = 2;
+        }
+        const parkingDistance = PARKING_DISTANCE / parkingDivisor;
+
         const dist = cursor.distanceFrom(this.x.v, this.y.v) - parkingDistance;
 
         // Accelerate towards the cursor
