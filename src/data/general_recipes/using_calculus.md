@@ -54,10 +54,10 @@ You can find critical points by finding where the derivative is zero. In polyfit
 let fit = FourierFit::new_auto(data, DegreeBound::Relaxed, &Aic)?;
 let critical_points = fit.critical_points()?;
 for p in critical_points {
-    match p.point_type {
-        CriticalPointType::Minima => println!("Found a minima at x = {}", p.x),
-        CriticalPointType::Maxima => println!("Found a maxima at x = {}", p.x),
-        CriticalPointType::Inflection => println!("Found an inflection point at x = {}", p.x),
+    match p {
+        CriticalPoint::Minima(x, _y_) => println!("Found a minima at x = {}", x),
+        CriticalPoint::Maxima(x, _y_) => println!("Found a maxima at x = {}", x),
+        CriticalPoint::Inflection(x, _y_) => println!("Found an inflection point at x = {}", x),
     }
 }
 ```
