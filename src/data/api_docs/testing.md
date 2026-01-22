@@ -10,4 +10,4 @@ It includes features like:
 - Built-in assertions for common fit properties and more complex statistical tests
 - Sane auto-defaults so you don't need to guess parameters
 - Seed management! Any random transforms log seeds used so you can reproduce failures easily
-- I even added [[transforms::SeedSource::from_seeds]] to replay tests with the same random data every time after a failure
+- I even added `transforms::SeedSource::from_seeds` to replay tests with the same random data every time after a failure
