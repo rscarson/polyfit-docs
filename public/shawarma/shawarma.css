@@ -33,6 +33,12 @@
 
 .crown {
     position: relative;
+
+    /* Prevent text selection */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 .crown::before {
     content: '';

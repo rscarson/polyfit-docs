@@ -17,6 +17,7 @@
 // Once the crown is clicked enough times, the shawarma king spawns.
 // Clicking the crown again despawns the king.
 
+//
 // Options
 const MAX_VELOCITY = 10;
 const MAX_ACCELERATION = 0.1;
@@ -79,21 +80,42 @@ const splatEffect = {
     }
 }
 
+const NO_MUFFLE = 22050; // Hz
+const MAX_MUFFLE = 500; // Hz
 const themeMusic = {
     audio: new Audio('/shawarma/theme.mp3'),
+    visibilityHandler: null,
+
+    init() {
+        const ctx = new AudioContext();
+        const src = ctx.createMediaElementSource(this.audio);
+        const filter = ctx.createBiquadFilter();
+
+        filter.type = 'lowpass';
+        filter.frequency.value = NO_MUFFLE;
+
+        src.connect(filter);
+        filter.connect(ctx.destination);
+
+        this.audio.context = ctx;
+        this.audio.filter = filter;
+    },
 
     update(distance) {
         // We update volume quadratically based on distance
         // And apply a low-pass filter to simulate muffling
+        let muffleDistance = window.innerWidth / 2;
 
-        let newVolume = Math.max(0, 1 - (distance / 800));
+        let newVolume = Math.max(0, 1 - (distance / muffleDistance));
         newVolume = newVolume * newVolume; // quadratic
         if (newVolume > 1) newVolume = 1;
         if (newVolume < 0) newVolume = 0;
         this.audio.volume = newVolume;
 
         // Low-pass filter frequency from 500Hz (far) to 22050Hz (close)
-        let frequency = 500 + (1 - newVolume) * (22050 - 500);
+        let frequency = MAX_MUFFLE + newVolume * (NO_MUFFLE - MAX_MUFFLE);
+        if (frequency < MAX_MUFFLE) frequency = MAX_MUFFLE;
+        if (frequency > NO_MUFFLE) frequency = NO_MUFFLE;
         if (this.audio.context && this.audio.filter) {
             this.audio.filter.frequency.setValueAtTime(frequency, this.audio.context.currentTime);
         }
@@ -102,12 +124,27 @@ const themeMusic = {
     play() {
         this.audio.loop = true;
         this.audio.volume = 0;
-        this.audio.play();
+        this.audio.context.resume().then(() => {
+            this.audio.play().catch(e => console.log('Play failed:', e));
+        });
+
+        this.visibilityHandler = () => {
+            if (document.hidden) {
+                this.audio.pause();
+            } else {
+                this.audio.play().catch(() => this.audio.context.resume().then(() => this.audio.play()));
+                // To get around autoplay restrictions, resume audio context first
+            }
+        };
+        document.addEventListener('visibilitychange', this.visibilityHandler);
     },
 
     stop() {
         this.audio.pause();
         this.audio.currentTime = 0;
+
+        document.removeEventListener('visibilitychange', this.visibilityHandler);
+        this.visibilityHandler = null;
     }
 }
 
@@ -423,15 +460,23 @@ const theKing = {
 }
 
 cursor.load();
+themeMusic.init();
 
 // Look for the first .crown element and attach a click handler
+let despawnLock = false;
 document.querySelectorAll('.crown').forEach((elem) => {
     elem.addEventListener('click', () => {
         let isSpawned = theKing.element !== null;
         if (isSpawned) {
+            if (despawnLock) return;
+
+            // Despawn the king
             themeMusic.stop();
             theKing.despawn();
             dvdLogo.despawn();
+
+            // This makes it so the king cannot be respawned
+            // Since the parent element is translucent, the crown cannot be further clicked
             elem.style.opacity = '0.09';
         } else {
             // Get the opacity of the crown element
@@ -450,6 +495,10 @@ document.querySelectorAll('.crown').forEach((elem) => {
                 dvdLogo.spawn();
                 theKing.spawn();
                 themeMusic.play();
+
+                // Prevent immediate despawn by accident
+                despawnLock = true;
+                setTimeout(() => { despawnLock = false; }, SHAWARMA_SPLAT_RESPAWN_DELAY);
 
                 // add copyright notice about Garlic King to the crown title attribute
                 crown.setAttribute('title', 

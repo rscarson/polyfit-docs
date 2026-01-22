@@ -55,6 +55,14 @@ h1 {
  * Sidebar / Navigation Styles
  */
 
+#sidebarToggle {
+	position: fixed;
+	top: 16px;
+	right: 16px;
+	z-index: 1050;
+	/* ensures it overlays nav */
+}
+
 nav {
 	position: fixed;
 	top: 0;
