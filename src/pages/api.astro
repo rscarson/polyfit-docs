@@ -33,7 +33,7 @@ const apiData = includeAPI('api');
                             </div>
                     </button>
                 </p>
-                <div id={`${section.id}`} class="accordion-collapse collapse no-highlight" style="text-align: left">
+                <div id={`${section.id}`} class="accordion-collapse collapse no-highlight" style="text-align: left" data-title={`${section.title} API`} >
                     <div class="accordion-body api-item">
                         <Markdown items={section.content} p_class="col-md-9" parent_id={section.id} />
 

@@ -51,7 +51,7 @@ const glossary = includeGlossary('glossary');
                         <div class="card m-3">
                             <div class="card-header">
                                 <a class="can-highlight" href={`#${b.id}`}>
-                                    <h5 id={`${b.id}`} class="mb-0">{b.name} Basis</h5>
+                                    <h5 id={`${b.id}`} class="mb-0" data-title={`${b.name} Basis`}>{b.name} Basis</h5>
                                 </a>
                                 <small>
                                     <a href={b.refs.wikipedia}>Wikipedia</a> |
@@ -128,7 +128,7 @@ const glossary = includeGlossary('glossary');
                         <div class="card m-3">
                             <div class="card-header">
                                 <a href={`#${item.id}`} class="can-highlight">
-                                    <h5 id={`${item.id}`}>{item.name}</h5>
+                                    <h5 id={`${item.id}`} data-title={item.name}>{item.name}</h5>
                                 </a>
                                 <small>
                                     <a href={item.refs.wikipedia}>Wikipedia</a> |

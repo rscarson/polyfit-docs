@@ -29,7 +29,7 @@ const recipes = includeRecipes('recipes');
                 {recipe.title}
             </button>
         </h2>
-        <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight" style="text-align: left">
+        <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight" style="text-align: left" data-title={recipe.title} >
             <div class="accordion-body">
                 <a href={recipe.links.github} class="btn btn-outline-secondary btn-sm float-end" target="_blank"><i
                     class="bi bi-github me-2"></i> GitHub</a>

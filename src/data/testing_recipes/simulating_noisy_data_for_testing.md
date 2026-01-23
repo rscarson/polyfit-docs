@@ -148,7 +148,7 @@ A small number of large positive and negative spikes have now been added to the 
 # Final Result
 
 Now that we have our final noisy signal, we can visualize it alongside the original clean signal to see the difference:
-![Final noisy signal in red, original clean signal in green, curve fit in blue](recipes/adding_noise/fit.png)
+![Final noisy signal in red, original clean signal in green, curve fit in blue](/images/recipes/adding_noise/fit.png)
 
 You can clearly see the effects of our noise:
 

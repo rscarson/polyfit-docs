@@ -29,7 +29,7 @@ const testingRecipes = includeTestingRecipes('testing');
                         {recipe.title}
                     </button>
                 </h2>
-                <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight">
+                <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight" data-title={recipe.title}>
                     <div class="accordion-body">
                         <a href={recipe.links.github} class="btn btn-outline-secondary btn-sm float-end" target="_blank"><i
                             class="bi bi-github me-2"></i> GitHub
@@ -56,7 +56,7 @@ const testingRecipes = includeTestingRecipes('testing');
                     {recipe.prototype}
                 </button>
             </h2>
-            <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight">
+            <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight" data-title={recipe.prototype.split('(')[0]} >
                 <div class="accordion-body">
                     <a href={recipe.links.docsrs} target="_blank" class="float-end badge text-bg-warning">
                         <i class="bi bi-box-seam me-2"></i> Docs

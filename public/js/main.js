@@ -5,6 +5,8 @@ toggleBtn?.addEventListener('click', () => {
   sidebar?.classList.toggle('show');
 });
 
+const originalTitle = document.title;
+
 /// On input in the glossary search box, filter glossary items
 function glossarySearch(filterElement) {
     const filter = filterElement.value.toLowerCase();
@@ -81,10 +83,15 @@ function scrollToAnchor(anchor, no_scroll = false) {
         anchorElement.classList.add('highlight');
     }
 
+    let titlePrefix = anchorElement.getAttribute('data-title');
+    if (titlePrefix) {
+        document.title = `${titlePrefix} :: Polyfit`;
+    }
+
     // Set URL hash without jumping
     history.replaceState(null, '', anchor);
 
-    // We acutally want to scroll to slightly above the element, around 60px offset
+    // We actually want to scroll to slightly above the element, around 60px offset
     const elementPosition = anchorElement.getBoundingClientRect().top + window.pageYOffset;
     const offsetPosition = elementPosition - 60;
 
@@ -140,10 +147,16 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionEl.addEventListener('shown.bs.collapse', () => {
             if (location.hash.startsWith('#' + targetId)) return;
             history.replaceState(null, '', '#' + targetId);
+
+            let titlePrefix = sectionEl.getAttribute('data-title');
+            if (titlePrefix) {
+                document.title = `${titlePrefix} :: Polyfit`;
+            }
         });
 
         sectionEl.addEventListener('hidden.bs.collapse', () => {
             history.replaceState(null, '', ' ');
+            document.title = originalTitle;
         });
     });
 
