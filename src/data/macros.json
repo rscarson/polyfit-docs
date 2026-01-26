@@ -1,190 +1,170 @@
-[
-    {
-        "prototype": "assert_close!(a, b [, ..msg]);",
+{
+    "assert_close": {
         "desc": "Asserts that two floating-point values are approximately equal within a small tolerance (epsilon). It's basically an equality check for floating-point numbers, accounting for potential precision issues. Supports complex numbers.",
+        "plot_on_fail": false,
         "args": {
-            "a": "First floating-point value to compare",
-            "b": "Second floating-point value to compare",
-            "msg": "(Optional) A custom error message formatted string"
+            "a": { "desc": "First floating-point value to compare", "optional": false },
+            "b": { "desc": "Second floating-point value to compare", "optional": false },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "assert_close!(a, b);",
             "assert_close!(a, b, \"a and b are not within epsilon of each other\");",
             "assert_close!(a, b, \"{a} is not close to {b}\");",
             "assert_close!(a, b, \"Values {} and {} differ\", a, b);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_close.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_all_close!(a, b [, msg])",
+    "assert_all_close": {
         "desc": "Asserts that two slices of floating-point values are approximately equal element-wise within a small tolerance (epsilon). It's basically an equality check for floating-point numbers, accounting for potential precision issues. Supports complex numbers.",
+        "plot_on_fail": false,
         "args": {
-            "a": "First slice to compare",
-            "b": "Second slice to compare",
-            "msg": "(Optional) A custom error message formatted string"
+            "a": { "desc": "First slice to compare", "optional": false },
+            "b": { "desc": "Second slice to compare", "optional": false },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "assert_all_close!(a_slice, b_slice);",
             "assert_all_close!(a_slice, b_slice, \"Slices are not within epsilon of each other\");",
             "assert_all_close!(a_slice, b_slice, \"Slice A: {:?} is not close to Slice B: {:?}\", a_slice, b_slice);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_all_close.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_y!(fn, x, y [, msg])",
+    "assert_y": {
         "desc": "Asserts that a function produces an expected 'y' output at a given 'x' input. This is the equivalent of `assert_close!(fn(x), y)`.",
+        "plot_on_fail": false,
         "args": {
-            "fn": "Polynomial or CurveFit to evaluate",
-            "x": "Input value where the function is evaluated",
-            "y": "Expected output value from the function",
-            "msg": "(Optional) A custom error message formatted string"
+            "fn": { "desc": "Polynomial or CurveFit to evaluate", "optional": false },
+            "x": { "desc": "Input value where the function is evaluated", "optional": false },
+            "y": { "desc": "Expected output value from the function", "optional": false },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "function!(y(x) = 3 x^2 + 2 x + 1)",
             "assert_y!(test, 2.0, 15.0);",
             "assert_y!(test, 2.0, 15.0, \"Function did not produce expected output at x = {}\", 2.0);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_y.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_r_squared!(fit [, threshold] [, msg = \"formatted string\"])",
-        "will_plot": true,
+    "assert_r_squared": {
         "desc": "Asserts that a fitted curve meets a minimum R² threshold. This is a measure of how well the curve explains how wiggly the data is.",
+        "plot_on_fail": true,
         "args": {
-            "fit": "The CurveFit to evaluate",
-            "threshold": "(Optional) Minimum acceptable R² value (between 0 and 1). Defaults to 0.9",
-            "msg": "(Optional) A custom error message formatted string"
+            "fit": { "desc": "The CurveFit to evaluate", "optional": false },
+            "threshold": { "desc": "Minimum acceptable R² value (between 0 and 1). Defaults to 0.9", "optional": true },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "let fit = ChebyshevFit::new(&data, 3)?;",
             "assert_r_squared!(fit, 0.95);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_r_squared.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_robust_r_squared!(fit [, threshold] [, msg = \"formatted string\"])",
-        "will_plot": true,
+    "assert_robust_r_squared": {
         "desc": "Asserts that a fitted curve meets a minimum R² threshold, using a robust R² calculation that is less sensitive to outliers. This is a measure of how well the curve explains how wiggly the data is.",
+        "plot_on_fail": true,
         "args": {
-            "fit": "The CurveFit to evaluate",
-            "threshold": "(Optional) Minimum acceptable R² value (between 0 and 1). Defaults to 0.9",
-            "msg": "(Optional) A custom error message formatted string"
+            "fit": { "desc": "The CurveFit to evaluate", "optional": false },
+            "threshold": { "desc": "Minimum acceptable R² value (between 0 and 1). Defaults to 0.9", "optional": true },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "let fit = ChebyshevFit::new(&data, 3)?;",
             "assert_robust_r_squared!(fit, 0.95);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_robust_r_squared.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_adjusted_r_squared!(fit [, threshold] [, msg = \"formatted string\"])",
-        "will_plot": true,
+    "assert_adjusted_r_squared": {
         "desc": "Asserts that a fitted curve meets a minimum R² threshold, using a modified R² calculation that rewards models with fewer parameters. This is a measure of how well the curve explains how wiggly the data is.",
+        "plot_on_fail": true,
         "args": {
-            "fit": "The CurveFit to evaluate",
-            "threshold": "(Optional) Minimum acceptable R² value (between 0 and 1). Defaults to 0.9",
-            "msg": "(Optional) A custom error message formatted string"
+            "fit": { "desc": "The CurveFit to evaluate", "optional": false },
+            "threshold": { "desc": "Minimum acceptable R² value (between 0 and 1). Defaults to 0.9", "optional": true },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "let fit = ChebyshevFit::new(&data, 3)?;",
             "assert_adjusted_r_squared!(fit, 0.95);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_adjusted_r_squared.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_fits!(fn, fit [, threshold] [, msg])",
-        "will_plot": true,
-        "desc": "A subset of `assert_r_squared!` that asserts a fitted curve meets a minimum R² threshold against the canonical (true) function used to generate the data. See (testing#assert_r_squared) for more details.",
+    "assert_fits": {
+        "desc": "A subset of `assert_r_squared!` that asserts a fitted curve meets a minimum R² threshold against the canonical (true) function used to generate the data.",
+        "plot_on_fail": true,
         "args": {
-            "fn": "A Polynomial which represents the true function used to generate the data",
-            "fit": "The CurveFit to evaluate, fitted over data generated from `fn`",
-            "threshold": "(Optional) Minimum acceptable R² value (between 0 and 1) . Defaults to 0.9",
-            "msg": "(Optional) A custom error message formatted string"
+            "fn": { "desc": "A Polynomial which represents the true function used to generate the data", "optional": false },
+            "fit": { "desc": "The CurveFit to evaluate, fitted over data generated from `fn`", "optional": false },
+            "threshold": { "desc": "Minimum acceptable R² value (between 0 and 1) . Defaults to 0.9", "optional": true },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "function!(y(x) = 3 x^2 + 2 x + 1)",
             "let data = y.solve_range(0.0..10.0, 0.1);",
             "let fit = ChebyshevFit::new(&data, 2)?;",
             "assert_fits!(y, fit, 0.95);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_fits.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_monotone!(fn [, msg])",
-        "will_plot": true,
+    "assert_monotone": {
         "desc": "Asserts that the derivative of a fitted curve does not change sign over its x-range, indicating monotonicity. This means the function always increases or always decreases.",
+        "plot_on_fail": true,
         "args": {
-            "fn": "Polynomial or CurveFit to evaluate",
-            "msg": "(Optional) A custom error message formatted string"
+            "fn": { "desc": "Polynomial or CurveFit to evaluate", "optional": false },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "function!(y(x) = 4 x^2)",
             "assert_monotone!(y);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_monotone.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_residuals_normal!(fit [, tol] [,strict = true] [, msg])",
-        "will_plot": true,
+    "assert_residuals_normal": {
         "desc": "Asserts that the residuals (the differences between the observed and predicted values) of a fit are normally distributed. This means the errors are likely random, not based on some undiscovered pattern. If `strict = true` is not set, will filter out extremely small residuals. This is because for near-perfect fits, the non-random nature of floating-point rounding errors can cause the normality test to fail.",
+        "plot_on_fail": true,
         "args": {
-            "fit": "The CurveFit to evaluate",
-            "tol": "(Optional) Tolerance for normality test. Defaults to 0.1",
-            "strict": "(Optional) If true, uses unfiltered residuals. Defaults to false",
-            "msg": "(Optional) A custom error message formatted string"
+            "fit": { "desc": "The CurveFit to evaluate", "optional": false },
+            "tol": { "desc": "Tolerance for normality test. Defaults to 0.1", "optional": true },
+            "strict": { "desc": "If true, uses unfiltered residuals. Defaults to false", "optional": true },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "let fit = ChebyshevFit::new(&data, 2)?;",
             "assert_residuals_normal!(fit, 0.05);",
             "assert_residuals_normal!(fit, \"Chebyshev fit failed for degree {}\", 2);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_residuals_normal.html"
-        }
+        ]
     },
 
-    {
-        "prototype": "assert_max_residual!(fit, max, [, msg])",
-        "will_plot": true,
+    "assert_max_residual": {
         "desc": "Asserts that at least a certain proportion of residuals (the differences between the observed and predicted values) of a fit are below a certain threshold.",
+        "plot_on_fail": true,
         "args": {
-            "fit": "The CurveFit to evaluate",
-            "max": "Maximum allowed residual magnitude",
-            "tolerance": "(Optional) Proportion of residuals that must be below `max`. Defaults to `0.95` if omitted.",
-            "msg": "(Optional) A custom error message formatted string"
+            "fit": { "desc": "The CurveFit to evaluate", "optional": false },
+            "max": { "desc": "Maximum allowed residual magnitude", "optional": false },
+            "tolerance": { "desc": "Proportion of residuals that must be below `max`. Defaults to `0.95` if omitted.", "optional": true },
+            "msg": { "desc": "A custom error message formatted string", "optional": true }
         },
-        "examples": [
+        "example": [
             "function!(y(x) = 3 x^2 + 2 x + 1)",
             "let data = y.solve_range(0.0..10.0, 0.1);",
             "let fit = ChebyshevFit::new(&data, 2)?;",
             "assert_max_residual!(fit, 1.0);"
-        ],
-        "links": {
-            "docsrs": "https://docs.rs/polyfit/latest/polyfit/macro.assert_max_residual.html"
-        }
+        ]
+    },
+
+    "assert_is_derivative": {
+        "desc": "Asserts that one polynomial is the derivative of another polynomial over a specified domain.",
+        "plot_on_fail": true,
+        "args": {
+            "f": { "desc": "The original Polynomial", "optional": false },
+            "f_prime": { "desc": "The Polynomial that is claimed to be the derivative of `f`", "optional": false },
+            "domain_normalizer": { "desc": "The [[statistics::DomainNormalizer]] used for both polynomials. Use `DomainNormalizer::default()` if none.", "optional": false },
+            "f_lbl": { "desc": "Label for `f` used in error messages", "optional": true },
+            "f_prime_lbl": { "desc": "Label for `f_prime` used in error messages", "optional": true }
+        },
+        "example": [
+            "function!(f(x) = 3 x^3 + 2 x^2 + x + 5)",
+            "function!(f_prime(x) = 9 x^2 + 4 x + 1)",
+            "assert_is_derivative!(f, f_prime, DomainNormalizer::default());"
+        ]
     }
-]
+}

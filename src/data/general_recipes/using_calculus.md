@@ -10,6 +10,11 @@ This recipe shows ways to leverage calculus concepts when using polyfit. It will
 - To understand how quickly a measurement changes over the dataset
 - To estimate the total accumulation of a quantity given a dataset representing samples in a smooth process
 
+## How do I write tests for this?
+- [assert_close!()](/testing#assert_close) to verify derivative and integral results
+- [assert_is_derivative!()](/testing#assert_is_derivative) to verify derivative polynomials
+- [Fits for generating graphs](/recipes#fits-for-generating-graphs) to create graphs for visual verification of critical points
+
 -----
 
 # Derivatives

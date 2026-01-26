@@ -13,8 +13,9 @@ let popoverHtml = `
 
 <a
   style="cursor: pointer"
-  title={item.name}
+  title={item.desc}
   class="glossary-link"
+  data-bs-title={item.name}
   data-bs-toggle="popover"
   data-bs-html="true"
   data-bs-content={popoverHtml}

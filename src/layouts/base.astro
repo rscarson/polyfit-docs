@@ -15,11 +15,32 @@ export const sidebarLinks = [
 <html lang="en">
 
 <head>
-    <script>
-        const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const savedTheme = document.cookie.split('; ').find(row => row.startsWith('theme='))?.split('=')[1];
-        const theme = savedTheme || (userPrefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-bs-theme', theme);
+    <script is:inline>        
+        (function() {
+            const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const savedTheme = document.cookie.split('; ').find(row => row.startsWith('theme='))?.split('=')[1];
+            const theme = savedTheme || (userPrefersDark ? 'dark' : 'light');
+            
+            document.documentElement.setAttribute('data-bs-theme', theme);
+        })();
+    </script>
+
+    <script>   
+        document.addEventListener('DOMContentLoaded', () => {
+            const btns = document.getElementsByClassName('theme-btn');
+            for (let i = 0; i < btns.length; i++) {
+                const element = btns[i];
+
+                element.addEventListener('click', (e) => {
+                    const target = e.target;
+                    const selectedTheme = target.getAttribute('data-theme');
+                    if (!selectedTheme) return;
+
+                    document.cookie = `theme=${selectedTheme}; path=/; max-age=31536000`; // 1 year
+                    document.documentElement.setAttribute('data-bs-theme', selectedTheme);
+                });
+            }
+        });
     </script>
 
     <meta charset="UTF-8" />
@@ -33,9 +54,9 @@ export const sidebarLinks = [
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <link id="theme-stylesheet" rel="stylesheet" href="/css/theme.css" />
+    <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
     <link rel="stylesheet" href="/css/main.css" />
     
-    <link id="highlight-css" rel="stylesheet" href="/css/highlight.js/default.min.css" />
  
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 
@@ -43,7 +64,6 @@ export const sidebarLinks = [
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 
     <script type="module" src="/js/main.js"></script>
-    <script type="module" src="/js/theme.js"></script>
 
     <script type="module" src="/shawarma/shawarma.js"></script>
     <link rel="stylesheet" href="/shawarma/shawarma.css" />

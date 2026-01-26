@@ -1,5 +1,3 @@
-# Fits for Generating Graphs
-
 Full recipe coming soon!
 
 In the meantime, check out the attached source code I will be using to write this up (top right), or refer to the documentation for the [[plotting]] module.

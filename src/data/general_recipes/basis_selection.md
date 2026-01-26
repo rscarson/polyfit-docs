@@ -10,6 +10,9 @@ Different polynomial bases have different strengths and weaknesses. Choosing the
 
 The limitations and properties of each basis also determine which bases are suitable for different use cases.
 
+## How do I write tests for this?
+- [Validating your choice of basis](/testing#validating-your-choice-of-basis)
+
 -----
 
 # Once I do this how do I know I picked the right one?

@@ -10,6 +10,10 @@ This recipe demonstrates how to identify outliers in a dataset using polyfit in 
 - Given a data set, you can identify points that are significantly different from trend
 - You can use this to clean data, identify errors, or find interesting anomalies
 
+## How do I write tests for this?
+- Remove only the outliers and verify the fit improves with [[CurveFit::r_squared]]
+- Generate synthetic outliers with [Simulating noisy data for testing](/testing#simulating-noisy-data-for-testing)
+
 -----
 
 Given a set of data, one of the more common needs you might have is to identify outliers - points that are significantly different from the overall trend of the data.

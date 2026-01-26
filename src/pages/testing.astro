@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/base.astro';
-import { includeTestingRecipes, includeTestingUtils } from '../lib/recipes';
+import { includeTestingRecipes } from '../lib/recipes';
+import { prepareMacros } from '../lib/macros';
 import Markdown from '../components/markdown.astro';
 
-const testingUtils = includeTestingUtils('testing');
 const testingRecipes = includeTestingRecipes('testing');
+const macros = prepareMacros('testing');
 ---
 
 <BaseLayout title="Testing" path="/testing">
@@ -47,35 +48,45 @@ const testingRecipes = includeTestingRecipes('testing');
     <hr />
 
     <div class="row row-cols-1 row-cols-lg-1 accordion accordion-flush">
-        {testingUtils.map((recipe: any) => (
+        {macros.map((macro: any) => (
         <div class="col accordion-item" style="text-align: left">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed recipe-card" type="button" data-bs-toggle="collapse"
-                    data-bs-target={`#${recipe.id}`} aria-expanded="false" aria-controls={`${recipe.id}`}>
+                    data-bs-target={`#${macro.name}`} aria-expanded="false" aria-controls={`${macro.name}`}>
                     <span class="badge text-bg-danger me-2">Macro</span>
-                    {recipe.prototype}
+                    {macro.prototype}
                 </button>
             </h2>
-            <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight" data-title={recipe.prototype.split('(')[0]} >
+            <div id={`${macro.name}`} class="accordion-collapse collapse no-highlight" data-title={macro.name} >
                 <div class="accordion-body">
-                    <a href={recipe.links.docsrs} target="_blank" class="float-end badge text-bg-warning">
+                    <a href={macro.docs} target="_blank" class="float-end badge text-bg-warning">
                         <i class="bi bi-box-seam me-2"></i> Docs
                     </a>
 
-                    {recipe.will_plot && (
+                    {macro.plot_on_fail && (
                         <div class="alert alert-info" role="alert">
                             <i class="bi bi-info-circle-fill me-2"></i>
                             Generates a plot on failure.
                             <strong>[Requires 'plotting' feature]</strong>
                         </div>
                     )}
+                    
+                    <Markdown items={macro.desc} p_class="lead col-md-9" />
 
-                    {Object.keys(recipe.args).map((arg: string) => (
-                        <p class="m-2"><strong>[{arg}]</strong> {recipe.args[arg]}</p>
+                    {Object.keys(macro.args).map((arg: any) => (
+                        <div class="mb-3 pb-2 border-bottom">
+                            <code class="text-primary">{arg}</code>
+                            {macro.args[arg].optional && (
+                                <span class="badge bg-secondary ms-2">optional</span>
+                            )}
+                            <div class="mt-1">
+                                <Markdown items={macro.args[arg].desc} />
+                            </div>
+                        </div>
                     ))}
 
-                    <Markdown items={recipe.desc} p_class="col-md-9" />
-                    <pre><code class="language-rust" set:html={recipe.example}></code></pre>
+                    <h5>Example</h5>
+                    <pre><code class="language-rust" set:html={macro.example}></code></pre>
                 </div>
             </div>
         </div>

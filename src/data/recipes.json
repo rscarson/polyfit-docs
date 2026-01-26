@@ -37,7 +37,7 @@
             "title": "Scaling and Normalization Transforms",
             "mdfile": "scaling_and_normalization.md",
             "links": {
-                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/scaling_transforms.rs"
+                "github": "https://github.com/caliangroup/polyfit/blob/master/examples/transforms.rs"
             }
         },
 

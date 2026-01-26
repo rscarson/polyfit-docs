@@ -1,6 +1,4 @@
 import { general, testing } from '../data/recipes.json';
-import macros from '../data/macros.json';
-import { highlightRust } from "./highlight.ts";
 import { MdParser , titleToId} from './markdown.ts';
 
 import fs from 'fs';
@@ -31,17 +29,4 @@ export function includeRecipes(sourceURL: string) {
 
 export function includeTestingRecipes(sourceURL: string) {
     return prepareRecipes(testing, sourceURL, 'data/testing_recipes');
-}
-
-export function includeTestingUtils(sourceURL: string) {
-    let utils = JSON.parse(JSON.stringify(macros));
-    const parser = new MdParser(sourceURL);
-    
-    utils.forEach((util: any) => {
-        let name = util.prototype.split(/[^a-zA-Z0-9_\-!]+/)[0];
-        util.id = titleToId(name);
-        util.desc = parser.parse(util.desc);
-        util.example = highlightRust(util.examples.join('\n'));
-    });
-    return utils;
 }
