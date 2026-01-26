@@ -104,7 +104,10 @@ const themeMusic = {
     update(distance) {
         // We update volume quadratically based on distance
         // And apply a low-pass filter to simulate muffling
-        let muffleDistance = window.innerWidth / 2;
+        //
+        // We will use the diagonal of the viewport as the muffle distance
+        let diagonal = Math.hypot(window.innerWidth, window.innerHeight);
+        let muffleDistance = diagonal;
 
         let newVolume = Math.max(0, 1 - (distance / muffleDistance));
         newVolume = newVolume * newVolume; // quadratic
