@@ -60,7 +60,7 @@ plot!(fit, {
 }, prefix = "filename_prefix");
 ```
 
-![Fit example](/images/recipes/for_graphs/fit_example.png)
+![Fit example](/images/tutorials/for_graphs/fit_example.png)
 
 This will generate a PNG file with the plot of the fit, in the `target/plot_output/` directory by default.
 
@@ -78,7 +78,7 @@ use polyfit::plot_residuals;
 plot_residuals!(fit); // Supports same options as `plot!`
 ```
 
-![Residuals example](/images/recipes/for_graphs/residuals_example.png)
+![Residuals example](/images/tutorials/for_graphs/residuals_example.png)
 
 > ### Important
 > Mathematically, a QQ plot is the gold standard for evaluating residuals.

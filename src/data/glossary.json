@@ -80,7 +80,7 @@
         "desc": [
             "How sensitive your polynomial fit is to small changes in your input or intermediate calculations. An unstable fit might blow up or produce wildly wrong coefficients even if your data barely changes.",
             "If the polynomial degree is high or your basis isn't orthogonal, small rounding errors can produce nonsense results. Stability ensures the fit behaves predictably.",
-            "Stability can be improved by using an @[orthogonality]{orthogonal basis} or by [normalizing your data](/recipes#scaling_and_normalization)."
+            "Stability can be improved by using an @[orthogonality]{orthogonal basis} or by [normalizing your data](/tutorials#scaling_and_normalization)."
         ]
     },
 

@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '../layouts/base.astro';
-import { includeRecipes } from '../lib/recipes';
+import { includeGeneralTutorials } from '../lib/tutorials';
 import Markdown from '../components/markdown.astro';
 
-const recipes = includeRecipes('recipes');
+const tutorials = includeGeneralTutorials('tutorials');
 ---
 
-<BaseLayout title="Recipes" path="/recipes">
+<BaseLayout title="Tutorials and Guides" path="/tutorials">
     <header id="top" class="page-header">
-        <h1>Recipes</h1>
+        <h1>Tutorials and Guides</h1>
         <p class="lead" style="text-align: left;">
             A collection of practical guides and examples to help you implement various polynomial fitting techniques
             using our library.
@@ -21,21 +21,21 @@ const recipes = includeRecipes('recipes');
     </div>
 
     <div class="accordion accordion-flush" style="text-align: left">
-    {recipes.map((recipe: any) => (
+    {tutorials.map((tutorial: any) => (
     <div class="accordion-item">
         <h2 class="accordion-header">
             <button class="accordion-button collapsed recipe-card" type="button" data-bs-toggle="collapse"
-                data-bs-target={`#${recipe.id}`} aria-expanded="false" aria-controls={`${recipe.id}`}>
-                {recipe.title}
+                data-bs-target={`#${tutorial.id}`} aria-expanded="false" aria-controls={`${tutorial.id}`}>
+                {tutorial.title}
             </button>
         </h2>
-        <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight" style="text-align: left" data-title={recipe.title} >
+        <div id={`${tutorial.id}`} class="accordion-collapse collapse no-highlight" style="text-align: left" data-title={tutorial.title} >
             <div class="accordion-body">
-                <a href={recipe.links.github} class="btn btn-outline-secondary btn-sm float-end" target="_blank"><i
+                <a href={tutorial.links.github} class="btn btn-outline-secondary btn-sm float-end" target="_blank"><i
                     class="bi bi-github me-2"></i> GitHub</a>
 
                 <div class="recipe-content">
-                    <Markdown items={recipe.content} p_class="col-md-9" parent_id={recipe.id} />
+                    <Markdown items={tutorial.content} p_class="col-md-9" parent_id={tutorial.id} />
                 </div>
             </div>
         </div>

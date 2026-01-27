@@ -1,18 +1,18 @@
 ---
 import BaseLayout from '../layouts/base.astro';
-import { includeTestingRecipes } from '../lib/recipes';
+import { includeTestingTutorials } from '../lib/tutorials';
 import { prepareMacros } from '../lib/macros';
 import Markdown from '../components/markdown.astro';
 
-const testingRecipes = includeTestingRecipes('testing');
+const testingTutorials = includeTestingTutorials('testing');
 const macros = prepareMacros('testing');
 ---
 
-<BaseLayout title="Testing" path="/testing">
+<BaseLayout title="Testing Guides & Utilities" path="/testing">
     <header id="top" class="page-header">
         <h1>Testing</h1>
         <p class="lead" style="text-align: left;">
-            A library of test concepts and recipes to help you validate and verify your polynomial fits.
+            A library of test concepts and guides to help you validate and verify your polynomial fits.
         </p>
     </header>
 
@@ -22,22 +22,22 @@ const macros = prepareMacros('testing');
     </div>
         
     <div class="accordion accordion-flush" style="text-align: left">
-        {testingRecipes.map((recipe: any) => (
+        {testingTutorials.map((tutorial: any) => (
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed recipe-card" type="button" data-bs-toggle="collapse"
-                        data-bs-target={`#${recipe.id}`} aria-expanded="false" aria-controls={`${recipe.id}`}>
-                        {recipe.title}
+                        data-bs-target={`#${tutorial.id}`} aria-expanded="false" aria-controls={`${tutorial.id}`}>
+                        {tutorial.title}
                     </button>
                 </h2>
-                <div id={`${recipe.id}`} class="accordion-collapse collapse no-highlight" data-title={recipe.title}>
+                <div id={`${tutorial.id}`} class="accordion-collapse collapse no-highlight" data-title={tutorial.title}>
                     <div class="accordion-body">
-                        <a href={recipe.links.github} class="btn btn-outline-secondary btn-sm float-end" target="_blank"><i
+                        <a href={tutorial.links.github} class="btn btn-outline-secondary btn-sm float-end" target="_blank"><i
                             class="bi bi-github me-2"></i> GitHub
                         </a>
 
                     <div class="recipe-content">
-                        <Markdown items={recipe.content} p_class="col-md-9" />
+                        <Markdown items={tutorial.content} p_class="col-md-9" />
                     </div>
                     </div>
                 </div>

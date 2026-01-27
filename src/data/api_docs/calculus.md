@@ -1,6 +1,6 @@
-Calculus operations are available in most choices of @[basis] (See [Basis Selection](recipes#basis-selection-what-am-i-trying-to-do-with-the-polynomial) for more information).
+Calculus operations are available in most choices of @[basis] (See [Basis Selection](/tutorials#basis-selection-what-am-i-trying-to-do-with-the-polynomial) for more information).
 
-Polyfit supports indefinite integration and differentiation in many bases, the practical applications of which are described in more details in the [Using Calculus](recipes#using-calculus) recipe.
+Polyfit supports indefinite integration and differentiation in many bases, the practical applications of which are described in more details in the [Using Calculus](/tutorials#using-calculus) recipe.
 
 > ## Derivatives for Trend Analysis
 > The derivative describes the rate of change at specific points in a dataset.  

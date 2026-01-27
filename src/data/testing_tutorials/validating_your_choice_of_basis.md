@@ -9,8 +9,8 @@ This recipe will give you a few examples of how to verify that your choice of ba
 - By validating your choice of basis, you can ensure that your model accurately captures the underlying patterns
 
 ## Pre-requisites
-- Basic understanding of curve fitting concepts (See (recipes#getting_started))
-- Choose a basis (See (recipes#basis-selection))
+- Basic understanding of curve fitting concepts (See (/tutorials#getting_started))
+- Choose a basis (See (/tutorials#basis-selection))
 
 -----
 
@@ -118,7 +118,7 @@ Fit R²: 0.3708, Residuals Normality p-value: 0.0000
 Wrote plot to target\plot_output\probabilists__hermite_examples_simple_fit.rs_line_19.png
 ```
 
-![Probabilists' Hermite Fit Plot](/images/recipes/testing_basis/probabilists__hermite.png)
+![Probabilists' Hermite Fit Plot](/images/tutorials/testing_basis/probabilists__hermite.png)
 
 Oh ok - so that explains the low Fit Quality and Normality scores. It clearly is missing the mark, and is too simple to capture the data's behavior. This probably means the even DegreeBound::Relaxed didn't go high enough in degree to capture the data's complexity. This one is out.
 
@@ -130,7 +130,7 @@ Fit R²: 0.9900, Residuals Normality p-value: 0.6780
 Wrote plot to target\plot_output\fourier_examples_simple_fit.rs_line_19.png
 ```
 
-![Fourier Fit Plot](/images/recipes/testing_basis/fourier.png)
+![Fourier Fit Plot](/images/tutorials/testing_basis/fourier.png)
 
 Nice! The Fourier basis fits the data extremely well, with a very high R² value and a good Normality score. The plot shows that the model captures the underlying pattern in the data effectively.
 
@@ -147,7 +147,7 @@ let fit = FourierFit::fit(&data, DegreeBound::Relaxed, &Aic).unwrap();
 plot_residuals!(fit);
 ```
 
-![Fourier Residuals Plot](/images/recipes/testing_basis/fourier_residuals.png)
+![Fourier Residuals Plot](/images/tutorials/testing_basis/fourier_residuals.png)
 
 ## What to look for
 
@@ -164,7 +164,7 @@ All of these are good signs that the Fourier basis is a good fit for the data.
 
 Let's also look at the same plot for chebyshev basis, which did not perform as well:
 
-![Chebyshev Residuals Plot](/images/recipes/testing_basis/cheb_residuals.png)
+![Chebyshev Residuals Plot](/images/tutorials/testing_basis/cheb_residuals.png)
 
 From this plot we can see:
 

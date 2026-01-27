@@ -13,7 +13,7 @@ This recipe shows ways to leverage calculus concepts when using polyfit. It will
 ## How do I write tests for this?
 - [assert_close!()](/testing#assert_close) to verify derivative and integral results
 - [assert_is_derivative!()](/testing#assert_is_derivative) to verify derivative polynomials
-- [Fits for generating graphs](/recipes#fits-for-generating-graphs) to create graphs for visual verification of critical points
+- [Fits for generating graphs](/tutorials#fits-for-generating-graphs) to create graphs for visual verification of critical points
 
 -----
 
@@ -38,7 +38,7 @@ For example, see the graph below - it looks very complicated by you can ignore e
 - The green line is the derivative of that function, showing how quickly the blue line is changing
 - You can see that when the green line crosses zero, the blue line is at a peak or valley (a critical point)
 
-![Derivative Example](/images/recipes/using_calculus/derivative.png)
+![Derivative Example](/images/tutorials/using_calculus/derivative.png)
 
 
 # Critical Points
@@ -69,7 +69,7 @@ for p in critical_points {
 
 Now let's look at the same graph as before, but this time with critical points marked:
 
-![Critical Points Example](/images/recipes/using_calculus/critical_points.png)
+![Critical Points Example](/images/tutorials/using_calculus/critical_points.png)
 
 It isn't the prettiest graph ever designed, but you can see the labelled `x`s marking the critical points on the blue line.
 

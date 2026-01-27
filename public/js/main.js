@@ -85,7 +85,7 @@ function scrollToAnchor(anchor, no_scroll = false) {
 
     let titlePrefix = anchorElement.getAttribute('data-title');
     if (titlePrefix) {
-        document.title = `${titlePrefix} :: Polyfit`;
+        document.title = `${titlePrefix} | Polyfit`;
     }
 
     // Set URL hash without jumping

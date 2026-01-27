@@ -3,7 +3,7 @@
         "title": "Curve Fitting",
         "description": "Core functionality to get a function that approximates your data using various basis functions",
         "mdfile": "fitting.md",
-        "recipes": [ "getting-started", "basis-selection", "detecting-outliers", "selecting-a-degree-for-your-fit" ],
+        "tutorials": [ "getting-started", "basis-selection", "detecting-outliers", "selecting-a-degree-for-your-fit" ],
         "glossary_terms": [ "basis", "domain", "orthogonality", "outliers" ],
         "refs": [
             "CurveFit", "Polynomial", "basis::Basis", "statistics"
@@ -15,7 +15,7 @@
         "description": "Functions to visualize your data and fitted curves.",
         "mdfile": "plotting.md",
 
-        "recipes": [ "fits-for-generating-graphs" ],
+        "tutorials": [ "fits-for-generating-graphs" ],
         "glossary_terms": [ "plot" ],
         "refs": [
             "plotting", "plot", "plot_residuals"
@@ -27,7 +27,7 @@
         "description": "Integral and differential operations, used to extract trends and properties from data and fitted polynomials.",
         "mdfile": "calculus.md",
 
-        "recipes": [ "using-calculus" ],
+        "tutorials": [ "using-calculus" ],
         "glossary_terms": [ "derivative", "integral", "critical-point" ],
         "refs": [
             "Polynomial::derivative", "Polynomial::integral", "Polynomial::critical_points",
@@ -40,7 +40,7 @@
         "title": "Transforms",
         "description": "Scaling, Normalization, and Random Noise to preprocess your data or create synthetic datasets for testing and validation.",
         "mdfile": "transforms.md",
-        "recipes": [ "scaling-and-normalization-transforms", "testing/simulating-noisy-data-for-testing" ],
+        "tutorials": [ "scaling-and-normalization-transforms", "testing/simulating-noisy-data-for-testing" ],
         "glossary_terms": [ "normalization", "scaling", "synthetic-data" ],
         "refs": [
             "transforms", "transforms::ApplyNoise", "transforms::ApplyScale", "transforms::ApplyNormalization" 
@@ -51,7 +51,7 @@
         "title": "Testing Utilities",
         "description": "Utilities to let you test your fits and functions without needing to understand the underlying math.",
         "mdfile": "testing.md",
-        "recipes": [ "testing/using-assertions-to-test-fit-quality", "testing/validating-your-choice-of-basis", "testing/finding-and-using-canonical-functions" ],
+        "tutorials": [ "testing/using-assertions-to-test-fit-quality", "testing/validating-your-choice-of-basis", "testing/finding-and-using-canonical-functions" ],
         "glossary_terms": [ "synthetic-data" ],
         "refs": [
             "test", "plot", "plot_residuals", 

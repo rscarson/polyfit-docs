@@ -92,7 +92,7 @@ In this case, we want to verify that `my_fitting_function_under_test` produces a
 
 Should the test fail, Polyfit will generate a plot showing the data, the fit, and the residuals to help diagnose the issue:
 
-![Failure plot, data in red, fit in blue](/images/recipes/using_asserts/assert_failed.png)
+![Failure plot, data in red, fit in blue](/images/tutorials/using_asserts/assert_failed.png)
 
 From the plot we can see the equation of the fit at the bottom right, and the data in red overlaid with the fit in blue. 
 
@@ -151,7 +151,7 @@ In this case, now that we know R² is not a good enough measure of fit quality o
 
 If the test fails, Polyfit will again generate a plot showing the data, the fit, and the residuals to help diagnose the issue:
 
-![Failure plot, 95% range for residuals in green/pink, residuals in red, fit over residuals in blue](/images/recipes/using_asserts/assert_failed2.png)
+![Failure plot, 95% range for residuals in green/pink, residuals in red, fit over residuals in blue](/images/tutorials/using_asserts/assert_failed2.png)
 
 Now - I must admit, normally statisticians use a [Q-Q plot](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot) to visualize normality of residuals, but they have a learning curve. So polyfit just shows you the residuals overlaid with error bars representing a normal distribution.
 
@@ -199,7 +199,7 @@ fn test_fits() {
 
 Seems the test failed - let's look at the plot Polyfit generated to diagnose the issue:
 
-![Failure plot, curve fit in blue, data in red](/images/recipes/using_asserts/assert_failed3.png)
+![Failure plot, curve fit in blue, data in red](/images/tutorials/using_asserts/assert_failed3.png)
 
 Ah that's fairly clear - the fit is not capturing the high frequency oscillations in the data, leading to large residuals. Basically, we need to increase the degree of the Fourier basis to capture those oscillations better.
 
@@ -218,6 +218,6 @@ fn test_fits() {
 }
 ```
 
-![Success plot, curve fit in blue, data in red](/images/recipes/using_asserts/passed3.png)
+![Success plot, curve fit in blue, data in red](/images/tutorials/using_asserts/passed3.png)
 
 Much better - the fit now captures the oscillations in the data, and the residuals are within our acceptable range.

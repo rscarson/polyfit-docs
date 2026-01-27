@@ -6,12 +6,11 @@ import Markdown from '../components/markdown.astro';
 const apiData = includeAPI('api');
 ---
 
-<BaseLayout title="API" path="/api">
+<BaseLayout title="API Overview" path="/api">
     <header class="page-header">
-        <h1>API</h1>
+        <h1>API Overview</h1>
         <p class="lead" style="text-align: left;">
-            What does what and where they are. It's like the features page but useful<br/>
-            I still need to expand this page a lot more.
+            An overview of Polyfit's API surface and capabilities, with rustdoc and tutorial links for each section.
         </p>
     </header>
 
@@ -40,9 +39,9 @@ const apiData = includeAPI('api');
                         <aside class="api-related">
                             <h6>Related Reading</h6>
                             <ul>
-                            {section.related_recipes.map((ref: any) => (
+                            {section.related_tutorials.map((ref: any) => (
                                 <li>
-                                    <a href={ref.url}>Recipe: {ref.title}</a>
+                                    <a href={ref.url}>Tutorial: {ref.title}</a>
                                 </li>
                             ))}
                             <hr/>

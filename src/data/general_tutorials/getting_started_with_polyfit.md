@@ -14,8 +14,8 @@ If you have a set of data points and want to:
 - Predict values between known data points
 
 ## How do I write tests for this?
-- [Evaluating Fit Quality](testing#evaluating-fit-quality)
-- [Basis Selection](recipes#basis-selection)
+- [Evaluating Fit Quality](/testing#evaluating-fit-quality)
+- [Basis Selection](/tutorials#basis-selection)
 
 -----
 

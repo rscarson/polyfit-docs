@@ -33,9 +33,9 @@ Custom bases can be created by implementing the [[basis::Basis]] trait, but Poly
 
 The choice of basis depends on the characteristics of your data and the specific requirements of your application. Here are some questions you can use to narrow down your options.
 
-If you simply want a good general-purpose basis and don't have specific requirements, [Chebyshev](recipes#getting-started) is often a safe and effective choice.
+If you simply want a good general-purpose basis and don't have specific requirements, [Chebyshev](/tutorials#getting-started) is often a safe and effective choice.
 
-See [`basis_select!()`](recipes#using-basisselect) for a function that can help automate the process of selecting a basis.
+See [`basis_select!()`](/tutorials#using-basisselect) for a function that can help automate the process of selecting a basis.
 
 ## What am I trying to do with the polynomial?
 First, consider what you need the polynomial to do, to eliminate bases that don't support those features.
@@ -62,7 +62,7 @@ First, consider what you need the polynomial to do, to eliminate bases that don'
 > **Monomial | Chebyshev | Legendre | Laguerre | Hermite | Fourier**
 
 > ### Do I need advanced noise filtering?
-> For very noisy data, or data with a wide [domain](glossary#domain), or large outliers, using an Orthogonal basis can improve @[numerical-stability] and allow for advanced [filtering techniques](recipes#filtering_out_noise), and super-stable @[projection].
+> For very noisy data, or data with a wide [domain](glossary#domain), or large outliers, using an Orthogonal basis can improve @[numerical-stability] and allow for advanced [filtering techniques](/tutorials#filtering_out_noise), and super-stable @[projection].
 >
 > That narrows your options to the Orthogonal bases (those that implement [[`basis::OrthogonalBasis`]]).
 >

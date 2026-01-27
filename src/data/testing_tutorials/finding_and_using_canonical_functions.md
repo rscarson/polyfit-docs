@@ -12,7 +12,7 @@ This recipe will show you how to find and use a function to generate data for yo
 
 ## Prerequisites
 
-Before continuing, please use [Basis Selection](recipes#basis-selection) to make sure you can find the best choice of basis for your data.
+Before continuing, please use [Basis Selection](/tutorials#basis-selection) to make sure you can find the best choice of basis for your data.
 
 You should also have a variety of sample data sets to use, as well as an understanding of the kinds of edge-cases you want to test.
 
@@ -28,7 +28,7 @@ There are many ways to get a canonical function for your use, the ones I will go
 
 <div class="alert alert-warning" role="alert">
     <i class="bi bi-exclamation-circle-fill me-2"></i>
-    These functions are only approximations of your data, and may not capture all the nuances of the real data. Always validate your tests against real data, and use [transforms](recipes#simulating-noisy-data-for-testing) to randomize properties when possible.
+    These functions are only approximations of your data, and may not capture all the nuances of the real data. Always validate your tests against real data, and use [transforms](/tutorials#simulating-noisy-data-for-testing) to randomize properties when possible.
 </div>
 
 # 1. Using Domain Knowledge to Pick a Function

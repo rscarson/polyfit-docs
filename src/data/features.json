@@ -113,7 +113,7 @@
                 "heading": "Testing as a first-class citizen",
                 "desc": [
                     "The testing utilities are designed to be easy to use and integrate into existing test suites, with sensible defaults and clear documentation.",
-                    "A glossary of test concepts and recipes is also provided on this site to help users get started with testing their curve fits.",
+                    "A glossary of test concepts and tutorials is also provided on this site to help users get started with testing their curve fits.",
                     "Additionally, the `basis_select!` macro is included to test your data against all support basis choices and give you graphs and an easy to understand report on the performance of each basis on your data." 
                 ]
             },
