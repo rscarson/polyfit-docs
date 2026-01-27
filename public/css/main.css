@@ -63,6 +63,10 @@ h1 {
 	/* ensures it overlays nav */
 }
 
+.sidebar-logo-container {
+	background: var(--bs-body-bg);
+}
+
 nav {
 	position: fixed;
 	top: 0;
@@ -96,7 +100,7 @@ nav {
 	font-weight: 700;
 	font-size: 35px;
 	margin: 0;
-	color: #1e3c72;
+	color: var(--pf-logolead-color);
 }
 
 .sidebar-link {

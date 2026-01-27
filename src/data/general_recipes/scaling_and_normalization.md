@@ -29,6 +29,8 @@ In this section, we will cover the normalization techniques available in Polyfit
 
 ## Domain normalization
 
+![Domain normalization example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/domain_normalization_example.png)
+
 Domain normalization involves adjusting the input (x) values of your data to a standard range, typically [0, 1] or [-1, 1]. This can help improve the performance of polynomial fits by reducing numerical instability.
 
 Most of the time, you won't need to do this yourself as Polyfit will perform domain normalization automatically to best suit the basis you have selected. 
@@ -54,6 +56,8 @@ let normalized_x = normalizer.normalize(x_value_to_use);
 
 ## Clipping
 
+![Clip example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/clip_normalization_example.png)
+
 Another example of a boundary-based normalization technique is clipping. This involves setting a minimum and maximum threshold for your data, and any values outside of this range are set to the nearest boundary value.
 
 For example if your data represents percentages, you might want to clip values to the range [0, 100]:
@@ -65,6 +69,8 @@ data.apply_clipping(0.0, 100.0);
 
 ## Mean subtraction
 
+![Mean subtraction example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/mean_subtraction_example.png)
+
 The @[mean] of a dataset is the average value. Mean subtraction involves subtracting the mean from each data point, effectively centering the data around zero. This can be useful for removing bias in the data.
 
 This can often be an easy preprocessing step to improve fit accuracy; you will see the biggest improvements when your data has a significant offset from zero.
@@ -75,6 +81,8 @@ data.apply_mean_subtraction();
 ```
 
 ## Z-score normalization
+
+![Z-Score example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/z_score_normalization_example.png)
 
 The z-score is a measure of how many standard deviations a data point is from the mean. Z-score normalization involves transforming the data so that it has a mean of 0 and a standard deviation of 1. This is done by subtracting the mean and dividing by the standard deviation for each data point.
 
@@ -93,6 +101,8 @@ This is particularly useful in domain-specific applications where certain transf
 
 ## Shifting
 
+![Shift example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/shift_example.png)
+
 Shifting involves adding or subtracting a constant value to each data point. This can be useful for adjusting the baseline of your data.
 
 ```rust
@@ -101,6 +111,9 @@ data.apply_shifting(10.0); // Shift all data points up by 10
 ```
 
 ## Linear scaling
+
+![Scale example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/linear_example.png)
+
 Linear scaling involves multiplying each data point by a constant factor. This can be useful for converting units or adjusting the scale of your data.
 
 For example let's convert volts to megavolts:
@@ -111,6 +124,9 @@ data.apply_linear_scale(1e-6); // Scale all data points to megavolts
 ```
 
 ## Quadratic and Cubic scaling
+
+![Quadratic example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/quadratic_example.png)
+
 Quadratic and cubic scaling involve raising each data point to the power of 2 or 3, respectively and multiplying by a constant factor. This can be useful for modeling relationships that are inherently quadratic or cubic in nature, such as area or volume calculations.
 
 ```rust
@@ -120,6 +136,9 @@ data.apply_cubic_scale(1.0);     // Cube all data points
 ```
 
 ## Exponential scaling
+
+![Exponential example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/exponential_example.png)
+
 Exponential scaling involves raising a constant base to the power of each data point and multiplying by a constant factor. This can be useful for modeling exponential growth or decay processes.
 
 ```rust
@@ -128,6 +147,9 @@ data.apply_exponential_scale(2.0, 1.0); // Apply base-2 exponential scaling with
 ```
 
 ## Logarithmic scaling
+
+![Logarithmic example](https://raw.githubusercontent.com/caliangroup/polyfit/refs/heads/master/.github/assets/logarithmic_example.png)
+
 Logarithmic scaling involves taking the logarithm of each data point with a specified base and multiplying by a constant factor. This can be useful for compressing wide-ranging data or modeling phenomena that follow a logarithmic scale.
 
 ```rust

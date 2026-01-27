@@ -1,8 +1,7 @@
 [data-bs-theme="light"] {
+    --pf-logolead-color: #1e3c72;
     --pf-sidebar-color: #f1f1f1;
     --pf-sidebar-link-color: #333;
-
-    --pf-text-color: rgba(255, 255, 255, 0.87);
 
     --pf-link-color: #646cff;
     --pf-link-hover-color: #535bf2;
@@ -15,10 +14,9 @@
 }
 
 [data-bs-theme="dark"] {
-    --pf-sidebar-color: #000000;
+    --pf-logolead-color: #356aca;
+    --pf-sidebar-color: #0e0e0e;
     --pf-sidebar-link-color: #d4d4d4;
-
-    --pf-text-color: rgba(255, 255, 255, 0.87);
 
     --pf-link-color: #646cff;
     --pf-link-hover-color: #535bf2;
