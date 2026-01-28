@@ -36,6 +36,9 @@ A confidence band is just a way to show that you are not 100% sure about how goo
 
 So the less you trust the fit, the higher the level of confidence you want, and the wider the band will be.
 
+![Example of different confidence band widths](/images/tutorials/outlier_detection/bands.png)
+
+
 In polyfit, confidence bands are provided by the `covariance` of a fit, see [[CurveFit::covariance]].
 
 It provides the following method to compute confidence bands:
@@ -123,3 +126,5 @@ plot!([fit, points], {
     Confidence::P95, Some(Tolerance::Absolute(0.5))
 });
 ```
+
+![Visualizing outliers on a plot](/images/tutorials/outlier_detection/peekaboo.png)

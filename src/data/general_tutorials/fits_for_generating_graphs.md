@@ -96,14 +96,13 @@ First, you need to set up the plotting backend. By default, Polyfit uses Plotter
 A plot uses a `Root` object to manage the drawing area, and has a single function that is added at creation to determine axes ranges if not specified in the options.
 
 ```rust
-use polyfit::{self, PlottingElement};
+use polyfit::plotting::{PlottingElement, PlottingOptions, plotters::{Root, Plot}};
 use polyfit::plot_filename;
 
-let path = plot_filename!(Some("custom_prefix")); // Generate a filename
-let options = plotting::PlotOptions::<_>::default();
+let path = plot_filename!(Some("custom_prefix")); // Generate a filename in the default output directory
+let options = plotting::PlotOptions::default();
 let root = plotting::plotters::Root::new(&path, options.size);
-let mut plot =
-    plotting::Plot::<plotting::plotters::Backend, _>::new(&root, options, &fit)?;
+let mut plot = Plot::new(&root, options, &fit)?;
 ```
 
 ## Adding elements to the plot
@@ -131,5 +130,5 @@ Once you have added all the elements you want, you can finalize and save the plo
 
 ```rust
 plot.finish()?;
-drop(root); // For good luck
+drop(root); // Ensure the root is dropped to flush the file
 ```

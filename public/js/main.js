@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let titlePrefix = sectionEl.getAttribute('data-title');
             if (titlePrefix) {
-                document.title = `${titlePrefix} :: Polyfit`;
+                document.title = `${titlePrefix} | Polyfit`;
             }
         });
 
