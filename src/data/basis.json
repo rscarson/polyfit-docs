@@ -17,9 +17,8 @@
             "orthogonal": "No — functions like [[CurveFit::spectral_energy_filter]] are unavailable."
         },
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Monomial_basis",
+            "mathworld": "https://mathworld.wolfram.com/Monomial.html"
         }
     },
 
@@ -39,9 +38,8 @@
             "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Chebyshev_polynomials",
+            "mathworld": "https://mathworld.wolfram.com/ChebyshevPolynomialoftheFirstKind.html"
         }
     },
 
@@ -62,9 +60,8 @@
             "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Legendre_polynomials",
+            "mathworld": "https://mathworld.wolfram.com/LegendrePolynomial.html"
         }
     },
 
@@ -84,9 +81,8 @@
             "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Laguerre_polynomials",
+            "mathworld": "https://mathworld.wolfram.com/LaguerrePolynomial.html"
         }
     },
 
@@ -109,9 +105,8 @@
             "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Hermite_polynomials",
+            "mathworld": "https://mathworld.wolfram.com/HermitePolynomial.html"
         }
     },
 
@@ -134,9 +129,8 @@
             "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Hermite_polynomials",
+            "mathworld": "https://mathworld.wolfram.com/HermitePolynomial.html"
         }
     },
 
@@ -157,9 +151,8 @@
             "orthogonal": "Yes. See @[orthogonality]."
         },
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Fourier_series",
+            "mathworld": "https://mathworld.wolfram.com/FourierSeries.html"
         }
     },
 
@@ -179,9 +172,8 @@
             "orthogonal": "No — functions like [[CurveFit::spectral_energy_filter]] are unavailable."
         },
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Logarithm",
+            "mathworld": "https://mathworld.wolfram.com/LogarithmicSeries.html"
         }
   }
 }

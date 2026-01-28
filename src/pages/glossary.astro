@@ -53,10 +53,12 @@ const glossary = includeGlossary('glossary');
                                 <a class="can-highlight" href={`#${b.id}`}>
                                     <h5 id={`${b.id}`} class="mb-0" data-title={`${b.name} Basis`}>{b.name} Basis</h5>
                                 </a>
+                                
                                 <small>
-                                    <a href={b.refs.wikipedia}>Wikipedia</a> |
-                                    <a href={b.refs.mathworld}>Mathworld</a> |
-                                    <a href={b.refs.khanacademy}>Khan Academy</a>
+                                {b.links.map((link: { url: string, text: string }, index: number) => <>
+                                    <a href={link.url}>{link.text}</a>
+                                    {index < b.links.length - 1 ? ' | ' : ''}
+                                </>)}
                                 </small><br/>
                                 <small class="text-muted">{b.sample}</small>
                             </div>
@@ -147,9 +149,10 @@ const glossary = includeGlossary('glossary');
                                     <h5 id={`${item.id}`} data-title={item.name}>{item.name}</h5>
                                 </a>
                                 <small>
-                                    <a href={item.refs.wikipedia}>Wikipedia</a> |
-                                    <a href={item.refs.mathworld}>Mathworld</a> |
-                                    <a href={item.refs.khanacademy}>Khan Academy</a>
+                                {item.links.map((link: { url: string, text: string }, index: number) => <>
+                                    <a href={link.url}>{link.text}</a>
+                                    {index < item.links.length - 1 ? ' | ' : ''}
+                                </>)}
                                 </small>
                             </div>
 

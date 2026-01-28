@@ -87,9 +87,8 @@
     "outliers": {
         "name": "Outliers",
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Outlier",
+            "mathworld": "https://mathworld.wolfram.com/Outlier.html"
         },
         "related": [
             "basis::Basis", 
@@ -106,9 +105,8 @@
     "variance": {
         "name": "Variance",
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Variance",
+            "mathworld": "https://mathworld.wolfram.com/Variance.html"
         },
         "related": [
             "statistics::residual_variance",
@@ -141,9 +139,8 @@
     "akaike-information-criterion": {
         "name": "AIC (Akaike Information Criterion)",
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Akaike_information_criterion",
+            "khanacademy": "https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data"
         },
         "related": [
             "score::Aic",
@@ -160,9 +157,8 @@
     "bayesian-information-criterion": {
         "name": "BIC (Bayesian Information Criterion)",
         "refs": {
-            "wikipedia": "",
-            "mathworld": "",
-            "khanacademy": ""
+            "wikipedia": "https://en.wikipedia.org/wiki/Bayesian_information_criterion",
+            "khanacademy": "https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data"
         },
         "related": [
             "score::Bic",

@@ -18,6 +18,11 @@ export function includeGlossary(sourceURL: string) {
             };
         });
 
+        item.links = [];
+        if (item.refs.wikipedia) item.links.push({ url: item.refs.wikipedia, text: 'Wikipedia' });
+        if (item.refs.mathworld) item.links.push({ url: item.refs.mathworld, text: 'Mathworld' });
+        if (item.refs.khanacademy) item.links.push({ url: item.refs.khanacademy, text: 'Khan Academy' });
+
         glossaryClone.push(item);
     });
 
